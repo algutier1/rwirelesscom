@@ -22,6 +22,24 @@ fbpskdemod <- function(r) {
     return(r)
 }
 
+
+fqpskmod <- function(bits) {
+  bi <- bits[seq(1,length(bits),2)]
+  bq <- bits[seq(2,length(bits),2)]
+  si <- sapply(bi, function(x) if (x==0) r=-1 else r=x)
+  sq <- sapply(bq, function(x) if (x==0) r=-1 else r=x)
+  s <- complex(real=si, imaginary=sq)
+  return(s)
+}
+
+fqpskdemod <- function(r) {
+  ri <- Re(r)
+  rq <- Im(r)
+  r2 <- matrix(rbind(ri,rq),length(ri)+length(rq),byrow=TRUE)
+  r3 <- sapply(r2,function(x) if (x>=0) r=1 else r=0)
+  return(r3)
+}
+
 # 8 psk modulator w/ symbol mapping
 # m8 symbol bit2symbol mapping
 ft8pskbitmap <- function(x) {                                        #b2b1b0
@@ -66,14 +84,11 @@ f8pskmod <- function(bits) {
   return(s)
 }
 
-
 f8pskdemod <- function(r) {
   r2<-sapply(r,fr8pskbitmap)
   bits2 <- as.vector(matrix(r2,1,length(r2)))
   return(bits2)
 }
-
-
 
 ft16qambitmap <- function(x) {
   # b1b0  R := 00 -> -3, 01 -> -1, 11-> +1, 10 -> +3
