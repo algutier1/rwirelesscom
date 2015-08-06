@@ -26,8 +26,8 @@ fbpskdemod <- function(r) {
 fqpskmod <- function(bits) {
   bi <- bits[seq(1,length(bits),2)]
   bq <- bits[seq(2,length(bits),2)]
-  si <- sapply(bi, function(x) if (x==0) r=-1 else r=x)
-  sq <- sapply(bq, function(x) if (x==0) r=-1 else r=x)
+  si <- (1/sqrt(2))*sapply(bi, function(x) if (x==0) r=-1 else r=x)
+  sq <- (1/sqrt(2))*sapply(bq, function(x) if (x==0) r=-1 else r=x)
   s <- complex(real=si, imaginary=sq)
   return(s)
 }
