@@ -48,7 +48,7 @@ test_that("Test BPSK EbNo_dB= 4, Modulator and Demodulator in AWGN, Bit Error Ra
     b<-factor(bits)
     Pberr=length(biterrs)/length(bits)
 
-    #str<-sprintf("Test: BPSK EbNo_dB = %d, Bits = %g, bit errors = %g, Pberr=%f",EbNodB, length(bits), length(biterrs),Pberr)
+    # str<-sprintf("Test: BPSK EbNo_dB = %d, Bits = %g, bit errors = %g, Pberr=%f",EbNodB, length(bits), length(biterrs),Pberr)
     #print("",quote=FALSE)
     #print(str,quote=FALSE)
     expect_true(Pberr < 0.00032, info="BPSK EbNodb=8, Pberr should be < 0.0032")
