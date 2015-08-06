@@ -75,9 +75,9 @@ test_that("Test 8-PSK Eb/No = 11 dB, Modulator and Demodulator in AWGN, Bit Erro
   b<-factor(bits)
   Pberr=length(biterrs)/length(bits)
 
-  #str<-sprintf("Test: %d-PSK EbNo_dB = %d, EsNo_dB = %g, Bits = %g, bit errors = %g, Pberr=%f",M,EbNodB, 10*log10(Es/No), length(bits), length(biterrs),Pberr)
-  #print("",quote=FALSE)
-  #print(str,quote=FALSE)
+  # str<-sprintf("Test: %d-PSK EbNo_dB = %d, EsNo_dB = %g, Bits = %g, bit errors = %g, Pberr=%f",M,EbNodB, 10*log10(Es/No), length(bits), length(biterrs),Pberr)
+  # print("",quote=FALSE)
+  # print(str,quote=FALSE)
 
   expect_true(Pberr < 0.015, info="8-PSK EbNodb=7, Pberr should be < 0.015")
   expect_true(Pberr > 0.01, info="8-BSK EbNodb=7, Pberr should be > 0.01")
