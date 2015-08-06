@@ -36,8 +36,8 @@ fqpskdemod <- function(r) {
   ri <- Re(r)
   rq <- Im(r)
   r2 <- matrix(rbind(ri,rq),length(ri)+length(rq),byrow=TRUE)
-  r3 <- sapply(r2,function(x) if (x>=0) r=1 else r=0)
-  return(r3)
+  r <- sapply(r2,function(x) if (x>=0) r=1 else r=0)
+  return(r)
 }
 
 # 8 psk modulator w/ symbol mapping
