@@ -354,3 +354,11 @@ f64qamdemod <- function(r) {
 iqscatterplot <- function(r) {
   ggplot(data.frame(cbind(Re(r),Im(r))), aes(x=X1, y=X2)) + geom_point(size=1)+ xlab("In-Phase") + ylab("Quadrature") + theme(axis.text=element_text(size=14),axis.title=element_text(size=12,face="bold"))
 }
+
+iqdensityplot <- function(r,iq="r") {
+    if (iq!="i") { # Real Part
+      ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
+    } else {    #Imaginary Part
+      ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
+    }
+ }
