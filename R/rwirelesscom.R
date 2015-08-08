@@ -114,10 +114,12 @@ ft16qambitmap <- function(x) {
   return(r)
 }
 f16qammod <- function(bits) {
+  # constellation quadrant x = 1+1j, 3+1j, 1+3j, 3+3j ...
+  # Es = Sum((x * Conj(x)))/4 = 10
   # receive bits
   # transform to symbolbits (Nsym rows) length(bits)/4 x Log2(M) cols
   # transform to symbolcodes
-  # transform to xreal, yimag
+  # transform to xreal(inphase), yimag(quatrature)
   M=16
   Nsymbols = length(bits) %/% log2(M)
   symbolbits<-matrix(bits,Nsymbols,log2(M),byrow=TRUE)
@@ -161,4 +163,194 @@ f16qamdemod <- function(r) {
   r2 <- sapply(r,fr16qambitmap)
   bitsr <- as.vector(matrix(r2,1,length(r2)))
   return(bitsr)
+}
+
+ft64qambitmap <- function(x) {
+                                                      #   imag      real
+                                                      # b5b6b4b3    b2b1b0
+  if (x == 0)      r = complex(real=-7, imaginary=-7)   #  000     000
+  else if (x == 1) r = complex(real=-5, imaginary=-7)   #  000     001
+  else if (x == 3) r = complex(real=-3, imaginary=-7)   #  000     011
+  else if (x == 2) r = complex(real=-1, imaginary=-7)   #  000     010
+  else if (x == 6) r = complex(real=+1, imaginary=-7)   #  000     110
+  else if (x == 7) r = complex(real=+3, imaginary=-7)   #  000     111
+  else if (x == 5) r = complex(real=+5, imaginary=-7)   #  000     101
+  else if (x == 4) r = complex(real=+7, imaginary=-7)   #  000     100
+
+  else if (x == 8) r = complex(real=-7, imaginary=-5)   #  001     000
+  else if (x == 9) r = complex(real=-5, imaginary=-5)   #  001     001
+  else if (x == 11) r = complex(real=-3, imaginary=-5)  #  001     011
+  else if (x == 10) r = complex(real=-1, imaginary=-5)  #  001     010
+  else if (x == 14) r = complex(real=+1, imaginary=-5)  #  001     110
+  else if (x == 15) r = complex(real=+3, imaginary=-5)  #  001     111
+  else if (x == 13) r = complex(real=+5, imaginary=-5)  #  001     101
+  else if (x == 12) r = complex(real=+7, imaginary=-5)  #  001     100
+
+  else if (x == 24) r = complex(real=-7, imaginary=-3)  #  011     000
+  else if (x == 25) r = complex(real=-5, imaginary=-3)  #  011     001
+  else if (x == 27) r = complex(real=-3, imaginary=-3)  #  011     011
+  else if (x == 26) r = complex(real=-1, imaginary=-3)  #  011     010
+  else if (x == 30) r = complex(real=+1, imaginary=-3)  #  011     110
+  else if (x == 31) r = complex(real=+3, imaginary=-3)  #  011     111
+  else if (x == 29) r = complex(real=+5, imaginary=-3)  #  011     101
+  else if (x == 28) r = complex(real=+7, imaginary=-3)  #  011     100
+
+  else if (x == 16) r = complex(real=-7, imaginary=-1)  #  010     000
+  else if (x == 17) r = complex(real=-5, imaginary=-1)  #  010     001
+  else if (x == 19) r = complex(real=-3, imaginary=-1)  #  010     011
+  else if (x == 18) r = complex(real=-1, imaginary=-1)  #  010     010
+  else if (x == 22) r = complex(real=+1, imaginary=-1)  #  010     110
+  else if (x == 23) r = complex(real=+3, imaginary=-1)  #  010     111
+  else if (x == 21) r = complex(real=+5, imaginary=-1)  #  010     101
+  else if (x == 20) r = complex(real=+7, imaginary=-1)  #  010     100
+
+  else if (x == 48) r = complex(real=-7, imaginary=+1)  #  110     000
+  else if (x == 49) r = complex(real=-5, imaginary=+1)  #  110     001
+  else if (x == 51) r = complex(real=-3, imaginary=+1)  #  110     011
+  else if (x == 50) r = complex(real=-1, imaginary=+1)  #  110     010
+  else if (x == 54) r = complex(real=+1, imaginary=+1)  #  110     110
+  else if (x == 55) r = complex(real=+3, imaginary=+1)  #  110     111
+  else if (x == 53) r = complex(real=+5, imaginary=+1)  #  110     101
+  else if (x == 52) r = complex(real=+7, imaginary=+1)  #  110     100
+
+  else if (x == 56) r = complex(real=-7, imaginary=+3)  #  111     000
+  else if (x == 57) r = complex(real=-5, imaginary=+3)  #  111     001
+  else if (x == 59) r = complex(real=-3, imaginary=+3)  #  111     011
+  else if (x == 58) r = complex(real=-1, imaginary=+3)  #  111     010
+  else if (x == 62) r = complex(real=+1, imaginary=+3)  #  111     110
+  else if (x == 63) r = complex(real=+3, imaginary=+3)  #  111     111
+  else if (x == 61) r = complex(real=+5, imaginary=+3)  #  111     101
+  else if (x == 60) r = complex(real=+7, imaginary=+3)  #  111     100
+
+  else if (x == 40) r = complex(real=-7, imaginary=+5)  #  101     000
+  else if (x == 41) r = complex(real=-5, imaginary=+5)  #  101     001
+  else if (x == 43) r = complex(real=-3, imaginary=+5)  #  101     011
+  else if (x == 42) r = complex(real=-1, imaginary=+5)  #  101     010
+  else if (x == 46) r = complex(real=+1, imaginary=+5)  #  101     110
+  else if (x == 47) r = complex(real=+3, imaginary=+5)  #  101     111
+  else if (x == 45) r = complex(real=+5, imaginary=+5)  #  101     101
+  else if (x == 44) r = complex(real=+7, imaginary=+5)  #  101     100
+
+  else if (x == 32) r = complex(real=-7, imaginary=+7)  #  100     000
+  else if (x == 33) r = complex(real=-5, imaginary=+7)  #  100     001
+  else if (x == 35) r = complex(real=-3, imaginary=+7)  #  100     011
+  else if (x == 34) r = complex(real=-1, imaginary=+7)  #  100     010
+  else if (x == 38) r = complex(real=+1, imaginary=+7)  #  100     110
+  else if (x == 39) r = complex(real=+3, imaginary=+7)  #  100     111
+  else if (x == 37) r = complex(real=+5, imaginary=+7)  #  100     101
+  else if (x == 36) r = complex(real=+7, imaginary=+7)  #  100     100
+
+  else {print(x)
+    r=100}
+  return(r)
+}
+f64qammod <- function(bits) {
+  # x quad1 = 1+1i 1+3i 1+5i 1+7i 3+1i 3+3i 3+5i 3+7i 5+1i 5+3i 5+5i 5+7i 7+1i 7+3i 7+5i 7+7i
+  # Es = sum(Re(x*Conj(x)))/16 = 42
+  # receive bits
+  # transform to symbolbits (Nsym rows) length(bits)/4 x Log2(M) cols
+  # transform to symbolcodes
+  # transform to xreal, yimag
+  M=64
+  Nsymbols = length(bits) %/% log2(M)
+  symbolbits<-matrix(bits,Nsymbols,log2(M),byrow=TRUE)
+  m64=cbind(c(0,0,0,0,0,1),c(0,0,0,0,2,0),c(0,0,0,4,0,0),c(0,0,8,0,0,0),c(0,16,0,0,0,0),c(32,0,0,0,0,0))
+  symbolbits = symbolbits %*% m64
+  symbolcodes <- apply(symbolbits,1,sum)
+  s <- sapply(symbolcodes,ft64qambitmap)
+  return(s)
+}
+
+fr64qambitmap <- function(r) {
+  if (Im(r) < -6 ) {
+         if (Re(r) < -6) bits=c(0,0,0,0,0,0)
+    else if (Re(r) < -4) bits=c(0,0,0,0,0,1)
+    else if (Re(r) < -2) bits=c(0,0,0,0,1,1)
+    else if (Re(r) < 0)  bits=c(0,0,0,0,1,0)
+    else if (Re(r) < 2)  bits=c(0,0,0,1,1,0)
+    else if (Re(r) < 4)  bits=c(0,0,0,1,1,1)
+    else if (Re(r) < 6)  bits=c(0,0,0,1,0,1)
+    else                 bits=c(0,0,0,1,0,0)
   }
+  else if (Im(r) < -4 ) {
+         if (Re(r) < -6) bits=c(0,0,1,0,0,0)
+    else if (Re(r) < -4) bits=c(0,0,1,0,0,1)
+    else if (Re(r) < -2) bits=c(0,0,1,0,1,1)
+    else if (Re(r) < 0)  bits=c(0,0,1,0,1,0)
+    else if (Re(r) < 2)  bits=c(0,0,1,1,1,0)
+    else if (Re(r) < 4)  bits=c(0,0,1,1,1,1)
+    else if (Re(r) < 6)  bits=c(0,0,1,1,0,1)
+    else                 bits=c(0,0,1,1,0,0)
+  }
+  else if (Im(r) < -2 ) {
+         if (Re(r) < -6) bits=c(0,1,1,0,0,0)
+    else if (Re(r) < -4) bits=c(0,1,1,0,0,1)
+    else if (Re(r) < -2) bits=c(0,1,1,0,1,1)
+    else if (Re(r) < 0)  bits=c(0,1,1,0,1,0)
+    else if (Re(r) < 2)  bits=c(0,1,1,1,1,0)
+    else if (Re(r) < 4)  bits=c(0,1,1,1,1,1)
+    else if (Re(r) < 6)  bits=c(0,1,1,1,0,1)
+    else                 bits=c(0,1,1,1,0,0)
+  }
+  else if (Im(r) < 0 ) {
+         if (Re(r) < -6) bits=c(0,1,0,0,0,0)
+    else if (Re(r) < -4) bits=c(0,1,0,0,0,1)
+    else if (Re(r) < -2) bits=c(0,1,0,0,1,1)
+    else if (Re(r) < 0)  bits=c(0,1,0,0,1,0)
+    else if (Re(r) < 2)  bits=c(0,1,0,1,1,0)
+    else if (Re(r) < 4)  bits=c(0,1,0,1,1,1)
+    else if (Re(r) < 6)  bits=c(0,1,0,1,0,1)
+    else                 bits=c(0,1,0,1,0,0)
+  }
+  else if (Im(r) < 2 ) {
+         if (Re(r) < -6)bits=c(1,1,0,0,0,0)
+    else if (Re(r) < -4) bits=c(1,1,0,0,0,1)
+    else if (Re(r) < -2) bits=c(1,1,0,0,1,1)
+    else if (Re(r) < 0)  bits=c(1,1,0,0,1,0)
+    else if (Re(r) < 2)  bits=c(1,1,0,1,1,0)
+    else if (Re(r) < 4)  bits=c(1,1,0,1,1,1)
+    else if (Re(r) < 6)  bits=c(1,1,0,1,0,1)
+    else                 bits=c(1,1,0,1,0,0)
+  }
+  else if (Im(r) < 4 ) {
+         if (Re(r) < -6) bits=c(1,1,1,0,0,0)
+    else if (Re(r) < -4) bits=c(1,1,1,0,0,1)
+    else if (Re(r) < -2) bits=c(1,1,1,0,1,1)
+    else if (Re(r) < 0)  bits=c(1,1,1,0,1,0)
+    else if (Re(r) < 2)  bits=c(1,1,1,1,1,0)
+    else if (Re(r) < 4)  bits=c(1,1,1,1,1,1)
+    else if (Re(r) < 6)  bits=c(1,1,1,1,0,1)
+    else                 bits=c(1,1,1,1,0,0)
+  }
+  else if (Im(r) < 6 ) {
+        if (Re(r) < -6)  bits=c(1,0,1,0,0,0)
+    else if (Re(r) < -4) bits=c(1,0,1,0,0,1)
+    else if (Re(r) < -2) bits=c(1,0,1,0,1,1)
+    else if (Re(r) < 0)  bits=c(1,0,1,0,1,0)
+    else if (Re(r) < 2)  bits=c(1,0,1,1,1,0)
+    else if (Re(r) < 4)  bits=c(1,0,1,1,1,1)
+    else if (Re(r) < 6)  bits=c(1,0,1,1,0,1)
+    else                 bits=c(1,0,1,1,0,0)
+  }
+  else if (Im(r) >=6 ) {
+         if (Re(r) < -6) bits=c(1,0,0,0,0,0)
+    else if (Re(r) < -4) bits=c(1,0,0,0,0,1)
+    else if (Re(r) < -2) bits=c(1,0,0,0,1,1)
+    else if (Re(r) < 0)  bits=c(1,0,0,0,1,0)
+    else if (Re(r) < 2)  bits=c(1,0,0,1,1,0)
+    else if (Re(r) < 4)  bits=c(1,0,0,1,1,1)
+    else if (Re(r) < 6)  bits=c(1,0,0,1,0,1)
+    else                 bits=c(1,0,0,1,0,0)
+  }
+  return(bits)
+}
+
+f64qamdemod <- function(r) {
+  r2 <- sapply(r,fr64qambitmap)
+  bitsr <- as.vector(matrix(r2,1,length(r2)))
+  return(bitsr)
+}
+
+iqscatterplot <- function(r) {
+  ggplot(data.frame(cbind(Re(r),Im(r))), aes(x=X1, y=X2)) + geom_point(size=1)+ xlab("In-Phase") + ylab("Quadrature") + theme(axis.text=element_text(size=14),axis.title=element_text(size=12,face="bold"))
+}
