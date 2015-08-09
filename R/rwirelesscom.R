@@ -6,7 +6,7 @@
 #' @param type: "real" or "complex" defualts to real
 
 fNo <- function(N,No,type="real") {
-  if (Type=="real") n = sqrt(No/2)*rnorm(N, 0, 1)
+  if (type=="real") n = sqrt(No/2)*rnorm(N, 0, 1)
   else if(type=="complex")  n=sqrt(No/2)*complex(real=rnorm(N,0,1),imaginary=rnorm(N,0,1))
   else n=c(rep(0,N))
   return(n)
