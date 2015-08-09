@@ -71,7 +71,7 @@ test_that("Test BPSK Eb/No = 4 dB, Modulator and Demodulator in AWGN, Bit Error 
 
   EbNodB=4
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- fqpskdemod(r)
   biterrs<-bits[bitsr!=bits]
@@ -101,7 +101,7 @@ test_that("Test BPSK EbNo_dB= 4, Modulator and Demodulator in AWGN, Bit Error Ra
 
   EbNodB=8
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- fqpskdemod(r)
   biterrs<-bits[bitsr!=bits]
@@ -129,7 +129,7 @@ test_that("Test 8-PSK Eb/No = 11 dB, Modulator and Demodulator in AWGN, Bit Erro
 
   EbNodB=7
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- f8pskdemod(r)
   biterrs<-bits[bitsr!=bits]
@@ -158,7 +158,7 @@ test_that("Test 8-PSK Eb/No = 11 dB, Modulator and Demodulator in AWGN, Bit Erro
 
   EbNodB=10
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- f8pskdemod(r)
   biterrs<-bits[bitsr!=bits]
@@ -186,7 +186,7 @@ test_that("Test 16-QAM Eb/No = 12 dB, Modulator and Demodulator in AWGN, Bit Err
   s <- f16qammod(bits)
   EbNodB=8
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- f16qamdemod(r)
   biterrs<-bits[bitsr!=bits]
@@ -215,7 +215,7 @@ test_that("Test 16-QAM Eb/No = 10 dB, Modulator and Demodulator in AWGN, Bit Err
   s <- f16qammod(bits)
   EbNodB=10
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- f16qamdemod(r)
   biterrs<-bits[bitsr!=bits]
@@ -248,7 +248,7 @@ test_that("Test 64-QAM Eb/No = 12 dB, Modulator and Demodulator in AWGN, Bit Err
 
   EbNodB=12
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- f64qamdemod(r)
   biterrs<-bits[bitsr!=bits]
@@ -282,7 +282,7 @@ test_that("Test 64-QAM Eb/No = 14 dB, Modulator and Demodulator in AWGN, Bit Err
 
   EbNodB=14
   No = Eb/(10^(EbNodB/10))
-  n <- fNo(Nsymbols,No,Type="complex")
+  n <- fNo(Nsymbols,No,type="complex")
   r <- s+n
   bitsr <- f64qamdemod(r)
   biterrs<-bits[bitsr!=bits]

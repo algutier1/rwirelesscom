@@ -1,11 +1,11 @@
 #' fNo function
 #'
-#' Generate a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
+#' Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
 #' @param N number of noise samples
 #' @param No: noise spectral density
-#' @param Type: "real" or "complex" defualts to real
+#' @param type: "real" or "complex" defualts to real
 
-fNo <- function(N,No,Type="real") {
+fNo <- function(N,No,type="real") {
   if (Type=="real") n = sqrt(No/2)*rnorm(N, 0, 1)
   else if(Type=="complex")  n=sqrt(No/2)*complex(real=rnorm(N,0,1),imaginary=rnorm(N,0,1))
   else n=c(rep(0,N))

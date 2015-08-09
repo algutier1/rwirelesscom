@@ -4,16 +4,16 @@
 \alias{fNo}
 \title{fNo function}
 \usage{
-fNo(N, No, Type = "real")
+fNo(N, No, type = "real")
 }
 \arguments{
 \item{N}{number of noise samples}
 
 \item{No:}{noise spectral density}
 
-\item{Type:}{"real" or "complex" defualts to real}
+\item{type:}{"real" or "complex" defualts to real}
 }
 \description{
-Generate a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
+Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
 }
 
