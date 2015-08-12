@@ -16,10 +16,10 @@ Correspondingly, a bit of 1 is mapped to +1/sqrt(2), otherwise to -1/sqrt(2)
 as follows:
  \tabular{cc}{
 input \tab output \cr
-00 \tab  (-1 - 1j) / sqrt(2)  \cr
-01 \tab  (-1 + 1j) / sqrt(2) \cr
-10 \tab  (+1 - 1j) / sqrt(2) \cr
-11 \tab  (+1 + 1j) / sqrt(2)
+00 \tab  (-1 - 1i) / sqrt(2)  \cr
+01 \tab  (-1 + 1i) / sqrt(2) \cr
+10 \tab  (+1 - 1i) / sqrt(2) \cr
+11 \tab  (+1 + 1i) / sqrt(2)
 }
 }
 
