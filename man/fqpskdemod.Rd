@@ -10,10 +10,11 @@ fqpskdemod(r)
 \item{r:}{received signal plus noise.}
 }
 \description{
-Receives a vector of complex values, corresponding to a
-BPSK modulated signal transmitted through a communications channel
+Receives a vector of complex values, r, corresponding to a
+QPSK modulated signal transmitted through a communications channel
 (e.g., signal plus noise). The received signal, r, is mapped to its in-phase (real part) and
-quadrature parts (imaginary part). If the in phase part is > 0 then the corresponding bit value output is 1,
+quadrature parts (imaginary part) and demodulated, such that two binary bits are output
+for each value of r. If the in phase part is > 0 then the corresponding output bit value is 1,
 otherwise 0. Similarly, if the quadrature part (imaginary) > 0 then the corresponding bit value
 is 1, otherwise 0.
 }

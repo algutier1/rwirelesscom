@@ -69,10 +69,10 @@ fbpskdemod <- function(r) {
 #' as follows:
 #'  \tabular{cc}{
 #' input \tab output \cr
-#' 00 \tab \eqn{ -3 \pi/4 } \cr
-#' 01 \tab \eqn{ 3 \pi/4 } \cr
-#' 10 \tab \eqn{ - \pi/4} \cr
-#' 11 \tab \eqn{ \pi/4}
+#' 00 \tab  (-1 - 1j) / sqrt(2)  \cr
+#' 01 \tab  (-1 + 1j) / sqrt(2) \cr
+#' 10 \tab  (+1 - 1j) / sqrt(2) \cr
+#' 11 \tab  (+1 + 1j) / sqrt(2)
 #' }
 #' @param bits: received vector of bits (0's and 1's).
 #' @export

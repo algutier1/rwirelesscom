@@ -7,9 +7,27 @@
 f16qammod(bits)
 }
 \arguments{
-\item{bits:}{vector of bits}
+\item{bits:}{received vector of bits (0's and 1's).}
 }
 \description{
-Receives a vector of bits
+Receives a vector of bits (1's and 0's), which are mapped
+to in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
+a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
+symbol energy \eqn{E_{s}}{Es} = 10, where in-phase and quadrature constellation points
+take on values of (-3, -1, +1, +3), respectively. The mapping of bits to 16-QAM constellation points is as follows:
+\tabular{cccc}{
+ -3+3i  \tab -1+3i \tab +1+3i  \tab +3+3i \cr
+(1000) \tab (1001) \tab (1011) \tab (1010) \cr
+ \tab \tab \tab  \cr
+ -3+1i  \tab -1+1i \tab +1+1i  \tab +3+1i \cr
+(1100) \tab (1101) \tab (1111) \tab (1110) \cr
+ \tab \tab \tab  \cr
+ -3-1i  \tab -1-1i \tab +1-1i  \tab +3-1i \cr
+(0100) \tab (0101) \tab (0111) \tab (0110) \cr
+ \tab \tab \tab  \cr
+ -3-3i  \tab -1-3i \tab +1-3i  \tab +3-3i \cr
+ (0000) \tab (0001) \tab (0011) \tab (0010)
+}
+Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 }
 
