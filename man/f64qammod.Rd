@@ -10,12 +10,12 @@ f64qammod(bits)
 \item{bits:}{received vector of bits (0's and 1's).}
 }
 \description{
-Receives a vector of bits (1's and 0's), which are mapped
+Receives a vector of bits (1's and 0's), which are mapped to an
 in-phase (real) and quadrature (imaginary) 64-QAM (6 bit) symbol according to
 a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
 symbol energy \eqn{E_{s}}{Es} = 42, where in-phase and quadrature constellation points
 take on values of (-7, -5, -3, -1, +1, +3, +5, +7), respectively.
-Mapping of bits to 64-QAM constellation points is as follows:
+Mapping of bits to 64-QAM constellation points is illustrated in the following constellation.
 \tabular{cccccccc}{
 -7+7i  \tab -5+7i \tab +3+7i  \tab -1+7i \tab +1+7i  \tab +3+7i \tab +5+7i  \tab +7+7i \cr
  (100000) \tab (100001) \tab (100011) \tab (100010) \tab (100110) \tab (100111) \tab (100101) \tab  (100100) \cr
