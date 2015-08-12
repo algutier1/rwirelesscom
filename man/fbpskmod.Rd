@@ -14,4 +14,13 @@ BPSK modulator receives a vector of bits, each with value 0 or 1, and outputs a
 vector with values 1 and -1. An output value of -1 corresponds to an input value
 of 0 and an output value of 1 corresponds to an input of 1.
 }
+\seealso{
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
+  \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskdemod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
+}
 

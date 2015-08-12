@@ -26,4 +26,13 @@ input \tab output \cr
  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  101 \cr
 }
 }
+\seealso{
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
+  \code{\link{f64qammod}}; \code{\link{f8pskmod}};
+  \code{\link{fNo}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
+}
 

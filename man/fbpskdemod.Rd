@@ -15,4 +15,13 @@ BPSK modulated signal transmitted through a communications channel
 (e.g., signal plus noise). An input value < 1 is mapped to an
 output value of 0, otherwise to a value of 1.
 }
+\seealso{
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
+  \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
+}
 

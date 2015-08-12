@@ -18,4 +18,13 @@ for each value of r. If the in phase part is > 0 then the corresponding output b
 otherwise 0. Similarly, if the quadrature part (imaginary) > 0 then the corresponding bit value
 is 1, otherwise 0.
 }
+\seealso{
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
+  \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
+}
 

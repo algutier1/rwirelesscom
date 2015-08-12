@@ -15,4 +15,13 @@ iqdensityplot(r, iq = "r")
 A convenidnece function to plot a desnity function of a vector containing the in-phase and
 quadrature signal (plus noise).
 }
+\seealso{
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
+  \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqscatterplot}}
+}
 

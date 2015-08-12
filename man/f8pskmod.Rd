@@ -28,4 +28,13 @@ input \tab output \cr
 }
 Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 }
+\seealso{
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
+  \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
+  \code{\link{fNo}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
+}
 
