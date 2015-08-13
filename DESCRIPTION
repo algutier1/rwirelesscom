@@ -11,7 +11,7 @@ Description:
     enable the evaluation of respective bit error and symbol rates in an AWGN channel and for
     easily viewing the respective signals and noise in a scatter plot or density plot.
 Depends:
-    R (>= 3.2.1)
+    R (>= 3.1)
 License:
     GPL
 LazyData:
