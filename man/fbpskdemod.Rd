@@ -7,7 +7,7 @@
 fbpskdemod(r)
 }
 \arguments{
-\item{r:}{received signal plus noise.}
+\item{r}{received signal vector}
 }
 \description{
 Receives a vector of real values, corresponding to a

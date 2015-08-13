@@ -7,7 +7,7 @@
 iqscatterplot(r)
 }
 \arguments{
-\item{r:}{complex or real valued vector}
+\item{r}{complex or real valued vector}
 }
 \description{
 A convenience function that plots a scatter diagram of Im(r) vs. Re(r). The function is

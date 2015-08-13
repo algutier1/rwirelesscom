@@ -7,7 +7,7 @@
 fbpskmod(bits)
 }
 \arguments{
-\item{bits:}{received vector of bits (0's and 1's).}
+\item{bits}{vector of bits (0's and 1's)}
 }
 \description{
 BPSK modulator receives a vector of bits, each with value 0 or 1, and outputs a

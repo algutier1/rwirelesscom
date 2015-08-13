@@ -7,11 +7,11 @@
 fNo(N, No, type = "real")
 }
 \arguments{
-\item{N:}{number of noise samples}
+\item{N}{number of noise samples}
 
-\item{No:}{noise spectral density}
+\item{No}{noise spectral density}
 
-\item{type:}{="real" or "complex" defualts to real}
+\item{type}{"real" or "complex" defualts to real}
 }
 \description{
 Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.

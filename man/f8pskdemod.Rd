@@ -7,7 +7,7 @@
 f8pskdemod(r)
 }
 \arguments{
-\item{r:}{received signal.}
+\item{r}{received signal}
 }
 \description{
 Receives a vector of complex values, r, corresponding to an

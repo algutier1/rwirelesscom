@@ -7,7 +7,7 @@
 f16qamdemod(r)
 }
 \arguments{
-\item{bits:}{vector of bits}
+\item{r}{vector of complex vector}
 }
 \description{
 Receives a vector of complex values, r, corresponding to a

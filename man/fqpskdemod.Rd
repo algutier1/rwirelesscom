@@ -7,7 +7,7 @@
 fqpskdemod(r)
 }
 \arguments{
-\item{r:}{received signal plus noise.}
+\item{r}{received signal plus noise.}
 }
 \description{
 Receives a vector of complex values, r, corresponding to a

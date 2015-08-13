@@ -7,7 +7,7 @@
 f64qammod(bits)
 }
 \arguments{
-\item{bits:}{received vector of bits (0's and 1's).}
+\item{bits}{received vector of bits (0's and 1's).}
 }
 \description{
 Receives a vector of bits (1's and 0's), which are mapped to an
