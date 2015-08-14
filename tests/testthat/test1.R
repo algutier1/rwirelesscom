@@ -26,8 +26,8 @@ test_that("Test BPSK Eb/No = 4 dB, Modulator and Demodulator in AWGN, Bit Error 
   #print("",quote=FALSE)
   #print(str,quote=FALSE)
 
-  expect_true(Pberr < 0.02, info="BPSK EbNodb=4, Pberr should be < 0.015")
-  expect_true(Pberr > 0.01, info="PBSK EbNodb=4, Pberr should be > 0.012")
+  expect_true(Pberr < 0.03, info="BPSK EbNodb=4, Pberr should be < 0.03")
+  expect_true(Pberr > 0.008, info="PBSK EbNodb=4, Pberr should be > 0.008")
 
 } )
 
