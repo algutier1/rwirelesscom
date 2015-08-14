@@ -1,7 +1,6 @@
 library("rwirelesscom")
 library("testthat")
 library(ggplot2)
-library(devtools)
 
 context("BPSK error rate, Eb/No = 4 dB")
 test_that("Test BPSK Eb/No = 4 dB, Modulator and Demodulator in AWGN, Bit Error Rate", {
