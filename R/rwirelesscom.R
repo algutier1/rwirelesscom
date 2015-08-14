@@ -169,7 +169,7 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
 #' according to the following decision rules
 #' \tabular{cc}{
 #' input \tab output \cr
-#'  \eqn{ -\pi/8 \gee Arg(r) < \pi/8} \tab 000  \cr
+#'  \eqn{ -\pi/8 \ge Arg(r) < \pi/8} \tab 000  \cr
 #'  \eqn{  \pi/8 \ge Arg(r) < 3 \pi/8} \tab 001 \cr
 #'  \eqn{ 3 \pi/8 \ge Arg(r) < 5 \pi/8} \tab 011 \cr
 #'  \eqn{ 5 \pi/8 \ge Arg(r) < 7 \pi/8} \tab 010 \cr

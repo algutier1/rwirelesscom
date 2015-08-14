@@ -1,7 +1,9 @@
 Package: rwirelesscom
 Title: Basic wireless communications simulation package for R
 Version: 0.0.0.02
-Authors@R: person("Al", "Gutierrez", email = "algutier1@gmail.com", role = c("aut", "cre"))
+#Authors@R: options(devtools.desc.author="'First Last <first.last@example.com> [aut, cre]'")
+Author: Alberto Gutierrez [aut, cre]
+Maintainer: Alberto Gutierrez <algutier1@gmail.com>
 Description: A basic wireless communications simulation package in R. The package includes
     modulation functions for BPSK, QPSK, 8-PSK, 16-QAM and 64-QAM. Also included is
     an AWGN noise generation function. Additionally the package includes functions to plot
