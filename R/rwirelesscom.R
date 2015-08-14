@@ -19,6 +19,7 @@
 #' @name rwirelesscom
 #' @import
 #'   ggplot2
+#'   stats
 NULL
 
 #' fNo
@@ -570,7 +571,7 @@ iqscatterplot <- function(r) {
 #' A convenidnece function to plot a desnity function of a vector containing the in-phase and
 #' quadrature signal (plus noise).
 #' @param r complex or real valued vector
-#' @param iq if = "r" (default) then plot desnity of Re(r) else if iq = "i" the plot density of Im(r)
+#' @param iq if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)
 #'  @family modulation demodulation communications
 #' @export
 iqdensityplot <- function(r,iq="r") {

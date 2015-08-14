@@ -1,7 +1,7 @@
 Package: rwirelesscom
-Title: Basic wireless communications simulation package for R
-Version: 1.00.00.00
-Authors@R: c(person("Alberto Gutierrez","Developer", role=c("aut","cre"),email="algutier1@gmail.com"))
+Title: Basic Wireless Communications
+Version: 1.0.0.0
+Authors@R: c(person("Alberto","Gutierrez", role=c("aut","cre"),email="algutier1@gmail.com"))
 Maintainer: Alberto Gutierrez <algutier1@gmail.com>
 Description: A basic wireless communications simulation package in R. The package includes
     modulation functions for BPSK, QPSK, 8-PSK, 16-QAM and 64-QAM. Also included is

@@ -9,7 +9,7 @@ iqdensityplot(r, iq = "r")
 \arguments{
 \item{r}{complex or real valued vector}
 
-\item{iq}{if = "r" (default) then plot desnity of Re(r) else if iq = "i" the plot density of Im(r)}
+\item{iq}{if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)}
 }
 \description{
 A convenidnece function to plot a desnity function of a vector containing the in-phase and
