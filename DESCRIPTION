@@ -1,7 +1,6 @@
 Package: rwirelesscom
 Title: Basic wireless communications simulation package for R
 Version: 1.00.00.00
-#Authors@R: options(devtools.desc.author="'First Last <first.last@example.com> [aut, cre]'")
 Author: Alberto Gutierrez [aut, cre]
 Maintainer: Alberto Gutierrez <algutier1@gmail.com>
 Description: A basic wireless communications simulation package in R. The package includes
