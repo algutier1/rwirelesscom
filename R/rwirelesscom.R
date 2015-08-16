@@ -22,14 +22,23 @@
 #'   stats
 NULL
 
-#' fNo
+#' AWGN
 #'
 #' Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
-#' @param N number of noise samples
-#' @param No noise spectral density
-#' @param type "real" or "complex" defualts to real
+#' @param N - number of noise samples
+#' @param No - noise spectral density
+#' @param type - "real" or "complex" defualts to real
 #' @family modulation demodulation communications
-#'
+# @return returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
+# @examples
+#' n <- fNo(N=10,No=10)
+#' bits <- sample(0:1,10, replace=T)
+#' s=fbpskmod(bits)
+#' r=s+n
+#' n <- fNo(N=20,No=10,type="complex")
+#' bits <- sample(0:1,20, replace=T)
+#' s=fqpskmod(bits)
+#' r=s+n
 #' @export
 fNo <- function(N,No,type="real") {
   if (type=="real") n = sqrt(No/2)*rnorm(N, 0, 1)
@@ -38,35 +47,51 @@ fNo <- function(N,No,type="real") {
   return(n)
 }
 
-#' fbpskmod
+#' BPSK Modulator
 #'
-#' BPSK modulator receives a vector of bits, each with value 0 or 1, and outputs a
+#' Receives a vector of bits, each with value 0 or 1, and outputs a
 #' vector with values 1 and -1. An output value of -1 corresponds to an input value
 #' of 0 and an output value of 1 corresponds to an input of 1.
-#' @param bits  vector of bits (0's and 1's)
+#' @param bits - vector of bits (0's and 1's)
 #' @family modulation demodulation communications
+#' @return returns a BPSK modulated vector, each element taking on values of 1 or -1
+#' @examples
+#' bits <- sample(0:1,10, replace=T)
+#' fbpskmod(bits)
 #' @export
 fbpskmod <- function(bits) {
   r <- sapply(bits, function(x) if (x==0) r=-1 else r=x)
   return(r)
 }
 
-
-#' fbpskdemod
+# BSPK Demodulator
 #'
 #' Receives a vector of real values, corresponding to a
 #' BPSK modulated signal transmitted through a communications channel
 #' (e.g., signal plus noise). An input value < 1 is mapped to an
 #' output value of 0, otherwise to a value of 1.
-#' @param r received signal vector
+#' @param r - received signal vector
+#' @return returns a vector of 1's and 0's corresponding to BPSK demodulation fo the inpyut vector
+#' @examples
+#' Eb=1
+#' Nbits=10
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- fbpskmod(bits)
+#' EbNodB=8
+#' No = Eb/(10^(EbNodB/10))
+#' n <- fNo(Nbits,No)
+#' r <- s+n
+#' bitsr <- fbpskdemod(r)
+#' biterrs<-bits[bitsr!=bits]
+#' Pberr=length(biterrs)/length(bits)
 #' @family modulation demodulation communications
 #' @export
 fbpskdemod <- function(r) {
-    r <- sapply(r,function(x) if (x>=0) r=1 else r=0)
-    return(r)
+  r <- sapply(r,function(x) if (x>=0) r=1 else r=0)
+  return(r)
 }
 
-#' fqpskmod
+#' QPSK Modulator
 #'
 #' Receives a vector of bits (1's and 0's). The 1's and 0's are
 #' mapped to in-phase (real) and quadrature (imaginary) components.
@@ -79,7 +104,14 @@ fbpskdemod <- function(r) {
 #' 10 \tab  (+1 - 1i) / sqrt(2) \cr
 #' 11 \tab  (+1 + 1i) / sqrt(2)
 #' }
-#' @param bits received vector of bits (0's and 1's).
+#' @param bits - received vector of bits (0's and 1's).
+#' @return returns a complex vector of length = length(bits) %% 2 QPSK elements
+#' @examples
+#' M=4
+#' Nsymbols=10
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- fqpskmod(bits)
 #' @family modulation demodulation communications
 #' @export
 fqpskmod <- function(bits) {
@@ -91,7 +123,7 @@ fqpskmod <- function(bits) {
   return(s)
 }
 
-#' fqpskdemod
+#' BPSK Demodulator
 #'
 #' Receives a vector of complex values, r, corresponding to a
 #' QPSK modulated signal transmitted through a communications channel
@@ -100,8 +132,24 @@ fqpskmod <- function(bits) {
 #' for each value of r. If the in phase part is > 0 then the corresponding output bit value is 1,
 #' otherwise 0. Similarly, if the quadrature part (imaginary) > 0 then the corresponding bit value
 #' is 1, otherwise 0.
-#' @param r received signal plus noise.
-#'  @family modulation demodulation communications
+#' @param r - received signal plus noise.
+#' @family modulation demodulation communications
+#' @return retruns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
+#' @examples
+#' M=4
+#' Es=1
+#' Nsymbols=10
+#' Nbits=log2(M)*Nsymbols
+#' Eb=Es/log2(M)
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- fqpskmod(bits)
+#' EbNodB=8
+#' No = Eb/(10^(EbNodB/10))
+#' n <- fNo(Nsymbols,No,type="complex")
+#' r <- s+n
+#' bitsr <- fqpskdemod(r)
+#' biterrs<-bits[bitsr!=bits]
+#' Pberr=length(biterrs)/length(bits)
 #' @export
 fqpskdemod <- function(r) {
   ri <- Re(r)
@@ -111,10 +159,10 @@ fqpskdemod <- function(r) {
   return(r)
 }
 
-#' f8pskmod
+#' 8-PSK Modulator
 #'
-#' Receives a vector of bits (1's and 0's), which are mapped
-#' to in-phase (real) and quadrature (imaginary) components according to
+#' Receives a vector of bits (1's and 0's), which are then mapped
+#' to in-phase (real) and quadrature (imaginary) components, according to
 #' a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
 #' are are mapped to 8-PSK symbols,
 #' with \eqn{E_{s}}{Es} (symbol energy) = 1.The BRGC mapping is as follows:
@@ -130,10 +178,16 @@ fqpskdemod <- function(r) {
 #' 100 \tab  \eqn{ - \pi/4} \cr
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
-#' @param bits received vector of bits (0's and 1's).
-#'  @family modulation demodulation communications
+#' @param bits - vector of bits (0's and 1's).
+#' @return returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols
+#' @examples
+#' M=8
+#' Nsymbols=10
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- f8pskmod(bits)
+#' @family modulation demodulation communications
 #' @export
-#'
 f8pskmod <- function(bits) {
   # receive symbolbits matrix (Nsym rows x Log2(M) cols )
   # transform to symbolcodes
@@ -162,7 +216,7 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
   return(r)
 }
 
-#' f8pskdemod
+#' 8-PSK Demodulator
 #'
 #' Receives a vector of complex values, r, corresponding to an
 #' 8-PSK modulated signal transmitted through a communications channel
@@ -177,11 +231,29 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
 #'  \eqn{ 7 \pi/8 \ge Arg(r) < 9 \pi/8} \tab 110 \cr
 #'  \eqn{ -7 \pi/8 \ge Arg(r) < -5 \pi/8} \tab 111 \cr
 #'  \eqn{ -5 \pi/8 \ge Arg(r) < -3 \pi/8} \tab 101 \cr
-#'  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  101 \cr
+#'  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  101
 #' }
-#' @param r received signal
-#'  @family modulation demodulation communications
+#' @param r - received signal
+#' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
+#' @examples
+#' M=8
+#' Es=1
+#' Eb = Es/log2(M)
+#' Nsymbols=10
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- f8pskmod(bits)
+#' EbNodB=7
+#' No = Eb/(10^(EbNodB/10))
+#' n <- fNo(Nsymbols,No,type="complex")
+#' r <- s+n
+#' bitsr <- f8pskdemod(r)
+#' biterrs<-bits[bitsr!=bits]
+#' b<-factor(bits)
+#' Pberr=length(biterrs)/length(bits)
+#' @family modulation demodulation communications
 #' @export
+#'
 f8pskdemod <- function(r) {
   r2<-sapply(r,fr8pskbitmap)
   bits2 <- as.vector(matrix(r2,1,length(r2)))
@@ -202,10 +274,9 @@ fr8pskbitmap <- function(r) {
   return(symbolbits)
 }
 
-
-#' f16qammod
+#' 16-QAM Modulator
 #'
-#' Receives a vector of bits (1's and 0's), which are mapped
+#' Receives a vector of bits (1's and 0's), which are then mapped
 #' to in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
 #' a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
 #' symbol energy \eqn{E_{s}}{Es} = 10, where in-phase and quadrature constellation points
@@ -224,10 +295,16 @@ fr8pskbitmap <- function(r) {
 #'  (0000) \tab (0001) \tab (0011) \tab (0010)
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
-#' @param bits received vector of bits (0's and 1's).
-#'  @family modulation demodulation communications
+#' @param bits - received vector of bits (0's and 1's).
+#' @return returns a complex vector of length = (length(bits) mod 4), 16-QAM symbols
+#' @examples
+#' M=16
+#' Nsymbols=100
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- f16qammod(bits)
+#' @family modulation demodulation communications
 #' @export
-#'
 f16qammod <- function(bits) {
   # constellation quadrant x = 1+1j, 3+1j, 1+3j, 3+3j ...
   # Es = Sum((x * Conj(x)))/4 = 10
@@ -268,7 +345,7 @@ ft16qambitmap <- function(x) {
   return(r)
 }
 
-#' f16qamdemod
+#' 16 QAM Demodulator
 #'
 #' Receives a vector of complex values, r, corresponding to a
 #' 16-QAM modulated signal transmitted through a communications channel
@@ -276,11 +353,26 @@ ft16qambitmap <- function(x) {
 #' 4 bits. The 16-QAM symbol decision regions are defined with respect to
 #' the constellation generated by f16qammod, \eqn{E_{s}}{Es} = 10, where in-phase and quadrature
 #' constellation points take on values of (-3, -1, +1, +3), respectively.
-#' @param r vector of complex vector
-#'  @family modulation demodulation communications
+#' @param r - vector of complex vector
+#' @return a vector of 1's and 0's, 4 bits per input element (16-QAM symbol)
+#' @examples
+#' M=16
+#' Es=10
+#' Eb = Es/log2(M)
+#' Nsymbols=100
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- f16qammod(bits)
+#' EbNodB=8
+#' No = Eb/(10^(EbNodB/10))
+#' n <- fNo(Nsymbols,No,type="complex")
+#' r <- s+n
+#' bitsr <- f16qamdemod(r)
+#' biterrs<-bits[bitsr!=bits]
+#' b<-factor(bits)
+#' Pberr=length(biterrs)/length(bits)
+#' @family modulation demodulation communications
 #' @export
-
-
 f16qamdemod <- function(r) {
   r2 <- sapply(r,fr16qambitmap)
   bitsr <- as.vector(matrix(r2,1,length(r2)))
@@ -314,7 +406,8 @@ fr16qambitmap <- function(r) {
   return(bits)
 }
 
-#' f64qammod
+
+#' 64-QAM Modulator
 #'
 #' Receives a vector of bits (1's and 0's), which are mapped to an
 #' in-phase (real) and quadrature (imaginary) 64-QAM (6 bit) symbol according to
@@ -348,8 +441,17 @@ fr16qambitmap <- function(r) {
 #'  (000000) \tab (000001) \tab (000011) \tab (000010) \tab (000110) \tab (000111) \tab (000101) \tab (000100)
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
-#' @param bits received vector of bits (0's and 1's).
-#'  @family modulation demodulation communications
+#' @param bits - received vector of bits (0's and 1's).
+#' @examples
+#' M=64
+#' Es=42
+#' Eb = Es/log2(M)
+#' Nsymbols=10000
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- f64qammod(bits)
+#' @return returns a complex vector of length = (length(bits) mod 6), 64-QAM symbols
+#' @family modulation demodulation communications
 #' @export
 #'
 
@@ -371,8 +473,8 @@ f64qammod <- function(bits) {
 }
 
 ft64qambitmap <- function(x) {
-                                                      #   imag      real
-                                                      # b5b6b4b3    b2b1b0
+  #   imag      real
+  # b5b6b4b3    b2b1b0
   if (x == 0)      r = complex(real=-7, imaginary=-7)   #  000     000
   else if (x == 1) r = complex(real=-5, imaginary=-7)   #  000     001
   else if (x == 3) r = complex(real=-3, imaginary=-7)   #  000     011
@@ -450,7 +552,7 @@ ft64qambitmap <- function(x) {
   return(r)
 }
 
-#' f64qamdemod
+#' 64-QAM Demodulator
 #'
 #' Receives a vector of complex values, r, corresponding to a
 #' 64-QAM modulated signal transmitted through a communications channel
@@ -458,8 +560,25 @@ ft64qambitmap <- function(x) {
 #' 6 bits. The 64-QAM symbol decision regions are defined with respect to
 #' the constellation generated by f64qammod, \eqn{E_{s}}{Es} = 42, where in-phase and quadrature
 #' constellation points take on values of (-7, -5, -3, -1, +1, +3, +5, +7), respectively.
-#' @param r complex valued input vector
-#'  @family modulation demodulation communications
+#' @param r - complex valued input vector
+#' @family modulation demodulation communications
+#' @return a vector of 1's and 0's, 6 bits per input element (64-QAM symbol)
+#' @examples
+#' M=64
+#' Es=42
+#' Eb = Es/log2(M)
+#' Nsymbols=10000
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=T)
+#' s <- f64qammod(bits)
+#' EbNodB=12
+#' No = Eb/(10^(EbNodB/10))
+#' n <- fNo(Nsymbols,No,type="complex")
+#' r <- s+n
+#' bitsr <- f64qamdemod(r)
+#' biterrs<-bits[bitsr!=bits]
+#' b<-factor(bits)
+#' Pberr=length(biterrs)/length(bits)
 #' @export
 f64qamdemod <- function(r) {
   r2 <- sapply(r,fr64qambitmap)
@@ -469,7 +588,7 @@ f64qamdemod <- function(r) {
 
 fr64qambitmap <- function(r) {
   if (Im(r) < -6 ) {
-         if (Re(r) < -6) bits=c(0,0,0,0,0,0)
+    if (Re(r) < -6) bits=c(0,0,0,0,0,0)
     else if (Re(r) < -4) bits=c(0,0,0,0,0,1)
     else if (Re(r) < -2) bits=c(0,0,0,0,1,1)
     else if (Re(r) < 0)  bits=c(0,0,0,0,1,0)
@@ -479,7 +598,7 @@ fr64qambitmap <- function(r) {
     else                 bits=c(0,0,0,1,0,0)
   }
   else if (Im(r) < -4 ) {
-         if (Re(r) < -6) bits=c(0,0,1,0,0,0)
+    if (Re(r) < -6) bits=c(0,0,1,0,0,0)
     else if (Re(r) < -4) bits=c(0,0,1,0,0,1)
     else if (Re(r) < -2) bits=c(0,0,1,0,1,1)
     else if (Re(r) < 0)  bits=c(0,0,1,0,1,0)
@@ -489,7 +608,7 @@ fr64qambitmap <- function(r) {
     else                 bits=c(0,0,1,1,0,0)
   }
   else if (Im(r) < -2 ) {
-         if (Re(r) < -6) bits=c(0,1,1,0,0,0)
+    if (Re(r) < -6) bits=c(0,1,1,0,0,0)
     else if (Re(r) < -4) bits=c(0,1,1,0,0,1)
     else if (Re(r) < -2) bits=c(0,1,1,0,1,1)
     else if (Re(r) < 0)  bits=c(0,1,1,0,1,0)
@@ -499,7 +618,7 @@ fr64qambitmap <- function(r) {
     else                 bits=c(0,1,1,1,0,0)
   }
   else if (Im(r) < 0 ) {
-         if (Re(r) < -6) bits=c(0,1,0,0,0,0)
+    if (Re(r) < -6) bits=c(0,1,0,0,0,0)
     else if (Re(r) < -4) bits=c(0,1,0,0,0,1)
     else if (Re(r) < -2) bits=c(0,1,0,0,1,1)
     else if (Re(r) < 0)  bits=c(0,1,0,0,1,0)
@@ -509,7 +628,7 @@ fr64qambitmap <- function(r) {
     else                 bits=c(0,1,0,1,0,0)
   }
   else if (Im(r) < 2 ) {
-         if (Re(r) < -6)bits=c(1,1,0,0,0,0)
+    if (Re(r) < -6)bits=c(1,1,0,0,0,0)
     else if (Re(r) < -4) bits=c(1,1,0,0,0,1)
     else if (Re(r) < -2) bits=c(1,1,0,0,1,1)
     else if (Re(r) < 0)  bits=c(1,1,0,0,1,0)
@@ -519,7 +638,7 @@ fr64qambitmap <- function(r) {
     else                 bits=c(1,1,0,1,0,0)
   }
   else if (Im(r) < 4 ) {
-         if (Re(r) < -6) bits=c(1,1,1,0,0,0)
+    if (Re(r) < -6) bits=c(1,1,1,0,0,0)
     else if (Re(r) < -4) bits=c(1,1,1,0,0,1)
     else if (Re(r) < -2) bits=c(1,1,1,0,1,1)
     else if (Re(r) < 0)  bits=c(1,1,1,0,1,0)
@@ -529,7 +648,7 @@ fr64qambitmap <- function(r) {
     else                 bits=c(1,1,1,1,0,0)
   }
   else if (Im(r) < 6 ) {
-        if (Re(r) < -6)  bits=c(1,0,1,0,0,0)
+    if (Re(r) < -6)  bits=c(1,0,1,0,0,0)
     else if (Re(r) < -4) bits=c(1,0,1,0,0,1)
     else if (Re(r) < -2) bits=c(1,0,1,0,1,1)
     else if (Re(r) < 0)  bits=c(1,0,1,0,1,0)
@@ -539,7 +658,7 @@ fr64qambitmap <- function(r) {
     else                 bits=c(1,0,1,1,0,0)
   }
   else if (Im(r) >=6 ) {
-         if (Re(r) < -6) bits=c(1,0,0,0,0,0)
+    if (Re(r) < -6) bits=c(1,0,0,0,0,0)
     else if (Re(r) < -4) bits=c(1,0,0,0,0,1)
     else if (Re(r) < -2) bits=c(1,0,0,0,1,1)
     else if (Re(r) < 0)  bits=c(1,0,0,0,1,0)
@@ -551,12 +670,12 @@ fr64qambitmap <- function(r) {
   return(bits)
 }
 
-#' iqscatterplot
+#' IQ Scatter Plot
 #'
 #' A convenience function that plots a scatter diagram of Im(r) vs. Re(r). The function is
 #' useful for visualing constellations such as M-PSK or M-QAM.
 #'
-#' @param  r complex or real valued vector
+#' @param  r - complex or real valued vector
 #' @family modulation demodulation communications
 #' @export
 
@@ -566,22 +685,19 @@ iqscatterplot <- function(r) {
 }
 
 
-#' iqdensityplot
+#' IQ Density Plot
 #'
 #' A convenidnece function to plot a desnity function of a vector containing the in-phase and
 #' quadrature signal (plus noise).
-#' @param r complex or real valued vector
-#' @param iq if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)
+#' @param r - complex or real valued vector
+#' @param iq - if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)
 #'  @family modulation demodulation communications
 #' @export
 iqdensityplot <- function(r,iq="r") {
-    ..density.. <- NULL
-    if (iq!="i") { # Real Part
-      ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
-    } else {    #Imaginary Part
-      ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
-    }
- }
-
-
-
+  ..density.. <- NULL
+  if (iq!="i") { # Real Part
+    ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
+  } else {    #Imaginary Part
+    ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
+  }
+}

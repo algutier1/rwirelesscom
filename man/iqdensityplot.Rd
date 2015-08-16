@@ -2,26 +2,25 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{iqdensityplot}
 \alias{iqdensityplot}
-\title{iqdensityplot}
+\title{IQ Density Plot}
 \usage{
 iqdensityplot(r, iq = "r")
 }
 \arguments{
-\item{r}{complex or real valued vector}
+\item{r}{- complex or real valued vector}
 
-\item{iq}{if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)}
+\item{iq}{- if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)}
 }
 \description{
 A convenidnece function to plot a desnity function of a vector containing the in-phase and
 quadrature signal (plus noise).
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation demodulation communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fNo}};
-  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
-  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
-  \code{\link{iqscatterplot}}
+  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqscatterplot}}
 }
 

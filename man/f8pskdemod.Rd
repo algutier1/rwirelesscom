@@ -2,12 +2,15 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{f8pskdemod}
 \alias{f8pskdemod}
-\title{f8pskdemod}
+\title{8-PSK Demodulator}
 \usage{
 f8pskdemod(r)
 }
 \arguments{
-\item{r}{received signal}
+\item{r}{- received signal}
+}
+\value{
+returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
 }
 \description{
 Receives a vector of complex values, r, corresponding to an
@@ -23,16 +26,32 @@ input \tab output \cr
  \eqn{ 7 \pi/8 \ge Arg(r) < 9 \pi/8} \tab 110 \cr
  \eqn{ -7 \pi/8 \ge Arg(r) < -5 \pi/8} \tab 111 \cr
  \eqn{ -5 \pi/8 \ge Arg(r) < -3 \pi/8} \tab 101 \cr
- \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  101 \cr
+ \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  101
 }
+}
+\examples{
+M=8
+Es=1
+Eb = Es/log2(M)
+Nsymbols=10
+Nbits=log2(M)*Nsymbols
+bits <- sample(0:1,Nbits, replace=T)
+s <- f8pskmod(bits)
+EbNodB=7
+No = Eb/(10^(EbNodB/10))
+n <- fNo(Nsymbols,No,type="complex")
+r <- s+n
+bitsr <- f8pskdemod(r)
+biterrs<-bits[bitsr!=bits]
+b<-factor(bits)
+Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation demodulation communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskmod}};
-  \code{\link{fNo}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 

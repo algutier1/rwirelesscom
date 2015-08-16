@@ -2,27 +2,18 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fNo}
 \alias{fNo}
-\title{fNo}
+\title{AWGN}
 \usage{
 fNo(N, No, type = "real")
 }
 \arguments{
-\item{N}{number of noise samples}
+\item{N}{- number of noise samples}
 
-\item{No}{noise spectral density}
+\item{No}{- noise spectral density}
 
-\item{type}{"real" or "complex" defualts to real}
+\item{type}{- "real" or "complex" defualts to real}
 }
 \description{
 Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
-}
-\seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
-  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
-  \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
 }
 

@@ -2,16 +2,19 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{f8pskmod}
 \alias{f8pskmod}
-\title{f8pskmod}
+\title{8-PSK Modulator}
 \usage{
 f8pskmod(bits)
 }
 \arguments{
-\item{bits}{received vector of bits (0's and 1's).}
+\item{bits}{- vector of bits (0's and 1's).}
+}
+\value{
+returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols
 }
 \description{
-Receives a vector of bits (1's and 0's), which are mapped
-to in-phase (real) and quadrature (imaginary) components according to
+Receives a vector of bits (1's and 0's), which are then mapped
+to in-phase (real) and quadrature (imaginary) components, according to
 a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
 are are mapped to 8-PSK symbols,
 with \eqn{E_{s}}{Es} (symbol energy) = 1.The BRGC mapping is as follows:
@@ -28,13 +31,19 @@ input \tab output \cr
 }
 Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 }
+\examples{
+M=8
+Nsymbols=10
+Nbits=log2(M)*Nsymbols
+bits <- sample(0:1,Nbits, replace=T)
+s <- f8pskmod(bits)
+}
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation demodulation communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{fNo}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 

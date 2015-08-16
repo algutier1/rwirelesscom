@@ -2,12 +2,15 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fqpskmod}
 \alias{fqpskmod}
-\title{fqpskmod}
+\title{QPSK Modulator}
 \usage{
 fqpskmod(bits)
 }
 \arguments{
-\item{bits}{received vector of bits (0's and 1's).}
+\item{bits}{- received vector of bits (0's and 1's).}
+}
+\value{
+returns a complex vector of length = length(bits) %% 2 QPSK elements
 }
 \description{
 Receives a vector of bits (1's and 0's). The 1's and 0's are
@@ -22,13 +25,19 @@ input \tab output \cr
 11 \tab  (+1 + 1i) / sqrt(2)
 }
 }
+\examples{
+M=4
+Nsymbols=10
+Nbits=log2(M)*Nsymbols
+bits <- sample(0:1,Nbits, replace=T)
+s <- fqpskmod(bits)
+}
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation demodulation communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fNo}};
-  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
-  \code{\link{fqpskdemod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
+  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 

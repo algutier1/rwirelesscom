@@ -2,12 +2,15 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fqpskdemod}
 \alias{fqpskdemod}
-\title{fqpskdemod}
+\title{BPSK Demodulator}
 \usage{
 fqpskdemod(r)
 }
 \arguments{
-\item{r}{received signal plus noise.}
+\item{r}{- received signal plus noise.}
+}
+\value{
+retruns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
 }
 \description{
 Receives a vector of complex values, r, corresponding to a
@@ -18,13 +21,28 @@ for each value of r. If the in phase part is > 0 then the corresponding output b
 otherwise 0. Similarly, if the quadrature part (imaginary) > 0 then the corresponding bit value
 is 1, otherwise 0.
 }
+\examples{
+M=4
+Es=1
+Nsymbols=10
+Nbits=log2(M)*Nsymbols
+Eb=Es/log2(M)
+bits <- sample(0:1,Nbits, replace=T)
+s <- fqpskmod(bits)
+EbNodB=8
+No = Eb/(10^(EbNodB/10))
+n <- fNo(Nsymbols,No,type="complex")
+r <- s+n
+bitsr <- fqpskdemod(r)
+biterrs<-bits[bitsr!=bits]
+Pberr=length(biterrs)/length(bits)
+}
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation demodulation communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fNo}};
-  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
+  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskmod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 

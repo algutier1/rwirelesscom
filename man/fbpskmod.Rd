@@ -2,25 +2,31 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fbpskmod}
 \alias{fbpskmod}
-\title{fbpskmod}
+\title{BPSK Modulator}
 \usage{
 fbpskmod(bits)
 }
 \arguments{
-\item{bits}{vector of bits (0's and 1's)}
+\item{bits}{- vector of bits (0's and 1's)}
+}
+\value{
+returns a BPSK modulated vector, each element taking on values of 1 or -1
 }
 \description{
-BPSK modulator receives a vector of bits, each with value 0 or 1, and outputs a
+Receives a vector of bits, each with value 0 or 1, and outputs a
 vector with values 1 and -1. An output value of -1 corresponds to an input value
 of 0 and an output value of 1 corresponds to an input of 1.
 }
+\examples{
+bits <- sample(0:1,10, replace=T)
+fbpskmod(bits)
+}
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation demodulation communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fNo}};
-  \code{\link{fbpskdemod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
+  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 

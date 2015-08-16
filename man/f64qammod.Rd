@@ -2,12 +2,15 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{f64qammod}
 \alias{f64qammod}
-\title{f64qammod}
+\title{64-QAM Modulator}
 \usage{
 f64qammod(bits)
 }
 \arguments{
-\item{bits}{received vector of bits (0's and 1's).}
+\item{bits}{- received vector of bits (0's and 1's).}
+}
+\value{
+returns a complex vector of length = (length(bits) mod 6), 64-QAM symbols
 }
 \description{
 Receives a vector of bits (1's and 0's), which are mapped to an
@@ -43,13 +46,21 @@ Mapping of bits to 64-QAM constellation points is illustrated in the following c
 }
 Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 }
+\examples{
+M=64
+Es=42
+Eb = Es/log2(M)
+Nsymbols=10000
+Nbits=log2(M)*Nsymbols
+bits <- sample(0:1,Nbits, replace=T)
+s <- f64qammod(bits)
+}
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation demodulation communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
-  \code{\link{fNo}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 
