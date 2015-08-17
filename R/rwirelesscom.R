@@ -134,7 +134,7 @@ fqpskmod <- function(bits) {
 #' is 1, otherwise 0.
 #' @param r - received signal plus noise.
 #' @family modulation demodulation communications
-#' @return retruns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
+#' @return returns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
 #' @examples
 #' M=4
 #' Es=1
@@ -165,7 +165,7 @@ fqpskdemod <- function(r) {
 #' to in-phase (real) and quadrature (imaginary) components, according to
 #' a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
 #' are are mapped to 8-PSK symbols,
-#' with \eqn{E_{s}}{Es} (symbol energy) = 1.The BRGC mapping is as follows:
+#' with \eqn{E_{s}}{Es} (symbol energy) = 1.The bit to symbol mapping is illustrated in the following constellation diagram.
 #' \tabular{cc}{
 #' input \tab output \cr
 #' 000 \tab \eqn{  0 }  \cr
@@ -280,7 +280,7 @@ fr8pskbitmap <- function(r) {
 #' to an in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
 #' a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
 #' symbol energy \eqn{E_{s}}{Es} = 10, where in-phase and quadrature constellation points
-#' take on values of (-3, -1, +1, +3), respectively. The mapping of bits to 16-QAM constellation points is as follows:
+#' take on values of (-3, -1, +1, +3), respectively. The bit to symbol mapping is illustrated in the following constellation diagram.
 #' \tabular{cccc}{
 #'  -3+3i  \tab -1+3i \tab +1+3i  \tab +3+3i \cr
 #' (1000) \tab (1001) \tab (1011) \tab (1010) \cr
@@ -701,7 +701,7 @@ iqscatterplot <- function(r) {
 #' A convenidnece function to plot a desnity function of a vector containing the in-phase and
 #' quadrature signal (plus noise).
 #' @param r - complex or real valued vector
-#' @param iq - if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)
+#' @param iq - if iq = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)
 #' @examples
 #' M=4
 #' Es=1
