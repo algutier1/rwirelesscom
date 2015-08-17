@@ -15,12 +15,26 @@ iqdensityplot(r, iq = "r")
 A convenidnece function to plot a desnity function of a vector containing the in-phase and
 quadrature signal (plus noise).
 }
+\examples{
+M=4
+Es=1
+Eb = Es/log2(M)
+Nsymbols=1000
+Nbits=log2(M)*Nsymbols
+bits <- sample(0:1,Nbits, replace=T)
+s <- sqrt(Es)*fqpskmod(bits)
+EbNodB=4
+No = Eb/(10^(EbNodB/10))
+n <- fNo(Nsymbols,No,type="complex")
+r <- s+n
+}
 \seealso{
-Other modulation demodulation communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqscatterplot}}
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqscatterplot}}
 }
 

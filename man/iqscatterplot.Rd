@@ -13,12 +13,27 @@ iqscatterplot(r)
 A convenience function that plots a scatter diagram of Im(r) vs. Re(r). The function is
 useful for visualing constellations such as M-PSK or M-QAM.
 }
+\examples{
+M=8
+Es=1
+Eb = Es/log2(M)
+Nsymbols=10000
+Nbits=log2(M)*Nsymbols
+bits <- sample(0:1,Nbits, replace=T)
+s <- f8pskmod(bits)
+EbNodB=7
+No = Eb/(10^(EbNodB/10))
+n <- fNo(Nsymbols,No,type="complex")
+r <- s+n
+iqscatterplot(r)
+}
 \seealso{
-Other modulation demodulation communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}}
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqdensityplot}}
 }
 

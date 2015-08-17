@@ -10,7 +10,7 @@ fqpskmod(bits)
 \item{bits}{- received vector of bits (0's and 1's).}
 }
 \value{
-returns a complex vector of length = length(bits) %% 2 QPSK elements
+returns a complex vector of length = (length(bits) mod 2) QPSK elements
 }
 \description{
 Receives a vector of bits (1's and 0's). The 1's and 0's are
@@ -33,11 +33,12 @@ bits <- sample(0:1,Nbits, replace=T)
 s <- fqpskmod(bits)
 }
 \seealso{
-Other modulation demodulation communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
-  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
 }
 

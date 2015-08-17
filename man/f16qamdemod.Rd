@@ -38,11 +38,12 @@ b<-factor(bits)
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other modulation demodulation communications: \code{\link{f16qammod}};
+Other modulation.demodulation.communications: \code{\link{f16qammod}};
   \code{\link{f64qamdemod}}; \code{\link{f64qammod}};
   \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
-  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
-  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
-  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
+  \code{\link{fNo}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
 }
 

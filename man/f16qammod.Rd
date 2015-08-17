@@ -14,7 +14,7 @@ returns a complex vector of length = (length(bits) mod 4), 16-QAM symbols
 }
 \description{
 Receives a vector of bits (1's and 0's), which are then mapped
-to in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
+to an in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
 a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
 symbol energy \eqn{E_{s}}{Es} = 10, where in-phase and quadrature constellation points
 take on values of (-3, -1, +1, +3), respectively. The mapping of bits to 16-QAM constellation points is as follows:
@@ -41,11 +41,12 @@ bits <- sample(0:1,Nbits, replace=T)
 s <- f16qammod(bits)
 }
 \seealso{
-Other modulation demodulation communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
   \code{\link{f64qamdemod}}; \code{\link{f64qammod}};
   \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
-  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
-  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
-  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
+  \code{\link{fNo}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
 }
 

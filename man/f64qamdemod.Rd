@@ -24,7 +24,7 @@ constellation points take on values of (-7, -5, -3, -1, +1, +3, +5, +7), respect
 M=64
 Es=42
 Eb = Es/log2(M)
-Nsymbols=10000
+Nsymbols=1000
 Nbits=log2(M)*Nsymbols
 bits <- sample(0:1,Nbits, replace=T)
 s <- f64qammod(bits)
@@ -34,15 +34,15 @@ n <- fNo(Nsymbols,No,type="complex")
 r <- s+n
 bitsr <- f64qamdemod(r)
 biterrs<-bits[bitsr!=bits]
-b<-factor(bits)
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other modulation demodulation communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qammod}};
   \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
-  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
-  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
-  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
+  \code{\link{fNo}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
 }
 

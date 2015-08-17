@@ -446,7 +446,7 @@ fr16qambitmap <- function(r) {
 #' M=64
 #' Es=42
 #' Eb = Es/log2(M)
-#' Nsymbols=10000
+#' Nsymbols=500
 #' Nbits=log2(M)*Nsymbols
 #' bits <- sample(0:1,Nbits, replace=T)
 #' s <- f64qammod(bits)
@@ -567,7 +567,7 @@ ft64qambitmap <- function(x) {
 #' M=64
 #' Es=42
 #' Eb = Es/log2(M)
-#' Nsymbols=10000
+#' Nsymbols=500
 #' Nbits=log2(M)*Nsymbols
 #' bits <- sample(0:1,Nbits, replace=T)
 #' s <- f64qammod(bits)

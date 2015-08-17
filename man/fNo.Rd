@@ -13,7 +13,30 @@ fNo(N, No, type = "real")
 
 \item{type}{- "real" or "complex" defualts to real}
 }
+\value{
+returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
+}
 \description{
 Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
+}
+\examples{
+n <- fNo(N=10,No=10)
+bits <- sample(0:1,10, replace=T)
+s=fbpskmod(bits)
+r=s+n
+
+n <- fNo(N=20,No=10,type="complex")
+bits <- sample(0:1,20, replace=T)
+s=fqpskmod(bits)
+r=s+n
+}
+\seealso{
+Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
+  \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
+  \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}
 }
 
