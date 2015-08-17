@@ -27,7 +27,7 @@ NULL
 #' Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
 #' @param N - number of noise samples
 #' @param No - noise spectral density
-#' @param type - "real" or "complex" defualts to real
+#' @param type - "real" or "complex" defaults to real
 #' @family modulation demodulation communications
 #' @return returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
 #' @examples
@@ -64,14 +64,14 @@ fbpskmod <- function(bits) {
   return(r)
 }
 
-#' BSPK Demodulator
+#' BPSK Demodulator
 #'
 #' Receives a vector of real values, corresponding to a
 #' BPSK modulated signal transmitted through a communications channel
 #' (e.g., signal plus noise). An input value < 1 is mapped to an
 #' output value of 0, otherwise to a value of 1.
 #' @param r - received signal vector
-#' @return returns a vector of 1's and 0's corresponding to BPSK demodulation fo the input vector
+#' @return returns a vector of 1's and 0's corresponding to BPSK demodulation of the input vector
 #' @examples
 #' Eb=1
 #' Nbits=10
@@ -311,7 +311,7 @@ f16qammod <- function(bits) {
   # receive bits
   # transform to symbolbits (Nsym rows) length(bits)/4 x Log2(M) cols
   # transform to symbolcodes
-  # transform to xreal(inphase), yimag(quatrature)
+  # transform to xreal(inphase), yimag(quadrature)
   M=16
   Nsymbols = length(bits) %/% log2(M)
   symbolbits<-matrix(bits,Nsymbols,log2(M),byrow=TRUE)
@@ -671,7 +671,7 @@ fr64qambitmap <- function(r) {
 #' IQ Scatter Plot
 #'
 #' A convenience function that plots a scatter diagram of Im(r) vs. Re(r). The function is
-#' useful for visualing constellations such as M-PSK or M-QAM.
+#' useful for visualizing constellations such as M-PSK or M-QAM.
 #'
 #' @param  r - complex or real valued vector
 #' @examples
@@ -698,10 +698,10 @@ iqscatterplot <- function(r) {
 
 #' IQ Density Plot
 #'
-#' A convenidnece function to plot a desnity function of a vector containing the in-phase and
+#' A convenience function to plot a density function of a vector containing the in-phase and
 #' quadrature signal (plus noise).
 #' @param r - complex or real valued vector
-#' @param iq - if iq = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)
+#' @param iq - if iq = "r" (default) then plot density of Re(r) else if iq = "i" then plot density of Im(r)
 #' @examples
 #' M=4
 #' Es=1
