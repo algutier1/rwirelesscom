@@ -9,7 +9,7 @@ test_that("Test BPSK Eb/No = 4 dB, Modulator and Demodulator in AWGN, Bit Error 
   Es = log2(M)*Eb
   Nsymbols=10000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
   s <- sqrt(Eb)*fbpskmod(bits)
 
   EbNodB=4
@@ -38,7 +38,7 @@ test_that("Test BPSK EbNo_dB= 4, Modulator and Demodulator in AWGN, Bit Error Ra
   Es = log2(M)*Eb
   Nsymbols=100000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
   s <- sqrt(Eb)*fbpskmod(bits)
 
   EbNodB=8
@@ -65,7 +65,7 @@ test_that("Test BPSK Eb/No = 4 dB, Modulator and Demodulator in AWGN, Bit Error 
   Eb = Es/log2(M)
   Nsymbols=10000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
   s <- sqrt(Es)*fqpskmod(bits)
 
   EbNodB=4
@@ -94,7 +94,7 @@ test_that("Test BPSK EbNo_dB= 4, Modulator and Demodulator in AWGN, Bit Error Ra
   Eb = Es/log2(M)
   Nsymbols=100000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
 
   s <- sqrt(Es)*fqpskmod(bits)
 
@@ -123,7 +123,7 @@ test_that("Test 8-PSK Eb/No = 11 dB, Modulator and Demodulator in AWGN, Bit Erro
   Eb = Es/log2(M)
   Nsymbols=10000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
   s <- f8pskmod(bits)
 
   EbNodB=7
@@ -152,7 +152,7 @@ test_that("Test 8-PSK Eb/No = 11 dB, Modulator and Demodulator in AWGN, Bit Erro
   Eb = Es/log2(M)
   Nsymbols=100000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
   s <- f8pskmod(bits)
 
   EbNodB=10
@@ -180,7 +180,7 @@ test_that("Test 16-QAM Eb/No = 12 dB, Modulator and Demodulator in AWGN, Bit Err
   Eb = Es/log2(M)
   Nsymbols=10000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
 
   s <- f16qammod(bits)
   EbNodB=8
@@ -209,7 +209,7 @@ test_that("Test 16-QAM Eb/No = 10 dB, Modulator and Demodulator in AWGN, Bit Err
   Eb = Es/log2(M)
   Nsymbols=10000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
 
   s <- f16qammod(bits)
   EbNodB=10
@@ -237,7 +237,7 @@ test_that("Test 64-QAM Eb/No = 12 dB, Modulator and Demodulator in AWGN, Bit Err
   Eb = Es/log2(M)
   Nsymbols=10000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
 
   #  Nbits=24
   #  Nsymbols=24/log2(M)
@@ -271,7 +271,7 @@ test_that("Test 64-QAM Eb/No = 14 dB, Modulator and Demodulator in AWGN, Bit Err
   Eb = Es/log2(M)
   Nsymbols=100000
   Nbits=log2(M)*Nsymbols
-  bits <- sample(0:1,Nbits, replace=T)
+  bits <- sample(0:1,Nbits, replace=TRUE)
 
   #  Nbits=24
   #  Nsymbols=24/log2(M)

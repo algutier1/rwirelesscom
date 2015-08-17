@@ -19,7 +19,7 @@ Es=1
 Eb = Es/log2(M)
 Nsymbols=10000
 Nbits=log2(M)*Nsymbols
-bits <- sample(0:1,Nbits, replace=T)
+bits <- sample(0:1,Nbits, replace=TRUE)
 s <- f8pskmod(bits)
 EbNodB=7
 No = Eb/(10^(EbNodB/10))

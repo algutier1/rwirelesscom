@@ -2,7 +2,7 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fqpskdemod}
 \alias{fqpskdemod}
-\title{BPSK Demodulator}
+\title{QPSK Demodulator}
 \usage{
 fqpskdemod(r)
 }
@@ -17,7 +17,7 @@ Receives a vector of complex values, r, corresponding to a
 QPSK modulated signal transmitted through a communications channel
 (e.g., signal plus noise). The received signal, r, is mapped to its in-phase (real part) and
 quadrature parts (imaginary part) and demodulated, such that two binary bits are output
-for each value of r. If the in phase part is > 0 then the corresponding output bit value is 1,
+for each value of r. If the in-phase part is > 0 then the corresponding output bit value is 1,
 otherwise 0. Similarly, if the quadrature part (imaginary) > 0 then the corresponding bit value
 is 1, otherwise 0.
 }
@@ -27,7 +27,7 @@ Es=1
 Nsymbols=10
 Nbits=log2(M)*Nsymbols
 Eb=Es/log2(M)
-bits <- sample(0:1,Nbits, replace=T)
+bits <- sample(0:1,Nbits, replace=TRUE)
 s <- fqpskmod(bits)
 EbNodB=8
 No = Eb/(10^(EbNodB/10))

@@ -16,7 +16,7 @@ returns a complex vector of length = (length(bits) mod 2) QPSK elements
 Receives a vector of bits (1's and 0's). The 1's and 0's are
 mapped to in-phase (real) and quadrature (imaginary) components.
 Correspondingly, a bit of 1 is mapped to +1/sqrt(2), otherwise to -1/sqrt(2)
-as follows:
+according to the following mapping.
  \tabular{cc}{
 input \tab output \cr
 00 \tab  (-1 - 1i) / sqrt(2)  \cr
@@ -29,7 +29,7 @@ input \tab output \cr
 M=4
 Nsymbols=10
 Nbits=log2(M)*Nsymbols
-bits <- sample(0:1,Nbits, replace=T)
+bits <- sample(0:1,Nbits, replace=TRUE)
 s <- fqpskmod(bits)
 }
 \seealso{

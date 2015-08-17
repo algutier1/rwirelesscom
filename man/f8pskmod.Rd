@@ -13,7 +13,7 @@ f8pskmod(bits)
 returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols
 }
 \description{
-Receives a vector of bits (1's and 0's), which are then mapped
+Receives a vector of bits (1's and 0's). The received vector is mapped
 to in-phase (real) and quadrature (imaginary) components, according to
 a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
 are are mapped to 8-PSK symbols,
@@ -35,7 +35,7 @@ Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Mult
 M=8
 Nsymbols=10
 Nbits=log2(M)*Nsymbols
-bits <- sample(0:1,Nbits, replace=T)
+bits <- sample(0:1,Nbits, replace=TRUE)
 s <- f8pskmod(bits)
 }
 \seealso{

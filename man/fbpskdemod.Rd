@@ -2,10 +2,7 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fbpskdemod}
 \alias{fbpskdemod}
-\title{Receives a vector of real values, corresponding to a
-BPSK modulated signal transmitted through a communications channel
-(e.g., signal plus noise). An input value < 1 is mapped to an
-output value of 0, otherwise to a value of 1.}
+\title{BSPK Demodulator}
 \usage{
 fbpskdemod(r)
 }
@@ -13,7 +10,7 @@ fbpskdemod(r)
 \item{r}{- received signal vector}
 }
 \value{
-returns a vector of 1's and 0's corresponding to BPSK demodulation fo the inpyut vector
+returns a vector of 1's and 0's corresponding to BPSK demodulation fo the input vector
 }
 \description{
 Receives a vector of real values, corresponding to a
@@ -24,7 +21,7 @@ output value of 0, otherwise to a value of 1.
 \examples{
 Eb=1
 Nbits=10
-bits <- sample(0:1,Nbits, replace=T)
+bits <- sample(0:1,Nbits, replace=TRUE)
 s <- fbpskmod(bits)
 EbNodB=8
 No = Eb/(10^(EbNodB/10))

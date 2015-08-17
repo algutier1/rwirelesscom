@@ -14,11 +14,10 @@ returns a BPSK modulated vector, each element taking on values of 1 or -1
 }
 \description{
 Receives a vector of bits, each with value 0 or 1, and outputs a
-vector with values 1 and -1. An output value of -1 corresponds to an input value
-of 0 and an output value of 1 corresponds to an input of 1.
+vector with values 1 and -1, respectively.
 }
 \examples{
-bits <- sample(0:1,10, replace=T)
+bits <- sample(0:1,10, replace=TRUE)
 fbpskmod(bits)
 }
 \seealso{

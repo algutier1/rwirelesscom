@@ -13,7 +13,7 @@ f16qammod(bits)
 returns a complex vector of length = (length(bits) mod 4), 16-QAM symbols
 }
 \description{
-Receives a vector of bits (1's and 0's), which are then mapped
+Receives a vector of bits (1's and 0's). The received vector is mapped
 to an in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
 a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
 symbol energy \eqn{E_{s}}{Es} = 10, where in-phase and quadrature constellation points
@@ -37,7 +37,7 @@ Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Mult
 M=16
 Nsymbols=100
 Nbits=log2(M)*Nsymbols
-bits <- sample(0:1,Nbits, replace=T)
+bits <- sample(0:1,Nbits, replace=TRUE)
 s <- f16qammod(bits)
 }
 \seealso{

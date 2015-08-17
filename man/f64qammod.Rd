@@ -13,7 +13,7 @@ f64qammod(bits)
 returns a complex vector of length = (length(bits) mod 6), 64-QAM symbols
 }
 \description{
-Receives a vector of bits (1's and 0's), which are mapped to an
+Receives a vector of bits (1's and 0's). The received vector is mapped to an
 in-phase (real) and quadrature (imaginary) 64-QAM (6 bit) symbol according to
 a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
 symbol energy \eqn{E_{s}}{Es} = 42, where in-phase and quadrature constellation points
@@ -52,7 +52,7 @@ Es=42
 Eb = Es/log2(M)
 Nsymbols=1000
 Nbits=log2(M)*Nsymbols
-bits <- sample(0:1,Nbits, replace=T)
+bits <- sample(0:1,Nbits, replace=TRUE)
 s <- f64qammod(bits)
 }
 \seealso{

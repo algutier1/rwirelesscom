@@ -26,7 +26,7 @@ s=fbpskmod(bits)
 r=s+n
 
 n <- fNo(N=20,No=10,type="complex")
-bits <- sample(0:1,20, replace=T)
+bits <- sample(0:1,20, replace=TRUE)
 s=fqpskmod(bits)
 r=s+n
 }
