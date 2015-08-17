@@ -21,7 +21,7 @@ Generates a vector of normally distributed noise samples with mean of zero and n
 }
 \examples{
 n <- fNo(N=10,No=10)
-bits <- sample(0:1,10, replace=T)
+bits <- sample(0:1,10, replace=TRUE)
 s=fbpskmod(bits)
 r=s+n
 
