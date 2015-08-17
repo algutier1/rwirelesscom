@@ -32,7 +32,7 @@ NULL
 #' @return returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
 #' @examples
 #' n <- fNo(N=10,No=10)
-#' bits <- sample(0:1,10, replace=T)
+#' bits <- sample(0:1,10, replace=TRUE)
 #' s=fbpskmod(bits)
 #' r=s+n
 #'
