@@ -11,7 +11,7 @@ iqscatterplot(r)
 }
 \description{
 A convenience function that plots a scatter diagram of Im(r) vs. Re(r). The function is
-useful for visualing constellations such as M-PSK or M-QAM.
+useful for visualizing constellations such as M-PSK or M-QAM.
 }
 \examples{
 M=8
@@ -28,7 +28,8 @@ r <- s+n
 iqscatterplot(r)
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
   \code{\link{f8pskmod}}; \code{\link{fNo}};

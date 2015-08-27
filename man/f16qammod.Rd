@@ -17,7 +17,7 @@ Receives a vector of bits (1's and 0's). The received vector is mapped
 to an in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
 a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
 symbol energy \eqn{E_{s}}{Es} = 10, where in-phase and quadrature constellation points
-take on values of (-3, -1, +1, +3), respectively. The mapping of bits to 16-QAM constellation points is as follows:
+take on values of (-3, -1, +1, +3), respectively. The bit to symbol mapping is illustrated in the following constellation diagram.
 \tabular{cccc}{
  -3+3i  \tab -1+3i \tab +1+3i  \tab +3+3i \cr
 (1000) \tab (1001) \tab (1011) \tab (1010) \cr
@@ -41,7 +41,8 @@ bits <- sample(0:1,Nbits, replace=TRUE)
 s <- f16qammod(bits)
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f64qamdemod}}; \code{\link{f64qammod}};
   \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
   \code{\link{fNo}}; \code{\link{fbpskdemod}};

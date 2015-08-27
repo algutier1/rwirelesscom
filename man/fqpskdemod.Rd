@@ -10,7 +10,7 @@ fqpskdemod(r)
 \item{r}{- received signal plus noise.}
 }
 \value{
-retruns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
+returns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
 }
 \description{
 Receives a vector of complex values, r, corresponding to a
@@ -38,7 +38,8 @@ biterrs<-bits[bitsr!=bits]
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
   \code{\link{f8pskmod}}; \code{\link{fNo}};

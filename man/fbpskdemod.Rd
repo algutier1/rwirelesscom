@@ -2,7 +2,7 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fbpskdemod}
 \alias{fbpskdemod}
-\title{BSPK Demodulator}
+\title{BPSK Demodulator}
 \usage{
 fbpskdemod(r)
 }
@@ -10,7 +10,7 @@ fbpskdemod(r)
 \item{r}{- received signal vector}
 }
 \value{
-returns a vector of 1's and 0's corresponding to BPSK demodulation fo the input vector
+returns a vector of 1's and 0's corresponding to BPSK demodulation of the input vector
 }
 \description{
 Receives a vector of real values, corresponding to a
@@ -32,7 +32,8 @@ biterrs<-bits[bitsr!=bits]
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
   \code{\link{f8pskmod}}; \code{\link{fNo}};

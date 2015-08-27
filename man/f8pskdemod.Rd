@@ -26,7 +26,7 @@ input \tab output \cr
  \eqn{ 7 \pi/8 \ge Arg(r) < 9 \pi/8} \tab 110 \cr
  \eqn{ -7 \pi/8 \ge Arg(r) < -5 \pi/8} \tab 111 \cr
  \eqn{ -5 \pi/8 \ge Arg(r) < -3 \pi/8} \tab 101 \cr
- \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  101
+ \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  100
 }
 }
 \examples{
@@ -47,7 +47,8 @@ b<-factor(bits)
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskmod}};
   \code{\link{fNo}}; \code{\link{fbpskdemod}};

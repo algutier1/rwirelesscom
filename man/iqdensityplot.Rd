@@ -9,10 +9,10 @@ iqdensityplot(r, iq = "r")
 \arguments{
 \item{r}{- complex or real valued vector}
 
-\item{iq}{- if = "r" (default) then plot desnity of Re(r) else if iq = "i" then plot density of Im(r)}
+\item{iq}{- if iq = "r" (default) then plot density of Re(r) else if iq = "i" then plot density of Im(r)}
 }
 \description{
-A convenidnece function to plot a desnity function of a vector containing the in-phase and
+A convenience function to plot a density function of a vector containing the in-phase and
 quadrature signal (plus noise).
 }
 \examples{
@@ -22,14 +22,15 @@ Eb = Es/log2(M)
 Nsymbols=1000
 Nbits=log2(M)*Nsymbols
 bits <- sample(0:1,Nbits, replace=TRUE)
-s <- sqrt(Es)*fqpskmod(bits)
+s <- fqpskmod(bits)
 EbNodB=4
 No = Eb/(10^(EbNodB/10))
 n <- fNo(Nsymbols,No,type="complex")
 r <- s+n
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
   \code{\link{f8pskmod}}; \code{\link{fNo}};

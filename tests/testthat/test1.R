@@ -173,6 +173,34 @@ test_that("Test 8-PSK Eb/No = 11 dB, Modulator and Demodulator in AWGN, Bit Erro
 
 } )
 
+context("16-PSK error rate, Eb/No = 12 dB")
+test_that("Test 16-PSK Eb/No = 12 dB, Modulator and Demodulator in AWGN, Bit Error Rate", {
+  skip_on_cran()
+  M=16
+  Es=1
+  Eb = Es/log2(M)
+  Nsymbols=10000
+  Nbits=log2(M)*Nsymbols
+  bits <- sample(0:1,Nbits, replace=TRUE)
+  s <- f16pskmod(bits)
+
+  EbNodB=12
+  No = Eb/(10^(EbNodB/10))
+  n <- fNo(Nsymbols,No,type="complex")
+  r <- s+n
+  bitsr <- f16pskdemod(r)
+  biterrs<-bits[bitsr!=bits]
+  Pberr=length(biterrs)/length(bits)
+
+  #str<-sprintf("Test: %d-PSK EbNo_dB = %d, EsNo_dB = %g, Bits = %g, bit errors = %g, Pberr=%f",M,EbNodB, 10*log10(Es/No), length(bits), length(biterrs),Pberr)
+  #print("",quote=FALSE)
+  #print(str,quote=FALSE)
+
+  expect_true(Pberr < 0.01, info="16-PSK EbNodb=12, Pberr should be < 0.01")
+  expect_true(Pberr > 0.006, info="16-BSK EbNodb=12, Pberr should be > 0.006")
+
+} )
+
 context("16-QAM error rate, Es/No = 8 dB")
 test_that("Test 16-QAM Eb/No = 12 dB, Modulator and Demodulator in AWGN, Bit Error Rate", {
   M=16

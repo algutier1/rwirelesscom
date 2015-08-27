@@ -1,12 +1,13 @@
 #' R Wireless Communications Package
 #'
 #' A basic wireless communications package for the simulation of digital communications in R. The package includes
-#' modulation functions for BPSK, QPSK, 8-PSK, 16-QAM, 64-QAM, and a AWGN noise generation function. Additionally,
+#' modulation functions for BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM, 64-QAM, and a AWGN noise generation function. Additionally,
 #' the package includes functions to plot an I (in-phase) and Q (quadrature) scatter diagram, or density plot:
 #' \itemize{
 #' \item fNo(),
 #' \item fbpskmod(), fbpskdemod(),
 #' \item f8pskmod(), f8pskdemod(),
+#' \item f16pskmod(), f16pskdemod(),
 #' \item f16qammod(), f16qamdemod(),
 #' \item f64qammod(), f64qamdemod,
 #' \item iqscatterplot(), iqdensityplot()
@@ -165,7 +166,7 @@ fqpskdemod <- function(r) {
 #' to in-phase (real) and quadrature (imaginary) components, according to
 #' a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
 #' are are mapped to 8-PSK symbols,
-#' with \eqn{E_{s}}{Es} (symbol energy) = 1.The bit to symbol mapping is illustrated in the following constellation diagram.
+#' with \eqn{sqrt(E_{s})}{sqrt(Es)} (symbol energy) = 1.The bit to symbol mapping is illustrated in the following constellation diagram.
 #' \tabular{cc}{
 #' input \tab output \cr
 #' 000 \tab \eqn{  0 }  \cr
@@ -231,7 +232,7 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
 #'  \eqn{ 7 \pi/8 \ge Arg(r) < 9 \pi/8} \tab 110 \cr
 #'  \eqn{ -7 \pi/8 \ge Arg(r) < -5 \pi/8} \tab 111 \cr
 #'  \eqn{ -5 \pi/8 \ge Arg(r) < -3 \pi/8} \tab 101 \cr
-#'  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  101
+#'  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  100
 #' }
 #' @param r - received signal
 #' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
@@ -274,6 +275,157 @@ fr8pskbitmap <- function(r) {
   return(symbolbits)
 }
 
+#' 16-PSK Modulator
+#'
+#' Receives a vector of bits (1's and 0's). The received vector is mapped
+#' to in-phase (real) and quadrature (imaginary) components, according to
+#' a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
+#' are are mapped to 16-PSK symbols,
+#' with \eqn{sqrt(E_{s})}{sqrt(Es)} (symbol energy) = 1.The bit to symbol mapping is illustrated in the following constellation diagram.
+#' \tabular{cc}{
+#' input \tab output \cr
+#' 0000 \tab \eqn{    0 }  \cr
+#' 0001 \tab \eqn{   \pi/8 } \cr
+#' 0011 \tab \eqn{   \pi/4} \cr
+#' 0010 \tab \eqn{   3\pi/8} \cr
+#' 0110 \tab  \eqn{  \pi/2} \cr
+#' 0111 \tab  \eqn{ 5 \pi/8} \cr
+#' 0101 \tab  \eqn{ 3 \pi/4} \cr
+#' 0100 \tab  \eqn{ 7 \pi/8} \cr
+#' 1000 \tab \eqn{  -1 }  \cr
+#' 1001 \tab \eqn{  -7 \pi/8 } \cr
+#' 1011 \tab \eqn{  -3\pi/4} \cr
+#' 1010 \tab \eqn{  -5 \pi/8} \cr
+#' 1110 \tab  \eqn{ - \pi/2} \cr
+#' 1111 \tab  \eqn{ -3 \pi/8} \cr
+#' 1101 \tab  \eqn{ - \pi/4} \cr
+#' 1100 \tab  \eqn{ - \pi/8}
+#' }
+#' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
+#' @param bits - vector of bits (0's and 1's).
+#' @return returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols
+#' @examples
+#' M=16
+#' Nsymbols=20
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=TRUE)
+#' s <- f16pskmod(bits)
+#' @family modulation demodulation communications
+#' @export
+f16pskmod <- function(bits) {
+  # receive symbolbits matrix (Nsym rows x Log2(M) cols )
+  # transform to symbolcodes
+  # transform to xreal, yimag
+  M=16
+  Nsymbols = length(bits) %/% log2(M)
+  symbolbits<-matrix(bits,Nsymbols,log2(M),byrow=TRUE)
+  m16=cbind(c(0,0,0,1),c(0,0,2,0),c(0,4,0,0),c(8,0,0,0))
+  symbolbitsm16 = symbolbits %*% m16
+  symbolcodes <- apply(symbolbitsm16,1,sum)
+  s<-sapply(symbolcodes,ft16pskbitmap)
+  return(s)
+}
+
+ft16pskbitmap <- function(x) {                                           #b3b2b1b0
+  if (x == 0) r = complex(real=1,imaginary=0)                             # 0000
+  else if (x == 1) r = complex(real=cos(pi/8),imaginary=sin(pi/8))        # 0001
+  else if (x == 3) r = complex(real=cos(pi/4), imaginary=sin(pi/4))       # 0011
+  else if (x == 2) r = complex(real=cos(3*pi/8),imaginary=sin(3*pi/8))    # 0010
+  else if (x == 6) r = complex(real=0,imaginary=1)                        # 0110
+  else if (x == 7) r = complex(real=cos(5*pi/8), imaginary=sin(5*pi/8))   # 0111
+  else if (x == 5) r = complex(real=cos(3*pi/4), imaginary=sin(3*pi/4))   # 0101
+  else if (x == 4) r = complex(real=cos(7*pi/8),imaginary=sin(7*pi/8))    # 0100
+  else if (x == 8) r = complex(real=-1,imaginary=0)                       # 1000
+  else if (x == 9) r = complex(real=cos(-7*pi/8),imaginary=sin(-7*pi/8))  # 1001
+  else if (x == 11) r = complex(real=cos(-3*pi/4),imaginary=sin(-3*pi/4)) # 1011
+  else if (x == 10) r = complex(real=cos(-5*pi/8),imaginary=sin(-5*pi/8)) # 1010
+  else if (x == 14) r = complex(real=0,imaginary=-1)                      # 1110
+  else if (x == 15) r = complex(real=cos(-3*pi/8),imaginary=sin(-3*pi/8)) # 1111
+  else if (x == 13) r = complex(real=cos(- pi/4),imaginary=sin(- pi/4)) # 1101
+  else if (x == 12) r = complex(real=cos(-pi/8),imaginary=sin(-pi/8))     # 1100
+  else {print(x)
+    r=100}
+  return(r)
+}
+
+#' 16-PSK Demodulator
+#'
+#' Receives a vector of complex values, r, corresponding to an
+#' 8-PSK modulated signal transmitted through a communications channel
+#' (e.g., signal plus noise). Three bits are output for each received symbol
+#' according to the following decision rules
+#' \tabular{cc}{
+#' input \tab output \cr
+#'  \eqn{ -\pi/16 \ge Arg(r) < \pi/16}        \tab 0000  \cr
+#'  \eqn{  \pi/16 \ge Arg(r) < 3 \pi/16}     \tab 0001 \cr
+#'  \eqn{ 3 \pi/16 \ge Arg(r) < 5 \pi/16}     \tab 0011 \cr
+#'  \eqn{ 5 \pi/16 \ge Arg(r) < 7 \pi/16}     \tab 0010 \cr
+#'  \eqn{ 7 \pi/16 \ge Arg(r) < 9 \pi/16}    \tab 0110 \cr
+#'  \eqn{ 9 \pi/16 \ge Arg(r) < 11 \pi/16}   \tab 0111 \cr
+#'  \eqn{ 11 \pi/16 \ge Arg(r) < 13 \pi/16}   \tab 0101 \cr
+#'  \eqn{ 13 \pi/16 \ge Arg(r) < 15 \pi/16}   \tab 0100 \cr
+#'  \eqn{ 15 \pi/16 \ge Arg(r) < 17 \pi/16}   \tab 1000  \cr
+#'  \eqn{ -15 \pi/16 \ge Arg(r) < -13 \pi/16}  \tab 1001 \cr
+#'  \eqn{ -13 \pi/16 \ge Arg(r) < -11 \pi/16} \tab 1011 \cr
+#'  \eqn{ -11 \pi/16 \ge Arg(r) < -9 \pi/16}   \tab 1010 \cr
+#'  \eqn{ -9 \pi/16 \ge Arg(r) < -7 \pi/16}    \tab 1110 \cr
+#'  \eqn{ -7 \pi/16 \ge Arg(r) < -5 \pi/16}    \tab 1111 \cr
+#'  \eqn{ -5 \pi/16 \ge Arg(r) < -3 \pi/16}    \tab 1101 \cr
+#'  \eqn{ -3 \pi/16 \ge Arg(r) < - \pi/16}     \tab 1100
+#' }
+#' @param r - received signal
+#' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
+#' @examples
+#' M=16
+#' Es=1
+#' Eb = Es/log2(M)
+#' Nsymbols=20
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=TRUE)
+#' s <- f16pskmod(bits)
+#' EbNodB=7
+#' No = Eb/(10^(EbNodB/10))
+#' n <- fNo(Nsymbols,No,type="complex")
+#' r <- s+n
+#' bitsr <- f16pskdemod(r)
+#' biterrs<-bits[bitsr!=bits]
+#' b<-factor(bits)
+#' Pberr=length(biterrs)/length(bits)
+#' @family modulation demodulation communications
+#' @export
+#'
+f16pskdemod <- function(r) {
+  r2<-sapply(r,fr16pskbitmap)
+  bits2 <- as.vector(matrix(r2,1,length(r2)))
+  return(bits2)
+}
+
+fr16pskbitmap <- function(r) {
+  argr <- Arg(r)
+  if ( argr >= -pi/16 && argr < pi/16 ) symbolbits = c(0,0,0,0)
+  else if ( argr >= pi/16 && argr < 3*pi/16 ) symbolbits = c(0,0,0,1)
+  else if ( argr >= 3*pi/16 && argr < 5*pi/16) symbolbits = c(0,0,1,1)
+  else if ( argr >= 5*pi/16 && argr < 7*pi/16) symbolbits = c(0,0,1,0)
+  else if ( argr >= 7*pi/16 && argr < 9*pi/16)  symbolbits= c(0,1,1,0)
+  else if ( argr >= 9*pi/16 && argr  < 11*pi/16) symbolbits = c(0,1,1,1)
+  else if ( argr >= 11*pi/16 && argr  < 13*pi/16) symbolbits = c(0,1,0,1)
+  else if ( argr >= 13*pi/16 && argr  < 15*pi/16) symbolbits = c(0,1,0,0)
+
+  else if ( (argr >= 15*pi/16 && argr < 17*pi/16 ) || (argr > -17*pi/16 && argr < -15*pi/16 )) symbolbits = c(1,0,0,0)
+  else if ( argr >= -15*pi/16 && argr < -13*pi/16 ) symbolbits = c(1,0,0,1)
+  else if ( argr >= -13*pi/16 && argr < -11*pi/16) symbolbits = c(1,0,1,1)
+  else if ( argr >= -11*pi/16 && argr < -9*pi/16) symbolbits = c(1,0,1,0)
+  else if ( argr >= -9*pi/16 && argr < -7*pi/16) symbolbits = c(1,1,1,0)
+  else if ( argr >= -7*pi/16 && argr  < -5*pi/16) symbolbits = c(1,1,1,1)
+  else if ( argr >= -5*pi/16 && argr  < -3*pi/16) symbolbits = c(1,1,0,1)
+  else if ( argr >= -3*pi/16 && argr  < -pi/16) symbolbits = c(1,1,0,0)
+  else  {
+       symbolbits=c(-1,-1,-1,-1)
+       print(r)
+  }
+  return(symbolbits)
+}
+
 #' 16-QAM Modulator
 #'
 #' Receives a vector of bits (1's and 0's). The received vector is mapped
@@ -307,7 +459,7 @@ fr8pskbitmap <- function(r) {
 #' @export
 f16qammod <- function(bits) {
   # constellation quadrant x = 1+1j, 3+1j, 1+3j, 3+3j ...
-  # Es = Sum((x * Conj(x)))/4 = 10
+  # sqrt(Es) = Sum((x * Conj(x)))/4 = 10
   # receive bits
   # transform to symbolbits (Nsym rows) length(bits)/4 x Log2(M) cols
   # transform to symbolcodes
@@ -351,7 +503,7 @@ ft16qambitmap <- function(x) {
 #' 16-QAM modulated signal transmitted through a communications channel
 #' (e.g., signal plus noise). Each received 16-QAM symbol (one symbol per r sample) is decoded into
 #' 4 bits. The 16-QAM symbol decision regions are defined with respect to
-#' the constellation generated by f16qammod(), \eqn{E_{s}}{Es} = 10, where in-phase and quadrature
+#' the constellation generated by f16qammod(), \eqn{sqrt(E_{s})}{sqrt(Es)} = 10, where in-phase and quadrature
 #' constellation points take on values of (-3, -1, +1, +3), respectively.
 #' @param r - vector of complex vector
 #' @return a vector of 1's and 0's, 4 bits per input element (16-QAM symbol)
@@ -411,7 +563,7 @@ fr16qambitmap <- function(r) {
 #' Receives a vector of bits (1's and 0's). The received vector is mapped to an
 #' in-phase (real) and quadrature (imaginary) 64-QAM (6 bit) symbol according to
 #' a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
-#' symbol energy \eqn{E_{s}}{Es} = 42, where in-phase and quadrature constellation points
+#' symbol energy \eqn{sqrt(E_{s})}{sqrt(Es)} = 42, where in-phase and quadrature constellation points
 #' take on values of (-7, -5, -3, -1, +1, +3, +5, +7), respectively.
 #' Mapping of bits to 64-QAM constellation points is illustrated in the following constellation.
 #' \tabular{cccccccc}{
@@ -557,7 +709,7 @@ ft64qambitmap <- function(x) {
 #' 64-QAM modulated signal transmitted through a communications channel
 #' (e.g., signal plus noise). Each received 64-QAM symbol (one symbol per r sample) is decoded into
 #' 6 bits. The 64-QAM symbol decision regions are defined with respect to
-#' the constellation generated by f64qammod(), \eqn{E_{s}}{Es} = 42, where in-phase and quadrature
+#' the constellation generated by f64qammod(), \eqn{sqrt(E_{s})}{sqrt(Es)} = 42, where in-phase and quadrature
 #' constellation points take on values of (-7, -5, -3, -1, +1, +3, +5, +7), respectively.
 #' @param r - complex valued input vector
 #' @family modulation demodulation communications
@@ -692,7 +844,7 @@ fr64qambitmap <- function(r) {
 
 iqscatterplot <- function(r) {
   X1 <- X2 <- NULL
-  ggplot(data.frame(cbind(Re(r),Im(r))), aes(x=X1, y=X2)) + geom_point(size=1)+ xlab("In-Phase") + ylab("Quadrature") + theme(axis.text=element_text(size=14),axis.title=element_text(size=12,face="bold"))
+  ggplot(data.frame(cbind(Re(r),Im(r))), aes(x=X1, y=X2)) + geom_point(size=1)+ xlab("In-Phase") + ylab("Quadrature") + theme(axis.text=element_text(size=14),axis.title=element_text(size=14,face="bold"))
 }
 
 
@@ -709,7 +861,7 @@ iqscatterplot <- function(r) {
 #' Nsymbols=1000
 #' Nbits=log2(M)*Nsymbols
 #' bits <- sample(0:1,Nbits, replace=TRUE)
-#' s <- sqrt(Es)*fqpskmod(bits)
+#' s <- fqpskmod(bits)
 #' EbNodB=4
 #' No = Eb/(10^(EbNodB/10))
 #' n <- fNo(Nsymbols,No,type="complex")
@@ -720,8 +872,10 @@ iqscatterplot <- function(r) {
 iqdensityplot <- function(r,iq="r") {
   ..density.. <- NULL
   if (iq!="i") { # Real Part
-    ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
+    ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, colour="black", fill=NA,position="identity",aes(y=..density..)) +
+        xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
   } else {    #Imaginary Part
-    ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
+    ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, colour="black", fill=NA,position="identity",aes(y=..density..)) +
+       xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
   }
 }

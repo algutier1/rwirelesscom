@@ -11,7 +11,7 @@ fNo(N, No, type = "real")
 
 \item{No}{- noise spectral density}
 
-\item{type}{- "real" or "complex" defualts to real}
+\item{type}{- "real" or "complex" defaults to real}
 }
 \value{
 returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
@@ -31,7 +31,8 @@ s=fqpskmod(bits)
 r=s+n
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16qamdemod}};
+Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
   \code{\link{f8pskmod}}; \code{\link{fbpskdemod}};

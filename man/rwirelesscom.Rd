@@ -7,12 +7,13 @@
 \title{R Wireless Communications Package}
 \description{
 A basic wireless communications package for the simulation of digital communications in R. The package includes
-modulation functions for BPSK, QPSK, 8-PSK, 16-QAM, 64-QAM, and a AWGN noise generation function. Additionally,
+modulation functions for BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM, 64-QAM, and a AWGN noise generation function. Additionally,
 the package includes functions to plot an I (in-phase) and Q (quadrature) scatter diagram, or density plot:
 \itemize{
 \item fNo(),
 \item fbpskmod(), fbpskdemod(),
 \item f8pskmod(), f8pskdemod(),
+\item f16pskmod(), f16pskdemod(),
 \item f16qammod(), f16qamdemod(),
 \item f64qammod(), f64qamdemod,
 \item iqscatterplot(), iqdensityplot()
