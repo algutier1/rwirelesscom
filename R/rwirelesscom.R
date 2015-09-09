@@ -281,7 +281,7 @@ fr8pskbitmap <- function(r) {
 #' to in-phase (real) and quadrature (imaginary) components, according to
 #' a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
 #' are are mapped to 16-PSK symbols,
-#' with \eqn{sqrt(E_{s})}{sqrt(Es)} (symbol energy) = 1.The bit to symbol mapping is illustrated in the following constellation diagram.
+#' with Es (symbol energy) = 1.The bit to symbol mapping is illustrated in the following table.
 #' \tabular{cc}{
 #' input \tab output \cr
 #' 0000 \tab \eqn{    0 }  \cr
@@ -292,14 +292,14 @@ fr8pskbitmap <- function(r) {
 #' 0111 \tab  \eqn{ 5 \pi/8} \cr
 #' 0101 \tab  \eqn{ 3 \pi/4} \cr
 #' 0100 \tab  \eqn{ 7 \pi/8} \cr
-#' 1000 \tab \eqn{  -1 }  \cr
-#' 1001 \tab \eqn{  -7 \pi/8 } \cr
-#' 1011 \tab \eqn{  -3\pi/4} \cr
-#' 1010 \tab \eqn{  -5 \pi/8} \cr
-#' 1110 \tab  \eqn{ - \pi/2} \cr
-#' 1111 \tab  \eqn{ -3 \pi/8} \cr
-#' 1101 \tab  \eqn{ - \pi/4} \cr
-#' 1100 \tab  \eqn{ - \pi/8}
+#' 1100 \tab \eqn{  -1 }  \cr
+#' 1101 \tab \eqn{  -7 \pi/8 } \cr
+#' 1111 \tab \eqn{  -3\pi/4} \cr
+#' 1110 \tab \eqn{  -5 \pi/8} \cr
+#' 1010 \tab  \eqn{ - \pi/2} \cr
+#' 1011 \tab  \eqn{ -3 \pi/8} \cr
+#' 1001 \tab  \eqn{ - \pi/4} \cr
+#' 1000 \tab  \eqn{ - \pi/8}
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 #' @param bits - vector of bits (0's and 1's).
@@ -335,14 +335,14 @@ ft16pskbitmap <- function(x) {                                           #b3b2b1
   else if (x == 7) r = complex(real=cos(5*pi/8), imaginary=sin(5*pi/8))   # 0111
   else if (x == 5) r = complex(real=cos(3*pi/4), imaginary=sin(3*pi/4))   # 0101
   else if (x == 4) r = complex(real=cos(7*pi/8),imaginary=sin(7*pi/8))    # 0100
-  else if (x == 8) r = complex(real=-1,imaginary=0)                       # 1000
-  else if (x == 9) r = complex(real=cos(-7*pi/8),imaginary=sin(-7*pi/8))  # 1001
-  else if (x == 11) r = complex(real=cos(-3*pi/4),imaginary=sin(-3*pi/4)) # 1011
-  else if (x == 10) r = complex(real=cos(-5*pi/8),imaginary=sin(-5*pi/8)) # 1010
-  else if (x == 14) r = complex(real=0,imaginary=-1)                      # 1110
-  else if (x == 15) r = complex(real=cos(-3*pi/8),imaginary=sin(-3*pi/8)) # 1111
-  else if (x == 13) r = complex(real=cos(- pi/4),imaginary=sin(- pi/4)) # 1101
-  else if (x == 12) r = complex(real=cos(-pi/8),imaginary=sin(-pi/8))     # 1100
+  else if (x == 12) r = complex(real=-1,imaginary=0)                      # 1100
+  else if (x == 13) r = complex(real=cos(-7*pi/8),imaginary=sin(-7*pi/8)) # 1101
+  else if (x == 15) r = complex(real=cos(-3*pi/4),imaginary=sin(-3*pi/4)) # 1111
+  else if (x == 14) r = complex(real=cos(-5*pi/8),imaginary=sin(-5*pi/8)) # 1110
+  else if (x == 10) r = complex(real=0,imaginary=-1)                      # 1010
+  else if (x == 11) r = complex(real=cos(-3*pi/8),imaginary=sin(-3*pi/8)) # 1011
+  else if (x == 9) r = complex(real=cos(- pi/4),imaginary=sin(- pi/4))    # 1001
+  else if (x == 8) r = complex(real=cos(-pi/8),imaginary=sin(-pi/8))      # 1000
   else {print(x)
     r=100}
   return(r)
@@ -364,14 +364,14 @@ ft16pskbitmap <- function(x) {                                           #b3b2b1
 #'  \eqn{ 9 \pi/16 \ge Arg(r) < 11 \pi/16}   \tab 0111 \cr
 #'  \eqn{ 11 \pi/16 \ge Arg(r) < 13 \pi/16}   \tab 0101 \cr
 #'  \eqn{ 13 \pi/16 \ge Arg(r) < 15 \pi/16}   \tab 0100 \cr
-#'  \eqn{ 15 \pi/16 \ge Arg(r) < 17 \pi/16}   \tab 1000  \cr
-#'  \eqn{ -15 \pi/16 \ge Arg(r) < -13 \pi/16}  \tab 1001 \cr
-#'  \eqn{ -13 \pi/16 \ge Arg(r) < -11 \pi/16} \tab 1011 \cr
-#'  \eqn{ -11 \pi/16 \ge Arg(r) < -9 \pi/16}   \tab 1010 \cr
-#'  \eqn{ -9 \pi/16 \ge Arg(r) < -7 \pi/16}    \tab 1110 \cr
-#'  \eqn{ -7 \pi/16 \ge Arg(r) < -5 \pi/16}    \tab 1111 \cr
-#'  \eqn{ -5 \pi/16 \ge Arg(r) < -3 \pi/16}    \tab 1101 \cr
-#'  \eqn{ -3 \pi/16 \ge Arg(r) < - \pi/16}     \tab 1100
+#'  \eqn{ 15 \pi/16 \ge Arg(r) < 17 \pi/16}   \tab 1100  \cr
+#'  \eqn{ -15 \pi/16 \ge Arg(r) < -13 \pi/16}  \tab 1101 \cr
+#'  \eqn{ -13 \pi/16 \ge Arg(r) < -11 \pi/16} \tab 1111 \cr
+#'  \eqn{ -11 \pi/16 \ge Arg(r) < -9 \pi/16}   \tab 1110 \cr
+#'  \eqn{ -9 \pi/16 \ge Arg(r) < -7 \pi/16}    \tab 1010 \cr
+#'  \eqn{ -7 \pi/16 \ge Arg(r) < -5 \pi/16}    \tab 1011 \cr
+#'  \eqn{ -5 \pi/16 \ge Arg(r) < -3 \pi/16}    \tab 1001 \cr
+#'  \eqn{ -3 \pi/16 \ge Arg(r) < - \pi/16}     \tab 1000
 #' }
 #' @param r - received signal
 #' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
@@ -411,14 +411,14 @@ fr16pskbitmap <- function(r) {
   else if ( argr >= 11*pi/16 && argr  < 13*pi/16) symbolbits = c(0,1,0,1)
   else if ( argr >= 13*pi/16 && argr  < 15*pi/16) symbolbits = c(0,1,0,0)
 
-  else if ( (argr >= 15*pi/16 && argr < 17*pi/16 ) || (argr > -17*pi/16 && argr < -15*pi/16 )) symbolbits = c(1,0,0,0)
-  else if ( argr >= -15*pi/16 && argr < -13*pi/16 ) symbolbits = c(1,0,0,1)
-  else if ( argr >= -13*pi/16 && argr < -11*pi/16) symbolbits = c(1,0,1,1)
-  else if ( argr >= -11*pi/16 && argr < -9*pi/16) symbolbits = c(1,0,1,0)
-  else if ( argr >= -9*pi/16 && argr < -7*pi/16) symbolbits = c(1,1,1,0)
-  else if ( argr >= -7*pi/16 && argr  < -5*pi/16) symbolbits = c(1,1,1,1)
-  else if ( argr >= -5*pi/16 && argr  < -3*pi/16) symbolbits = c(1,1,0,1)
-  else if ( argr >= -3*pi/16 && argr  < -pi/16) symbolbits = c(1,1,0,0)
+  else if ( (argr >= 15*pi/16 && argr < 17*pi/16 ) || (argr > -17*pi/16 && argr < -15*pi/16 )) symbolbits = c(1,1,0,0)
+  else if ( argr >= -15*pi/16 && argr < -13*pi/16 ) symbolbits = c(1,1,0,1)
+  else if ( argr >= -13*pi/16 && argr < -11*pi/16) symbolbits = c(1,1,1,1)
+  else if ( argr >= -11*pi/16 && argr < -9*pi/16) symbolbits = c(1,1,1,0)
+  else if ( argr >= -9*pi/16 && argr < -7*pi/16) symbolbits = c(1,0,1,0)
+  else if ( argr >= -7*pi/16 && argr  < -5*pi/16) symbolbits = c(1,0,1,1)
+  else if ( argr >= -5*pi/16 && argr  < -3*pi/16) symbolbits = c(1,0,0,1)
+  else if ( argr >= -3*pi/16 && argr  < -pi/16) symbolbits = c(1,0,0,0)
   else  {
        symbolbits=c(-1,-1,-1,-1)
        print(r)
@@ -431,17 +431,17 @@ fr16pskbitmap <- function(r) {
 #' Receives a vector of bits (1's and 0's). The received vector is mapped
 #' to an in-phase (real) and quadrature (imaginary) 16-QAM (4 bit) symbol according to a
 #' a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
-#' symbol energy \eqn{E_{s}}{Es} = 10, where in-phase and quadrature constellation points
-#' take on values of (-3, -1, +1, +3), respectively. The bit to symbol mapping is illustrated in the following constellation diagram.
+#' symbol energy ES = 10, where in-phase and quadrature constellation points
+#' take on values -3, -1, +1, +3, respectively. The bit to symbol mapping is illustrated in the following constellation diagram.
 #' \tabular{cccc}{
 #'  -3+3i  \tab -1+3i \tab +1+3i  \tab +3+3i \cr
-#' (1000) \tab (1001) \tab (1011) \tab (1010) \cr
+#'  (1000) \tab (1001) \tab (1011) \tab (1010) \cr
 #'  \tab \tab \tab  \cr
 #'  -3+1i  \tab -1+1i \tab +1+1i  \tab +3+1i \cr
-#' (1100) \tab (1101) \tab (1111) \tab (1110) \cr
+#'  (1100) \tab (1101) \tab (1111) \tab (1110) \cr
 #'  \tab \tab \tab  \cr
 #'  -3-1i  \tab -1-1i \tab +1-1i  \tab +3-1i \cr
-#' (0100) \tab (0101) \tab (0111) \tab (0110) \cr
+#'  (0100) \tab (0101) \tab (0111) \tab (0110) \cr
 #'  \tab \tab \tab  \cr
 #'  -3-3i  \tab -1-3i \tab +1-3i  \tab +3-3i \cr
 #'  (0000) \tab (0001) \tab (0011) \tab (0010)
@@ -474,24 +474,24 @@ f16qammod <- function(bits) {
   return(s)
 }
 ft16qambitmap <- function(x) {
-  # b1b0  R := 00 -> -3, 01 -> -1, 11-> +1, 10 -> +3
+  # b1b0  R := 00 -> -3, 01 -> -1, 11-> +1, 10 -> +3             Im   Re
   # b3b2  I := 00 -> -3, 01 -> -1, 11-> +1, 10 -> +3             b3b2 b1b0
   if (x == 0)      r = complex(real=-3, imaginary=-3)            #00 00
   else if (x == 1) r = complex(real=-1, imaginary=-3)            #00 01
-  else if (x == 2) r = complex(real=+3, imaginary=-3)            #00 10
   else if (x == 3) r = complex(real=+1, imaginary=-3)            #00 11
+  else if (x == 2) r = complex(real=+3, imaginary=-3)            #00 10
   else if (x == 4) r = complex(real=-3, imaginary=-1)            #01 00
   else if (x == 5) r = complex(real=-1, imaginary=-1)            #01 01
-  else if (x == 6) r = complex(real=+3, imaginary=-1)            #01 10
   else if (x == 7) r = complex(real=+1, imaginary=-1)            #01 11
-  else if (x == 8) r = complex(real=-3, imaginary=+3)            #10 00
-  else if (x == 9) r = complex(real=-1, imaginary=+3)            #10 01
-  else if (x == 10) r = complex(real=+3,imaginary=+3)            #10 10
-  else if (x == 11) r = complex(real=+1,imaginary=+3)            #10 11
-  else if (x == 12) r = complex(real=-3,imaginary=+1)            #11 00
-  else if (x == 13) r = complex(real=-1,imaginary=+1)            #11 01
-  else if (x == 14) r = complex(real=+3,imaginary=+1)            #11 10
+  else if (x == 6) r = complex(real=+3, imaginary=-1)            #01 10
+  else if (x == 12) r = complex(real=-3, imaginary=+1)           #11 00
+  else if (x == 13) r = complex(real=-1, imaginary=+1)           #11 01
   else if (x == 15) r = complex(real=+1,imaginary=+1)            #11 11
+  else if (x == 14) r = complex(real=+3,imaginary=+1)            #11 10
+  else if (x == 8) r = complex(real=-3,imaginary=+3)             #10 00
+  else if (x == 9) r = complex(real=-1,imaginary=+3)             #10 01
+  else if (x == 11) r = complex(real=+1,imaginary=+3)            #10 11
+  else if (x == 10) r = complex(real=+3,imaginary=+3)            #10 10
   else {print(x)
     r=100}
   return(r)
@@ -503,8 +503,8 @@ ft16qambitmap <- function(x) {
 #' 16-QAM modulated signal transmitted through a communications channel
 #' (e.g., signal plus noise). Each received 16-QAM symbol (one symbol per r sample) is decoded into
 #' 4 bits. The 16-QAM symbol decision regions are defined with respect to
-#' the constellation generated by f16qammod(), \eqn{sqrt(E_{s})}{sqrt(Es)} = 10, where in-phase and quadrature
-#' constellation points take on values of (-3, -1, +1, +3), respectively.
+#' the constellation generated by f16qammod(), where in-phase and quadrature
+#' constellation points take on values -3, -1, +1, +3, respectively.
 #' @param r - vector of complex vector
 #' @return a vector of 1's and 0's, 4 bits per input element (16-QAM symbol)
 #' @examples
@@ -562,9 +562,8 @@ fr16qambitmap <- function(r) {
 #'
 #' Receives a vector of bits (1's and 0's). The received vector is mapped to an
 #' in-phase (real) and quadrature (imaginary) 64-QAM (6 bit) symbol according to
-#' a Binary Reflective Gray Code (BRGC, see reference). Each symbol has an average
-#' symbol energy \eqn{sqrt(E_{s})}{sqrt(Es)} = 42, where in-phase and quadrature constellation points
-#' take on values of (-7, -5, -3, -1, +1, +3, +5, +7), respectively.
+#' a Binary Reflective Gray Code (BRGC, see reference). In-phase and quadrature constellation points
+#' take on values -7, -5, -3, -1, +1, +3, +5, +7, respectively, corresponding to a symbol energy Es = 42.
 #' Mapping of bits to 64-QAM constellation points is illustrated in the following constellation.
 #' \tabular{cccccccc}{
 #' -7+7i  \tab -5+7i \tab +3+7i  \tab -1+7i \tab +1+7i  \tab +3+7i \tab +5+7i  \tab +7+7i \cr
@@ -625,7 +624,7 @@ f64qammod <- function(bits) {
 
 ft64qambitmap <- function(x) {
   #   imag      real
-  # b5b6b4b3    b2b1b0
+                                                      # b5b6b4b3    b2b1b0
   if (x == 0)      r = complex(real=-7, imaginary=-7)   #  000     000
   else if (x == 1) r = complex(real=-5, imaginary=-7)   #  000     001
   else if (x == 3) r = complex(real=-3, imaginary=-7)   #  000     011
@@ -709,8 +708,8 @@ ft64qambitmap <- function(x) {
 #' 64-QAM modulated signal transmitted through a communications channel
 #' (e.g., signal plus noise). Each received 64-QAM symbol (one symbol per r sample) is decoded into
 #' 6 bits. The 64-QAM symbol decision regions are defined with respect to
-#' the constellation generated by f64qammod(), \eqn{sqrt(E_{s})}{sqrt(Es)} = 42, where in-phase and quadrature
-#' constellation points take on values of (-7, -5, -3, -1, +1, +3, +5, +7), respectively.
+#' the constellation generated by f64qammod(), where in-phase and quadrature
+#' constellation points take on values -7, -5, -3, -1, +1, +3, +5, +7, respectively.
 #' @param r - complex valued input vector
 #' @family modulation demodulation communications
 #' @return a vector of 1's and 0's, 6 bits per input element (64-QAM symbol)

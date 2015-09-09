@@ -17,7 +17,7 @@ Receives a vector of bits (1's and 0's). The received vector is mapped
 to in-phase (real) and quadrature (imaginary) components, according to
 a Binary Reflective Gray Code (BRGC, see reference). Each received pair of bits
 are are mapped to 16-PSK symbols,
-with \eqn{sqrt(E_{s})}{sqrt(Es)} (symbol energy) = 1.The bit to symbol mapping is illustrated in the following constellation diagram.
+with Es (symbol energy) = 1.The bit to symbol mapping is illustrated in the following table.
 \tabular{cc}{
 input \tab output \cr
 0000 \tab \eqn{    0 }  \cr
@@ -28,14 +28,14 @@ input \tab output \cr
 0111 \tab  \eqn{ 5 \pi/8} \cr
 0101 \tab  \eqn{ 3 \pi/4} \cr
 0100 \tab  \eqn{ 7 \pi/8} \cr
-1000 \tab \eqn{  -1 }  \cr
-1001 \tab \eqn{  -7 \pi/8 } \cr
-1011 \tab \eqn{  -3\pi/4} \cr
-1010 \tab \eqn{  -5 \pi/8} \cr
-1110 \tab  \eqn{ - \pi/2} \cr
-1111 \tab  \eqn{ -3 \pi/8} \cr
-1101 \tab  \eqn{ - \pi/4} \cr
-1100 \tab  \eqn{ - \pi/8}
+1100 \tab \eqn{  -1 }  \cr
+1101 \tab \eqn{  -7 \pi/8 } \cr
+1111 \tab \eqn{  -3\pi/4} \cr
+1110 \tab \eqn{  -5 \pi/8} \cr
+1010 \tab  \eqn{ - \pi/2} \cr
+1011 \tab  \eqn{ -3 \pi/8} \cr
+1001 \tab  \eqn{ - \pi/4} \cr
+1000 \tab  \eqn{ - \pi/8}
 }
 Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 }

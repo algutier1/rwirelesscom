@@ -27,14 +27,14 @@ input \tab output \cr
  \eqn{ 9 \pi/16 \ge Arg(r) < 11 \pi/16}   \tab 0111 \cr
  \eqn{ 11 \pi/16 \ge Arg(r) < 13 \pi/16}   \tab 0101 \cr
  \eqn{ 13 \pi/16 \ge Arg(r) < 15 \pi/16}   \tab 0100 \cr
- \eqn{ 15 \pi/16 \ge Arg(r) < 17 \pi/16}   \tab 1000  \cr
- \eqn{ -15 \pi/16 \ge Arg(r) < -13 \pi/16}  \tab 1001 \cr
- \eqn{ -13 \pi/16 \ge Arg(r) < -11 \pi/16} \tab 1011 \cr
- \eqn{ -11 \pi/16 \ge Arg(r) < -9 \pi/16}   \tab 1010 \cr
- \eqn{ -9 \pi/16 \ge Arg(r) < -7 \pi/16}    \tab 1110 \cr
- \eqn{ -7 \pi/16 \ge Arg(r) < -5 \pi/16}    \tab 1111 \cr
- \eqn{ -5 \pi/16 \ge Arg(r) < -3 \pi/16}    \tab 1101 \cr
- \eqn{ -3 \pi/16 \ge Arg(r) < - \pi/16}     \tab 1100
+ \eqn{ 15 \pi/16 \ge Arg(r) < 17 \pi/16}   \tab 1100  \cr
+ \eqn{ -15 \pi/16 \ge Arg(r) < -13 \pi/16}  \tab 1101 \cr
+ \eqn{ -13 \pi/16 \ge Arg(r) < -11 \pi/16} \tab 1111 \cr
+ \eqn{ -11 \pi/16 \ge Arg(r) < -9 \pi/16}   \tab 1110 \cr
+ \eqn{ -9 \pi/16 \ge Arg(r) < -7 \pi/16}    \tab 1010 \cr
+ \eqn{ -7 \pi/16 \ge Arg(r) < -5 \pi/16}    \tab 1011 \cr
+ \eqn{ -5 \pi/16 \ge Arg(r) < -3 \pi/16}    \tab 1001 \cr
+ \eqn{ -3 \pi/16 \ge Arg(r) < - \pi/16}     \tab 1000
 }
 }
 \examples{
