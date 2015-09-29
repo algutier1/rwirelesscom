@@ -4,13 +4,14 @@
 \alias{f16qammod}
 \title{16-QAM Modulator}
 \usage{
-f16qammod(bits)
+f16qammod(bits, Ns = 1, p = 1)
 }
 \arguments{
 \item{bits}{- received vector of bits (0's and 1's).}
 }
 \value{
-returns a complex vector of length = (length(bits) mod 4), 16-QAM symbols
+Returns a complex vector of length = (length(bits) mod 4), 16-QAM symbols. If Ns > 1
+then the returned signal is shaped with pulse shape, p.
 }
 \description{
 Receives a vector of bits (1's and 0's). The received vector is mapped
@@ -41,13 +42,12 @@ bits <- sample(0:1,Nbits, replace=TRUE)
 s <- f16qammod(bits)
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+Other modulation demodulation communications: \code{\link{f16pskdemod}};
   \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f64qamdemod}}; \code{\link{f64qammod}};
   \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
   \code{\link{fNo}}; \code{\link{fbpskdemod}};
-  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
-  \code{\link{fqpskmod}}; \code{\link{iqdensityplot}};
-  \code{\link{iqscatterplot}}
+  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 

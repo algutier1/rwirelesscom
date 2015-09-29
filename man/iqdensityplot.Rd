@@ -9,7 +9,7 @@ iqdensityplot(r, iq = "r")
 \arguments{
 \item{r}{- complex or real valued vector}
 
-\item{iq}{- if iq = "r" (default) then plot density of Re(r) else if iq = "i" then plot density of Im(r)}
+\item{iq}{- if iq = "r" (default) then plot density of Re(r) else if iq = "q" then plot density of Im(r)}
 }
 \description{
 A convenience function to plot a density function of a vector containing the in-phase and
@@ -29,13 +29,12 @@ n <- fNo(Nsymbols,No,type="complex")
 r <- s+n
 }
 \seealso{
-Other modulation.demodulation.communications: \code{\link{f16pskdemod}};
+Other modulation demodulation communications: \code{\link{f16pskdemod}};
   \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
   \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
   \code{\link{f64qammod}}; \code{\link{f8pskdemod}};
   \code{\link{f8pskmod}}; \code{\link{fNo}};
-  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
-  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
-  \code{\link{iqscatterplot}}
+  \code{\link{fbpskdemod}}; \code{\link{fqpskdemod}};
+  \code{\link{fqpskmod}}; \code{\link{iqscatterplot}}
 }
 

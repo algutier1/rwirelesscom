@@ -54,15 +54,22 @@ fNo <- function(N,No,type="real") {
 #' Receives a vector of bits, each with value 0 or 1, and outputs a
 #' vector with values 1 and -1, respectively.
 #' @param bits - vector of bits (0's and 1's)
-#' @family modulation demodulation communications
-#' @return returns a BPSK modulated vector, each element taking on values of 1 or -1
+#' @param Ns - N samples per symbol (default, Ns = 1)
+#' @param p - pulse shape (default, p = 1)
+#' @family Modulation demodulation communications
+#' @return Returns a BPSK modulated vector, each element taking on values of 1 or -1. If Ns > 1
+#' then the returned signal is shaped with pulse shape, p.
 #' @examples
 #' bits <- sample(0:1,10, replace=TRUE)
 #' fbpskmod(bits)
 #' @export
-fbpskmod <- function(bits) {
-  r <- sapply(bits, function(x) if (x==0) r=-1 else r=x)
-  return(r)
+fbpskmod <- function(bits,Ns=1,p=1) {
+  s <- sapply(bits, function(x) if (x==0) s=-1 else s=x)
+  if (Ns >= 1) {
+    x <-as.vector(rbind(s,matrix(c(0),Ns-1,Nsymbols)))
+    s= convolve(x,p,type="open")
+  }
+  return(s)
 }
 
 #' BPSK Demodulator
@@ -106,7 +113,8 @@ fbpskdemod <- function(r) {
 #' 11 \tab  (+1 + 1i) / sqrt(2)
 #' }
 #' @param bits - received vector of bits (0's and 1's).
-#' @return returns a complex vector of length = (length(bits) mod 2) QPSK elements
+#' @return Returns a complex vector of length = (length(bits) mod 2) QPSK elements. If Ns > 1
+#' then the returned signal is shaped with pulse shape, p.
 #' @examples
 #' M=4
 #' Nsymbols=10
@@ -115,12 +123,16 @@ fbpskdemod <- function(r) {
 #' s <- fqpskmod(bits)
 #' @family modulation demodulation communications
 #' @export
-fqpskmod <- function(bits) {
+fqpskmod <- function(bits,Ns=1,p=1) {
   bi <- bits[seq(1,length(bits),2)]
   bq <- bits[seq(2,length(bits),2)]
   si <- (1/sqrt(2))*sapply(bi, function(x) if (x==0) r=-1 else r=x)
   sq <- (1/sqrt(2))*sapply(bq, function(x) if (x==0) r=-1 else r=x)
   s <- complex(real=si, imaginary=sq)
+  if (Ns >= 1) {
+    x <-as.vector(rbind(s,matrix(c(0),Ns-1,Nsymbols)))
+    s= convolve(x,p,type="open")
+  }
   return(s)
 }
 
@@ -180,7 +192,8 @@ fqpskdemod <- function(r) {
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 #' @param bits - vector of bits (0's and 1's).
-#' @return returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols
+#' @return Returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols. If Ns > 1
+#' then the returned signal is shaped with pulse shape, p.
 #' @examples
 #' M=8
 #' Nsymbols=10
@@ -189,7 +202,7 @@ fqpskdemod <- function(r) {
 #' s <- f8pskmod(bits)
 #' @family modulation demodulation communications
 #' @export
-f8pskmod <- function(bits) {
+f8pskmod <- function(bits,Ns=1,p=1) {
   # receive symbolbits matrix (Nsym rows x Log2(M) cols )
   # transform to symbolcodes
   # transform to xreal, yimag
@@ -200,6 +213,10 @@ f8pskmod <- function(bits) {
   symbolbitsm8 = symbolbits %*% m8
   symbolcodes <- apply(symbolbitsm8,1,sum)
   s<-sapply(symbolcodes,ft8pskbitmap)
+  if (Ns >= 1) {
+    x <-as.vector(rbind(s,matrix(c(0),Ns-1,Nsymbols)))
+    s= convolve(x,p,type="open")
+  }
   return(s)
 }
 
@@ -303,7 +320,8 @@ fr8pskbitmap <- function(r) {
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 #' @param bits - vector of bits (0's and 1's).
-#' @return returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols
+#' @return Returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols. If Ns > 1
+#' then the returned signal is shaped with pulse shape, p.
 #' @examples
 #' M=16
 #' Nsymbols=20
@@ -312,7 +330,7 @@ fr8pskbitmap <- function(r) {
 #' s <- f16pskmod(bits)
 #' @family modulation demodulation communications
 #' @export
-f16pskmod <- function(bits) {
+f16pskmod <- function(bits,Ns=1,p=1) {
   # receive symbolbits matrix (Nsym rows x Log2(M) cols )
   # transform to symbolcodes
   # transform to xreal, yimag
@@ -323,6 +341,10 @@ f16pskmod <- function(bits) {
   symbolbitsm16 = symbolbits %*% m16
   symbolcodes <- apply(symbolbitsm16,1,sum)
   s<-sapply(symbolcodes,ft16pskbitmap)
+  if (Ns >= 1) {
+    x <-as.vector(rbind(s,matrix(c(0),Ns-1,Nsymbols)))
+    s= convolve(x,p,type="open")
+  }
   return(s)
 }
 
@@ -448,7 +470,8 @@ fr16pskbitmap <- function(r) {
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
 #' @param bits - received vector of bits (0's and 1's).
-#' @return returns a complex vector of length = (length(bits) mod 4), 16-QAM symbols
+#' @return Returns a complex vector of length = (length(bits) mod 4), 16-QAM symbols. If Ns > 1
+#' then the returned signal is shaped with pulse shape, p.
 #' @examples
 #' M=16
 #' Nsymbols=100
@@ -457,7 +480,7 @@ fr16pskbitmap <- function(r) {
 #' s <- f16qammod(bits)
 #' @family modulation demodulation communications
 #' @export
-f16qammod <- function(bits) {
+f16qammod <- function(bits,Ns=1,p=1) {
   # constellation quadrant x = 1+1j, 3+1j, 1+3j, 3+3j ...
   # sqrt(Es) = Sum((x * Conj(x)))/4 = 10
   # receive bits
@@ -471,6 +494,10 @@ f16qammod <- function(bits) {
   symbolbitsm16 = symbolbits %*% m16
   symbolcodes <- apply(symbolbitsm16,1,sum)
   s<-sapply(symbolcodes,ft16qambitmap)
+  if (Ns >= 1) {
+    x <-as.vector(rbind(s,matrix(c(0),Ns-1,Nsymbols)))
+    s= convolve(x,p,type="open")
+  }
   return(s)
 }
 ft16qambitmap <- function(x) {
@@ -600,12 +627,13 @@ fr16qambitmap <- function(r) {
 #' Nbits=log2(M)*Nsymbols
 #' bits <- sample(0:1,Nbits, replace=TRUE)
 #' s <- f64qammod(bits)
-#' @return returns a complex vector of length = (length(bits) mod 6), 64-QAM symbols
+#' @return Returns a complex vector of length = (length(bits) mod 6), 64-QAM symbols. If Ns > 1
+#' then the returned signal is shaped with pulse shape, p.
 #' @family modulation demodulation communications
 #' @export
 #'
 
-f64qammod <- function(bits) {
+f64qammod <- function(bits,Ns=1,p=1) {
   # x quad1 = 1+1i 1+3i 1+5i 1+7i 3+1i 3+3i 3+5i 3+7i 5+1i 5+3i 5+5i 5+7i 7+1i 7+3i 7+5i 7+7i
   # Es = sum(Re(x*Conj(x)))/16 = 42
   # receive bits
@@ -619,6 +647,10 @@ f64qammod <- function(bits) {
   symbolbits = symbolbits %*% m64
   symbolcodes <- apply(symbolbits,1,sum)
   s <- sapply(symbolcodes,ft64qambitmap)
+  if (Ns >= 1) {
+    x <-as.vector(rbind(s,matrix(c(0),Ns-1,Nsymbols)))
+    s= convolve(x,p,type="open")
+  }
   return(s)
 }
 
@@ -852,7 +884,7 @@ iqscatterplot <- function(r) {
 #' A convenience function to plot a density function of a vector containing the in-phase and
 #' quadrature signal (plus noise).
 #' @param r - complex or real valued vector
-#' @param iq - if iq = "r" (default) then plot density of Re(r) else if iq = "i" then plot density of Im(r)
+#' @param iq - if iq = "r" (default) then plot density of Re(r) else if iq = "q" then plot density of Im(r)
 #' @examples
 #' M=4
 #' Es=1
@@ -865,16 +897,52 @@ iqscatterplot <- function(r) {
 #' No = Eb/(10^(EbNodB/10))
 #' n <- fNo(Nsymbols,No,type="complex")
 #' r <- s+n
-#  iqdensityplot(r,iq="i")
+#  iqdensityplot(r,iq="q")
 #'  @family modulation demodulation communications
 #' @export
 iqdensityplot <- function(r,iq="r") {
   ..density.. <- NULL
-  if (iq!="i") { # Real Part
+  if (iq=="r") { # Real Part
     ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, colour="black", fill=NA,position="identity",aes(y=..density..)) +
         xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
   } else {    #Imaginary Part
     ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, colour="black", fill=NA,position="identity",aes(y=..density..)) +
        xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
   }
+}
+
+# http://www.r-bloggers.com/matlab-style-stem-plot-with-r/
+# An example using stemplot function below
+
+#' Stem Plot
+#'
+#' afsadf Receives a vector of points and plots a stemplot
+#' @param x - vector of points
+#' @family communications
+#' @examples
+#' x <- seq(-8*pi, 8*pi, by = 0.1)
+#' y <- sinc(x)
+#' stemplot(x/pi,y,ylim=c(-0.3,1.1), pch=19, cex=0.2, ylab="", xlab="")
+#' @export
+stemplot <- function(x,y,pch=16,linecol=1,clinecol=1,linew=1,...){
+  if (missing(y)){
+    y = x
+    x = 1:length(x) }
+  plot(x,y,pch=pch,yaxs="i",...)
+  for (i in 1:length(x)){
+    lines(c(x[i],x[i]), c(0,y[i]),col=linecol,lwd=linew)
+  }
+  lines(c(x[1]-2,x[length(x)]+2), c(0,0),col=clinecol,lwd=linew)
+}
+
+#' Eye Diagram
+#'
+#' @export
+eyediagram <- function(yeye,Ns=1,Np=3,No=1,iq="r",pch=19,cex=0.1,...) {
+  if (iq=="r")  y=Re(yeye[No:length(yeye)])
+  else if (iq=="q") y=Im(eye[No:length(yeye)])
+
+  x=(seq(1:length(y)) %% (Ns*Np))/Ns
+
+  plot(x,y,pch=19,cex=0.1,...)
 }
