@@ -8,7 +8,7 @@ Description: A basic communications simulation package supporting common wireles
     AWGN noise generation, and raised cosine and square root raised cosine
     pulse shaping. It also includes convenience functions for plotting
     constellation diagrams, density plots, stem plots and eye diagrams. Together these functions
-    enable the evaluation of bit error and symbol error rates, evalutation pulse shaping and inter-symbol
+    enable the evaluation of bit error and symbol error rates, evalutation of pulse shaping and inter-symbol
     interferance and support visualization of the respective signals and noise in a variety of formats.
 Depends: R (>= 3.1)
 License: GPL (>= 2)
