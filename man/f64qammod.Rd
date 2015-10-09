@@ -8,9 +8,13 @@ f64qammod(bits, Ns = 1, p = 1)
 }
 \arguments{
 \item{bits}{- received vector of bits (0's and 1's).}
+
+\item{Ns}{- N samples per symbol (default, Ns = 1)}
+
+\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
 }
 \value{
-Returns a complex vector of length = (length(bits) mod 6), 64-QAM symbols. If Ns > 1
+Returns a complex vector of  64-QAM symbols. If Ns > 1
 then the returned signal is shaped with pulse shape, p.
 }
 \description{
@@ -56,12 +60,13 @@ bits <- sample(0:1,Nbits, replace=TRUE)
 s <- f64qammod(bits)
 }
 \seealso{
-Other modulation demodulation communications: \code{\link{f16pskdemod}};
-  \code{\link{f16pskmod}}; \code{\link{f16qamdemod}};
-  \code{\link{f16qammod}}; \code{\link{f64qamdemod}};
-  \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
-  \code{\link{fNo}}; \code{\link{fbpskdemod}};
-  \code{\link{fqpskdemod}}; \code{\link{fqpskmod}};
-  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
+Other rwirelesscom functions: \code{\link{eyediagram}};
+  \code{\link{f16pskdemod}}; \code{\link{f16pskmod}};
+  \code{\link{f16qamdemod}}; \code{\link{f16qammod}};
+  \code{\link{f64qamdemod}}; \code{\link{f8pskdemod}};
+  \code{\link{f8pskmod}}; \code{\link{fNo}};
+  \code{\link{fbpskdemod}}; \code{\link{fbpskmod}};
+  \code{\link{fqpskdemod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}; \code{\link{stemplot}}
 }
 

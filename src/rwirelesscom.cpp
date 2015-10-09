@@ -80,7 +80,7 @@ NumericVector rcosine(NumericVector x, NumericVector B, NumericVector Ns) {
 
 /* Root Raised Cosine */
 // [[Rcpp::export]]
-NumericVector rrcosine(NumericVector x, NumericVector B, NumericVector Ns) {
+NumericVector sqrtrcosine(NumericVector x, NumericVector B, NumericVector Ns) {
   /*int nx = rctype[1]; */
   int nx = x.size();
   NumericVector error(1);

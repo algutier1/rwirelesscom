@@ -11,7 +11,7 @@ fbpskmod(bits, Ns = 1, p = 1)
 
 \item{Ns}{- N samples per symbol (default, Ns = 1)}
 
-\item{p}{- pulse shape (default, p = 1)}
+\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
 }
 \value{
 Returns a BPSK modulated vector, each element taking on values of 1 or -1. If Ns > 1
@@ -24,5 +24,15 @@ vector with values 1 and -1, respectively.
 \examples{
 bits <- sample(0:1,10, replace=TRUE)
 fbpskmod(bits)
+}
+\seealso{
+Other rwirelesscom functions: \code{\link{eyediagram}};
+  \code{\link{f16pskdemod}}; \code{\link{f16pskmod}};
+  \code{\link{f16qamdemod}}; \code{\link{f16qammod}};
+  \code{\link{f64qamdemod}}; \code{\link{f64qammod}};
+  \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
+  \code{\link{fNo}}; \code{\link{fbpskdemod}};
+  \code{\link{fqpskdemod}}; \code{\link{iqdensityplot}};
+  \code{\link{iqscatterplot}}; \code{\link{stemplot}}
 }
 

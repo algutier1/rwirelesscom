@@ -5,18 +5,6 @@
 
 using namespace Rcpp;
 
-// conv
-NumericVector conv(NumericVector h, NumericVector x);
-RcppExport SEXP rwirelesscom_conv(SEXP hSEXP, SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type h(hSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    __result = Rcpp::wrap(conv(h, x));
-    return __result;
-END_RCPP
-}
 // sinc
 NumericVector sinc(NumericVector x);
 RcppExport SEXP rwirelesscom_sinc(SEXP xSEXP) {
@@ -41,16 +29,16 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// rrcosine
-NumericVector rrcosine(NumericVector x, NumericVector B, NumericVector Ns);
-RcppExport SEXP rwirelesscom_rrcosine(SEXP xSEXP, SEXP BSEXP, SEXP NsSEXP) {
+// sqrtrcosine
+NumericVector sqrtrcosine(NumericVector x, NumericVector B, NumericVector Ns);
+RcppExport SEXP rwirelesscom_sqrtrcosine(SEXP xSEXP, SEXP BSEXP, SEXP NsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type B(BSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type Ns(NsSEXP);
-    __result = Rcpp::wrap(rrcosine(x, B, Ns));
+    __result = Rcpp::wrap(sqrtrcosine(x, B, Ns));
     return __result;
 END_RCPP
 }

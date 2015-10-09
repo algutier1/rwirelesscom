@@ -1,18 +1,21 @@
 Package: rwirelesscom
 Title: Basic Wireless Communications
-Version: 1.3.9
+Version: 1.4
 Authors@R: c(person("Alberto","Gutierrez", role=c("aut","cre"),email="algutier1@gmail.com"))
 Maintainer: Alberto Gutierrez <algutier1@gmail.com>
-Description: A basic wireless communications simulation package in R. The package includes
-    modulation functions for BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM and 64-QAM. Also included is
-    an AWGN noise generation function. Additionally, the package includes functions to plot
-    an I (in-phase) and Q (quadrature) scatter diagram, or density plot. Together these functions
-    enable the evaluation of respective bit error and symbol rates in an AWGN channel and for
-    easily viewing the respective signals and noise in a scatter plot or density plot.
+Description: A basic communications simulation package supporting common wireless modulations formats
+    including BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM and 64-QAM. The package includes
+    AWGN noise generation, and raised cosine and square root raised cosine
+    pulse shaping. It also includes convenience functions for plotting
+    constellation diagrams, density plots, stem plots and eye diagrams. Together these functions
+    enable the evaluation of bit error and symbol error rates, evalutation pulse shaping and inter-symbol
+    interferance and support visualization of the respective signals and noise in a variety of formats.
 Depends: R (>= 3.1)
 License: GPL (>= 2)
 LazyData: true
-Imports: ggplot2, stats, Rcpp  (>= 0.12.1)
+Imports: ggplot2, stats, Rcpp (>= 0.12.1)
 Suggests: testthat
 LinkingTo:
    Rcpp
+
+

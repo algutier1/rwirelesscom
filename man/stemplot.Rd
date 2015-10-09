@@ -4,17 +4,40 @@
 \alias{stemplot}
 \title{Stem Plot}
 \usage{
-stemplot(x, y, pch = 16, linecol = 1, clinecol = 1, linew = 1, ...)
+stemplot(x, y, pch = 16, linecol = 1, linew = 1, ...)
 }
 \arguments{
-\item{x}{- vector of points}
+\item{x}{- vector of x axis points}
+
+\item{y}{- vector of y axis points}
+
+\item{pch}{- plot character default = 19}
+
+\item{linecol}{- default line color = 1 (black)}
+
+\item{linew}{-default line width = 1}
+
+\item{...}{- graphical environment parameters are input to stemplot}
 }
 \description{
-afsadf Receives a vector of points and plots a stemplot
+Receives a vector of x and  y values and plots a stemplot (line and "points").
+}
+\details{
+#' Reference: M, Pastell, http://www.r-bloggers.com/matlab-style-stem-plot-with-r
 }
 \examples{
-x <- seq(-8*pi, 8*pi, by = 0.1)
+x <- seq(-3*pi, 3*pi, by = 0.2)
 y <- sinc(x)
-stemplot(x/pi,y,ylim=c(-0.3,1.1), pch=19, cex=0.2, ylab="", xlab="")
+stemplot(x/pi,y,ylim=c(-0.3,1.1), pch=19, cex=0.3, ylab="y", xlab="x/pi")
+}
+\seealso{
+Other rwirelesscom functions: \code{\link{eyediagram}};
+  \code{\link{f16pskdemod}}; \code{\link{f16pskmod}};
+  \code{\link{f16qamdemod}}; \code{\link{f16qammod}};
+  \code{\link{f64qamdemod}}; \code{\link{f64qammod}};
+  \code{\link{f8pskdemod}}; \code{\link{f8pskmod}};
+  \code{\link{fNo}}; \code{\link{fbpskdemod}};
+  \code{\link{fbpskmod}}; \code{\link{fqpskdemod}};
+  \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}}
 }
 

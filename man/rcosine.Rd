@@ -1,23 +1,31 @@
-\name{sinc}
-\alias{sinc}
-\title{sinc}
+\name{rcosine}
+\alias{rcosine}
+\title{Raised Cosine}
 \usage{
-sinc(x)
+rcosine(x,B,Ns)
 }
 \description{
-sinc(x) = 1 at x = 0, sinc(x) = sin(x)/x for x != 0
+rcosine(x,B,Ns) = [sin(pi*x[n]/Ns)/(pi*x[n]/Ns)]*cos(pi*B*x[n]/Ns) /(1-(2*B*x[n]/Ns)^2)
+
+Reference:  G. Proakis, Digital Communications, 3rd ed., New York: McGraw-Hill, 1995.
 }
 \arguments{
 \item{x}{- input vector}
+
+\item{B}{- roll-off factor}
+
+\item{Ns}{- Ns samples per symbol}
 }
 \value{
-Response (Double, Numeric vector) of the sinc function applied to the input vector x.
+Response (Double, Numeric vector) of the rcosine function applied to the input vector x with roll-off factor B and Ns samples per symbol.
 }
 
 \examples{
-x <- seq(-6*pi, 6*pi, by = pi/10)
-p <- sinc(x)
-plot(x/pi,p,ylim=c(-0.3,1.1), pch=19, cex=0.25, ylab="p", xlab="x*pi", type="l")
+B=0
+Ns=8
+hx=seq(-3*Ns,3*Ns,by=1)
+h=rcosine(hx,B,Ns)
+plot(hx/Ns,h, ylim=c(-0.2,1), xlim=c(-3,3), pch=19, cex=0.1, ylab="h", xlab="T", type="l")
 grid( col = "grey50", lty = "dotted")
 }
 \seealso{
@@ -30,3 +38,4 @@ Other rwirelesscom functions: \code{\link{f16pskdemod}};
   \code{\link{rcosine}}; \code{\link{sqrtrcosine}};
   \code{\link{iqdensityplot}}; \code{\link{iqscatterplot}};
   \code{\link{stemplot}}; \code{\link{eyediagram}}; \code{\link{sinc}}}
+
