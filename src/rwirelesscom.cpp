@@ -22,7 +22,6 @@ List rcpp_hello() {
 //          inf
 //y(n) =    sum[x(k)h(n-k)]
 //       k=-inf
-// [[Rcpp::export]]
 NumericVector conv(NumericVector h, NumericVector x) {
   int nh = h.size(), nx = x.size();
   int ny = nh + nx - 1;
