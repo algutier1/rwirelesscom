@@ -968,7 +968,7 @@ stemplot <- function(x,y,pch=16,linecol=1,linew=1,...){
 #' The symbol period is indicated by the input Ns and horizontal sweep Np indicates
 #' the the number of symbol periods to plot along the horizontal access. The eyediagram
 #' is useful for evaluating the in-phase and quadrature parts of a modulated signal and
-#' associated Inter-Symbol Interference.
+#' associated inter-symbol interference.
 #' @param x - vector of real or complex points
 #' @param Ns - number of samples per symbol period
 #' @param Np - number of symbol periods to plot along the horizontal axis
