@@ -77,7 +77,7 @@ NumericVector rcosine(NumericVector x, NumericVector B, NumericVector Ns) {
   return y;
 }
 
-/* Root Raised Cosine */
+/* Square Root Raised Cosine */
 // [[Rcpp::export]]
 NumericVector sqrtrcosine(NumericVector x, NumericVector B, NumericVector Ns) {
   /*int nx = rctype[1]; */
