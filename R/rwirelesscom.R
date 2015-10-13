@@ -1,6 +1,6 @@
 #' R Wireless Communications Package
 #'
-#' A basic communications simulation package supporting common wireless modulations formats
+#' A communications simulation package supporting common modulations formats
 #' including BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM and 64-QAM. The package includes
 #' AWGN noise generation, and raised cosine and square root raised cosine
 #' pulse shaping. It also includes functions for plotting
@@ -19,7 +19,7 @@
 #' }
 #' Together these functions
 #' enable the evaluation of bit error and symbol error rates, evalutation of pulse shaping and inter-symbol
-#' interferance and support visualization of the respective signals and noise in a variety of formats.
+#' interferance and support visualization of the respective signals and noise.
 #'
 #' @docType package
 #' @name rwirelesscom
@@ -943,7 +943,7 @@ iqdensityplot <- function(r,iq="r") {
 #' @param y - vector of y axis points
 #' @param pch - plot character default = 19
 #' @param linecol - default line color = 1 (black)
-#' @param linew -default line width = 1
+#' @param linew - default line width = 1
 #' @param ... - graphical environment parameters are input to stemplot
 #' @family rwirelesscom functions
 #' @examples
@@ -965,10 +965,10 @@ stemplot <- function(x,y,pch=16,linecol=1,linew=1,...){
 #' Eye Diagram
 #'
 #' Receives a vector x of real or complex points and plots the Re or Im part of x in the form of an "eyediagram."
-#' The symbol period is indicated by the input Ns and horizontal sweep Np indicates
+#' The symbol period is indicated by the input Ns (samples per symbol) and horizontal sweep Np indicates
 #' the the number of symbol periods to plot along the horizontal access. The eyediagram
-#' is useful for evaluating the in-phase and quadrature parts of a modulated signal and
-#' associated inter-symbol interference.
+#' is useful for evaluating inter-symbol interference associated with the in-phase or quadrature part
+#' of a modulated signal.
 #' @param x - vector of real or complex points
 #' @param Ns - number of samples per symbol period
 #' @param Np - number of symbol periods to plot along the horizontal axis
