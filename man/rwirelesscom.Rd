@@ -6,10 +6,10 @@
 \alias{rwirelesscom-package}
 \title{R Wireless Communications Package}
 \description{
-A basic communications simulation package supporting common wireless modulations formats
+A communications simulation package supporting common modulations formats
 including BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM and 64-QAM. The package includes
 AWGN noise generation, and raised cosine and square root raised cosine
-pulse shaping. It also includes convenience functions for plotting
+pulse shaping. It also includes functions for plotting
 constellation diagrams, density plots, stem plots and eye diagrams. The rwirelesscom
 package includes the followng functions:
 \itemize{
@@ -25,6 +25,6 @@ package includes the followng functions:
 }
 Together these functions
 enable the evaluation of bit error and symbol error rates, evalutation of pulse shaping and inter-symbol
-interferance and support visualization of the respective signals and noise in a variety of formats.
+interferance and support visualization of the respective signals and noise.
 }
 

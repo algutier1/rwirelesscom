@@ -26,10 +26,10 @@ eyediagram(x, Ns = 1, Np = 3, No = 1, iq = "r", pch = 19, cex = 0.1,
 }
 \description{
 Receives a vector x of real or complex points and plots the Re or Im part of x in the form of an "eyediagram."
-The symbol period is indicated by the input Ns and horizontal sweep Np indicates
+The symbol period is indicated by the input Ns (samples per symbol) and horizontal sweep Np indicates
 the the number of symbol periods to plot along the horizontal access. The eyediagram
-is useful for evaluating the in-phase and quadrature parts of a modulated signal and
-associated Inter-Symbol Interference.
+is useful for evaluating inter-symbol interference associated with the in-phase or quadrature part
+of a modulated signal.
 }
 \examples{
 # Step 1: generate random set of bits

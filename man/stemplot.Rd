@@ -15,7 +15,7 @@ stemplot(x, y, pch = 16, linecol = 1, linew = 1, ...)
 
 \item{linecol}{- default line color = 1 (black)}
 
-\item{linew}{-default line width = 1}
+\item{linew}{- default line width = 1}
 
 \item{...}{- graphical environment parameters are input to stemplot}
 }
