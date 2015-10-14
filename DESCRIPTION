@@ -1,9 +1,9 @@
 Package: rwirelesscom
 Title: Basic Wireless Communications
-Version: 1.4.1
+Version: 1.4
 Authors@R: c(person("Alberto","Gutierrez", role=c("aut","cre"),email="algutier1@gmail.com"))
 Maintainer: Alberto Gutierrez <algutier1@gmail.com>
-Description: A basic communications simulation package supporting common wireless modulations
+Description: A basic communications simulation package supporting common wireless modulation
     formats including BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM and 64-QAM. The package includes AWGN
     noise generation, and raised cosine and square root raised cosine pulse shaping. It also
     includes convenience functions for plotting constellation diagrams, density plots, stem
