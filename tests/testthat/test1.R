@@ -201,7 +201,7 @@ test_that("Test 16-PSK Eb/No = 12 dB, Modulator and Demodulator in AWGN, Bit Err
 
 } )
 
-context("16-QAM error rate, Es/No = 8 dB")
+context("16-QAM error rate, Eb/No = 8 dB")
 test_that("Test 16-QAM Eb/No = 8 dB, Modulator and Demodulator in AWGN, Bit Error Rate", {
   M=16
   Es=10
@@ -225,11 +225,11 @@ test_that("Test 16-QAM Eb/No = 8 dB, Modulator and Demodulator in AWGN, Bit Erro
    #print(str,quote=FALSE)
 
   expect_true(Pberr < 0.012, info="16-QAM EbNodb=8, Pberr should be < 0.012")
-  expect_true(Pberr > 0.008, info="16-QAM EbNodb=8, Pberr should be > 0.005")
+  expect_true(Pberr > 0.004, info="16-QAM EbNodb=8, Pberr should be > 0.004")
 
 } )
 
-context("16-QAM error rate, Es/No = 10 dB")
+context("16-QAM error rate, Eb/No = 10 dB")
 test_that("Test 16-QAM Eb/No = 10 dB, Modulator and Demodulator in AWGN, Bit Error Rate", {
   skip_on_cran()
   M=16
@@ -253,8 +253,8 @@ test_that("Test 16-QAM Eb/No = 10 dB, Modulator and Demodulator in AWGN, Bit Err
   #print("",quote=FALSE)
   #print(str,quote=FALSE)
 
-  expect_true(Pberr < 0.003, info="8-PSK EbNodb=10, Pberr should be < 0.005")
-  expect_true(Pberr > 0.001, info="8-BSK EbNodb=10, Pberr should be > 0.002")
+  expect_true(Pberr < 0.003, info="16-QAM EbNodb=10, Pberr should be < 0.005")
+  expect_true(Pberr > 0.001, info="16-QAM EbNodb=10, Pberr should be > 0.002")
 
 } )
 
