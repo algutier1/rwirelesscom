@@ -13,7 +13,7 @@ Description: A communications simulation package supporting common wireless modu
 Depends: R (>= 3.1)
 License: GPL (>= 2)
 LazyData: true
-Imports: ggplot2, stats, Rcpp (>= 0.12.1),  graphics
+Imports: ggplot2, stats, Rcpp (>= 0.12.1),  graphics, plot, lines
 Suggests: testthat
 LinkingTo:
    Rcpp

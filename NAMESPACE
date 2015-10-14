@@ -25,8 +25,8 @@ import(stats)
 
 # manual entries
 importFrom(graphics)
-import(lines)
-import(plot)
+importFrom(lines)
+importFrom(plot)
 
 # manual entries for rcpp
 useDynLib(rwirelesscom)
