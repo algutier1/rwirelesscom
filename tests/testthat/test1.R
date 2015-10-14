@@ -1,7 +1,3 @@
-library("rwirelesscom")
-library("testthat")
-library(ggplot2)
-library("devtools")
 
 
 
