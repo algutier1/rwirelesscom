@@ -1,6 +1,6 @@
 Package: rwirelesscom
 Title: Basic Wireless Communications
-Version: 1.4
+Version: 1.4.1
 Authors@R: c(person("Alberto","Gutierrez", role=c("aut","cre"),email="algutier1@gmail.com"))
 Maintainer: Alberto Gutierrez <algutier1@gmail.com>
 Description: A basic communications simulation package supporting common wireless modulations
