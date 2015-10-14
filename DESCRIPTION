@@ -1,5 +1,5 @@
 Package: rwirelesscom
-Title: Basic Wireless Communications
+Title: Basic Wireless Communications Simulation
 Version: 1.4.2
 Authors@R: c(person("Alberto","Gutierrez", role=c("aut","cre"),email="algutier1@gmail.com"))
 Maintainer: Alberto Gutierrez <algutier1@gmail.com>
