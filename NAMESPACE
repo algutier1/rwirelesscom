@@ -24,9 +24,8 @@ import(ggplot2)
 import(stats)
 
 # manual entries
-importFrom(graphics)
-importFrom(lines)
-importFrom(plot)
+importFrom("graphics","lines","plot")
+
 
 # manual entries for rcpp
 useDynLib(rwirelesscom)
