@@ -60,19 +60,22 @@ NumericVector rcosine(NumericVector x, NumericVector B, NumericVector Ns) {
   if (Ns.size() !=1 || B.size() != 1
           || B[0] < 0 || B[0] > 1 || Ns[0] <= 0 ) return error;
   double b=B[0];
-  double y1=0, y2=0,x1=1,x2=1;
+  double y1=0, y2=0,x1DivN=1,x2DivN=1,xnDivN=1;
   int N = Ns[0];
   for (int n = 0; n < nx ; n++ ) {
       if (x[n]==0) {  y[n] = 1; }
       else if  ( (int)x[n] % (int)N == 0 ) { y[n]=0; }
       else if  ( x[n] ==  N/(2*b) || x[n] == -N/(2*b))  {
-        x1=x[n]+0.0000000001;
-        y1=(sin(M_PI*x1/N)/(M_PI*x1/N))*(cos(M_PI*b*x1/N))/(1-(2*b*x1/N)*(2*b*x1/N));
-        x2=x[n]-0.0000000001;
-        y2=(sin(M_PI*x2/N)/(M_PI*x2/N))*(cos(M_PI*b*x2/N))/(1-(2*b*x2/N)*(2*b*x2/N));
+        x1DivN=(x[n]+0.0000000001)/(double)N;
+        y1=(sin(M_PI*x1DivN)/(M_PI*x1DivN))*(cos(M_PI*b*x1DivN))/(1-(2*b*x1DivN)*(2*b*x1DivN));
+        x2DivN=(x[n]-0.0000000001)/(double)N;
+        y2=(sin(M_PI*x2DivN)/(M_PI*x2DivN))*(cos(M_PI*b*x2DivN))/(1-(2*b*x2DivN)*(2*b*x2DivN));
         y[n]= (y1+y2)/2;
          }
-      else y[n]=(sin(M_PI*x[n]/N)/(M_PI*x[n]/N))*(cos(M_PI*b*x[n]/N))/(1-(2*b*x[n]/N)*(2*b*x[n]/N));
+      else {
+          xnDivN= (double)x[n]/(double)N;
+          y[n]=(sin(M_PI*xnDivN)/(M_PI*xnDivN))*(cos(M_PI*b*xnDivN))/(1-(2*b*xnDivN)*(2*b*xnDivN));
+        }
   }
   return y;
 }
@@ -84,7 +87,7 @@ NumericVector sqrtrcosine(NumericVector x, NumericVector B, NumericVector Ns) {
   int nx = x.size();
   NumericVector error(1);
   NumericVector y(nx);
-
+  double xnDivN=0,piDiv4b=0;
   error[0] = 0;
   if (Ns.size() !=1 || B.size() != 1
         || B[0] < 0 || B[0] > 1 || Ns[0] <= 0 ) return error;
@@ -92,8 +95,13 @@ NumericVector sqrtrcosine(NumericVector x, NumericVector B, NumericVector Ns) {
   int N = Ns[0];
   for (int n = 0; n < nx ; n++ ) {
     if (x[n]==0) {  y[n] = 1-b+4*b/M_PI; }
-    else if  ( (x[n] == N/(4*b)) || (x[n] == -N/(4*b)) )  {  y[n]= (b/sqrt(2))*((1+2/M_PI)*sin(M_PI/(4*b))+(1-2/M_PI)*cos(M_PI/(4*b))); }
-    else { y[n]=(sin(M_PI*(1-b)*x[n]/N)+(4*b*x[n]/N)*cos(M_PI*(1+b)*x[n]/N))/((M_PI*x[n]/N)*(1-(4*b*x[n]/N)*(4*b*x[n]/N)));  }
+    else if  ( (x[n] == N/(4*b)) || (x[n] == -N/(4*b)) )
+    {  piDiv4b=M_PI/(double)(4*b);
+       y[n]= (b/sqrt(2))*((1+2/M_PI)*sin(piDiv4b)+(1-2/M_PI)*cos(piDiv4b));
+    }  else {
+       xnDivN=(double)x[n]/(double)N;
+       y[n]=(sin(M_PI*(1-b)*xnDivN)+(4*b*xnDivN)*cos(M_PI*(1+b)*xnDivN))/((M_PI*xnDivN)*(1-(4*b*xnDivN)*(4*b*xnDivN)));
+      }
   }
   return y;
 }
