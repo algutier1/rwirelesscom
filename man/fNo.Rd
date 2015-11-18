@@ -2,19 +2,31 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fNo}
 \alias{fNo}
+<<<<<<< Updated upstream
 \title{AWGN}
+=======
+\title{fNo}
+>>>>>>> Stashed changes
 \usage{
 fNo(N, No, type = "real")
 }
 \arguments{
+<<<<<<< Updated upstream
 \item{N}{- number of noise samples}
+=======
+\item{N:}{number of noise samples}
+>>>>>>> Stashed changes
 
 \item{No}{- noise spectral density}
 
+<<<<<<< Updated upstream
 \item{type}{- "real" or "complex" defaults to real}
 }
 \value{
 returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
+=======
+\item{type:}{="real" or "complex" defualts to real}
+>>>>>>> Stashed changes
 }
 \description{
 Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.

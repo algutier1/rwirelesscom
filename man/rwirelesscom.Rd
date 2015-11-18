@@ -4,6 +4,7 @@
 \name{rwirelesscom}
 \alias{rwirelesscom}
 \alias{rwirelesscom-package}
+<<<<<<< Updated upstream
 \title{R Wireless Communications Package}
 \description{
 A communications simulation package supporting common modulations formats
@@ -12,10 +13,18 @@ AWGN noise generation, and raised cosine and square root raised cosine
 pulse shaping. It also includes functions for plotting
 constellation diagrams, density plots, stem plots and eye diagrams. The rwirelesscom
 package includes the followng functions:
+=======
+\title{R Wireless Com Package}
+\description{
+A basic wireless communications simulation package in R. The package includes
+modulation functions for BPSK, QPSK, 8-PSK, 16-QAM and 64-QAM, and a AWGN noise generation function. Additionally,
+ the package includes functions to plot an I (in phase) and Q (quadrature) scatter diagram, or density plot:
+>>>>>>> Stashed changes
 \itemize{
 \item fNo(),
 \item fbpskmod(), fbpskdemod(),
 \item f8pskmod(), f8pskdemod(),
+<<<<<<< Updated upstream
 \item f16pskmod(), f16pskdemod(),
 \item f16qammod(), f16qamdemod(),
 \item f64qammod(), f64qamdemod,
@@ -26,5 +35,14 @@ package includes the followng functions:
 Together these functions
 enable the evaluation of bit error and symbol error rates, evalutation of pulse shaping and inter-symbol
 interferance and support visualization of the respective signals and noise.
+=======
+\item f16qammod(), f16qamdemod(),
+\item f64qammod(), f64qamdemod,
+\item iqscatterplot(), iqdensityplot()
+}
+Together these functions
+enable the evaluation of respective bit error and symbol rates in an AWGN channel and for
+easily viewing the respective signals and noise in a scatter plot or density plot.
+>>>>>>> Stashed changes
 }
 

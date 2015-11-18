@@ -2,6 +2,7 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fbpskmod}
 \alias{fbpskmod}
+<<<<<<< Updated upstream
 \title{BPSK Modulator}
 \usage{
 fbpskmod(bits, Ns = 1, p = 1)
@@ -34,5 +35,16 @@ Other rwirelesscom functions: \code{\link{eyediagram}};
   \code{\link{fNo}}; \code{\link{fbpskdemod}};
   \code{\link{fqpskdemod}}; \code{\link{iqdensityplot}};
   \code{\link{iqscatterplot}}; \code{\link{stemplot}}
+=======
+\title{fbpskmod}
+\usage{
+fbpskmod(bits)
+}
+\arguments{
+\item{bits}{}
+}
+\description{
+BPSK modulator
+>>>>>>> Stashed changes
 }
 
