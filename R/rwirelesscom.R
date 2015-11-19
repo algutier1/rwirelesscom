@@ -75,7 +75,6 @@ NULL
 #' @param N: number of noise samples
 #' @param No: noise spectral density
 #' @param type: ="real" or "complex" defualts to real
->>>>>>> Stashed changes
 #' @export
 fNo <- function(N,No,type="real") {
   if (type=="real") n = sqrt(No/2)*rnorm(N, 0, 1)
@@ -84,7 +83,6 @@ fNo <- function(N,No,type="real") {
   return(n)
 }
 
-<<<<<<< Updated upstream
 #' BPSK Modulator
 #'
 #' Receives a vector of bits, each with value 0 or 1, and outputs a
@@ -107,7 +105,7 @@ fbpskmod <- function(bits,Ns=1,p=1) {
     s= convolve(x,p,type="open")
   }
   return(s)
-=======
+
 #' fbpskmod
 #'
 #' BPSK modulator
@@ -117,7 +115,6 @@ fbpskmod <- function(bits,Ns=1,p=1) {
 fbpskmod <- function(bits) {
   r <- sapply(bits, function(x) if (x==0) r=-1 else r=x)
   return(r)
->>>>>>> Stashed changes
 }
 
 #' BPSK Demodulator
@@ -962,7 +959,6 @@ iqscatterplot <- function(r) {
 #'  @family rwirelesscom functions
 #' @export
 iqdensityplot <- function(r,iq="r") {
-<<<<<<< Updated upstream
   ..density.. <- NULL
   if (iq=="r") { # Real Part
     ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, colour="black", fill=NA,position="identity",aes(y=..density..)) +
@@ -1056,14 +1052,10 @@ eyediagram <- function(x,Ns=1,Np=3,No=1,iq="r",pch=19,cex=0.1,...) {
 
   plot(xx,y,pch=19,cex=0.1,...)
 }
-=======
+
     if (iq!="i") { # Real Part
       ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
     } else {    #Imaginary Part
       ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
     }
  }
-
-
-
->>>>>>> Stashed changes
