@@ -32,9 +32,9 @@ NULL
 #' AWGN
 #'
 #' Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
-#' @param N: number of noise samples
-#' @param No: noise spectral density
-#' @param type: ="real" or "complex" defualts to real
+#' @param N number of noise samples
+#' @param No noise spectral density
+#' @param type ="real" or "complex" defualts to real
 #' @family rwireless
 #' @export
 fNo <- function(N,No,type="real") {
@@ -51,7 +51,6 @@ fNo <- function(N,No,type="real") {
 #' @param bits vector of bits (0's and 1's)
 #' @param Ns N samples per symbol (default, Ns = 1)
 #' @param p a vector defining the pulse shape of the transmitted waveform (default, p = 1)
-#' @family rwirelesscom functions
 #' @return Returns a BPSK modulated vector, each element taking on values of 1 or -1. If Ns > 1
 #' then the returned signal is shaped with pulse shape, p.
 #' @examples
@@ -145,8 +144,8 @@ fqpskmod <- function(bits,Ns=1,p=1) {
 #' for each value of r. If the in-phase part is > 0 then the corresponding output bit value is 1,
 #' otherwise 0. Similarly, if the quadrature part (imaginary) > 0 then the corresponding bit value
 #' is 1, otherwise 0.
-#' @param r - received signal plus noise.
-#' @family rwirelesscom functions
+#' @param r received signal plus noise.
+#' @family rwireless
 #' @return returns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
 #' @examples
 #' M=4
@@ -192,9 +191,9 @@ fqpskdemod <- function(r) {
 #' 100 \tab  \eqn{ - \pi/4} \cr
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
-#' @param bits - vector of bits (0's and 1's).
-#' @param Ns - N samples per symbol (default, Ns = 1)
-#' @param p - a vector defining the pulse shape of the transmitted waveform (default, p = 1)
+#' @param bits  vector of bits (0's and 1's).
+#' @param Ns  N samples per symbol (default, Ns = 1)
+#' @param p  a vector defining the pulse shape of the transmitted waveform (default, p = 1)
 #' @return Returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols. If Ns > 1
 #' then the returned signal is shaped with pulse shape, p.
 #' @examples
@@ -254,7 +253,7 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
 #'  \eqn{ -5 \pi/8 \ge Arg(r) < -3 \pi/8} \tab 101 \cr
 #'  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  100
 #' }
-#' @param r - received signal
+#' @param r received signal
 #' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
 #' @examples
 #' M=8
@@ -322,9 +321,9 @@ fr8pskbitmap <- function(r) {
 #' 1000 \tab  \eqn{ - \pi/8}
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
-#' @param bits - vector of bits (0's and 1's).
-#' @param Ns - N samples per symbol (default, Ns = 1)
-#' @param p - a vector defining the pulse shape of the transmitted waveform (default, p = 1)
+#' @param bits vector of bits (0's and 1's).
+#' @param Ns N samples per symbol (default, Ns = 1)
+#' @param p a vector defining the pulse shape of the transmitted waveform (default, p = 1)
 #' @return Returns a complex vector of length of 8-PSK symbols. If Ns > 1
 #' then the returned signal is shaped with pulse shape, p.
 #' @examples
@@ -401,7 +400,7 @@ ft16pskbitmap <- function(x) {                                           #b3b2b1
 #'  \eqn{ -5 \pi/16 \ge Arg(r) < -3 \pi/16}    \tab 1001 \cr
 #'  \eqn{ -3 \pi/16 \ge Arg(r) < - \pi/16}     \tab 1000
 #' }
-#' @param r - received signal
+#' @param r received signal
 #' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
 #' @examples
 #' M=16
@@ -475,9 +474,9 @@ fr16pskbitmap <- function(r) {
 #'  (0000) \tab (0001) \tab (0011) \tab (0010)
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
-#' @param bits - received vector of bits (0's and 1's).
-#' @param Ns - N samples per symbol (default, Ns = 1)
-#' @param p - a vector defining the pulse shape of the transmitted waveform (default, p = 1)
+#' @param bits received vector of bits (0's and 1's).
+#' @param Ns N samples per symbol (default, Ns = 1)
+#' @param p a vector defining the pulse shape of the transmitted waveform (default, p = 1)
 #' @return Returns a complex vector of 16-QAM symbols. If Ns > 1
 #' then the returned signal is shaped with pulse shape, p.
 #' @examples
@@ -486,7 +485,7 @@ fr16pskbitmap <- function(r) {
 #' Nbits=log2(M)*Nsymbols
 #' bits <- sample(0:1,Nbits, replace=TRUE)
 #' s <- f16qammod(bits)
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 f16qammod <- function(bits,Ns=1,p=1) {
   # constellation quadrant x = 1+1j, 3+1j, 1+3j, 3+3j ...
@@ -542,7 +541,7 @@ ft16qambitmap <- function(x) {
 #' 4 bits. The 16-QAM symbol decision regions are defined with respect to
 #' the constellation generated by f16qammod(), where in-phase and quadrature
 #' constellation points take on values -3, -1, +1, +3, respectively.
-#' @param r - vector of complex vector
+#' @param r vector of complex vector
 #' @return a vector of 1's and 0's, 4 bits per input element (16-QAM symbol)
 #' @examples
 #' M=16
@@ -559,7 +558,7 @@ ft16qambitmap <- function(x) {
 #' bitsr <- f16qamdemod(r)
 #' biterrs<-bits[bitsr!=bits]
 #' Pberr=length(biterrs)/length(bits)
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 f16qamdemod <- function(r) {
   r2 <- sapply(r,fr16qambitmap)
@@ -627,9 +626,9 @@ fr16qambitmap <- function(r) {
 #'  (000000) \tab (000001) \tab (000011) \tab (000010) \tab (000110) \tab (000111) \tab (000101) \tab (000100)
 #' }
 #' Reference: E. Agrell, J Lassing, E. Strom, and T. Ottosson, Gray Coding for Multilevel Constellations In Gaussian Noise, IEEE Transactions on Communications, Vol. 53, No. 1, January 2007
-#' @param bits - received vector of bits (0's and 1's).
-#' @param Ns - N samples per symbol (default, Ns = 1)
-#' @param p - a vector defining the pulse shape of the transmitted waveform (default, p = 1)
+#' @param bits received vector of bits (0's and 1's).
+#' @param Ns N samples per symbol (default, Ns = 1)
+#' @param p a vector defining the pulse shape of the transmitted waveform (default, p = 1)
 #' @examples
 #' M=64
 #' Es=42
@@ -640,7 +639,7 @@ fr16qambitmap <- function(r) {
 #' s <- f64qammod(bits)
 #' @return Returns a complex vector of  64-QAM symbols. If Ns > 1
 #' then the returned signal is shaped with pulse shape, p.
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 #'
 f64qammod <- function(bits,Ns=1,p=1) {
@@ -752,8 +751,8 @@ ft64qambitmap <- function(x) {
 #' 6 bits. The 64-QAM symbol decision regions are defined with respect to
 #' the constellation generated by f64qammod(), where in-phase and quadrature
 #' constellation points take on values -7, -5, -3, -1, +1, +3, +5, +7, respectively.
-#' @param r - complex valued input vector
-#' @family rwirelesscom functions
+#' @param r complex valued input vector
+#' @family rwireless
 #' @return a vector of 1's and 0's, 6 bits per input element (64-QAM symbol)
 #' @examples
 #' M=64
@@ -865,7 +864,7 @@ fr64qambitmap <- function(r) {
 #' A convenience function that plots a scatter diagram of Im(r) vs. Re(r). The function is
 #' useful for visualizing constellations such as M-PSK or M-QAM.
 #'
-#' @param  r - complex or real valued vector
+#' @param  r complex or real valued vector
 #' @examples
 #' M=8
 #' Es=1
@@ -879,7 +878,7 @@ fr64qambitmap <- function(r) {
 #' n <- fNo(Nsymbols,No,type="complex")
 #' r <- s+n
 #' iqscatterplot(r)
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 
 iqscatterplot <- function(r) {
@@ -892,8 +891,8 @@ iqscatterplot <- function(r) {
 #'
 #' A convenience function to plot a density function of a vector containing the in-phase and
 #' quadrature signal (plus noise).
-#' @param r - complex or real valued vector
-#' @param iq - if iq = "r" (default) then plot density of Re(r) else if iq = "q" then plot density of Im(r)
+#' @param r complex or real valued vector
+#' @param iq if iq = "r" (default) then plot density of Re(r) else if iq = "q" then plot density of Im(r)
 #' @examples
 #' M=4
 #' Es=1
@@ -907,7 +906,7 @@ iqscatterplot <- function(r) {
 #' n <- fNo(Nsymbols,No,type="complex")
 #' r <- s+n
 #  iqdensityplot(r,iq="q")
-#'  @family rwirelesscom functions
+#'  @family rwireless
 #' @export
 iqdensityplot <- function(r,iq="r") {
   ..density.. <- NULL
@@ -928,13 +927,13 @@ iqdensityplot <- function(r,iq="r") {
 #' Receives a vector of x and  y values and plots a stemplot (line and "points").
 #'
 #' #' Reference: M, Pastell, http://www.r-bloggers.com/matlab-style-stem-plot-with-r
-#' @param x - vector of x axis points
-#' @param y - vector of y axis points
-#' @param pch - plot character default = 19
-#' @param linecol - default line color = 1 (black)
-#' @param linew - default line width = 1
-#' @param ... - graphical environment parameters are input to stemplot
-#' @family rwirelesscom functions
+#' @param x vector of x axis points
+#' @param y vector of y axis points
+#' @param pch plot character default = 19
+#' @param linecol default line color = 1 (black)
+#' @param linew default line width = 1
+#' @param ...  graphical environment parameters are input to stemplot
+#' @family rwireless
 #' @examples
 #' x <- seq(-3*pi, 3*pi, by = 0.2)
 #' y <- sinc(x)
@@ -966,7 +965,7 @@ stemplot <- function(x,y,pch=16,linecol=1,linew=1,...){
 #' @param pch  Graphical parameter pch (plotting character) set to 19 by default ("point")
 #' @param cex  Graphical parameter cex magnificaiton of plotting symbols relative to 1 default set to 0.1.
 #' @param ...  graphical environment parameters are input to eyediagram
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @examples
 #'
 #' # Step 1: generate random set of bits
