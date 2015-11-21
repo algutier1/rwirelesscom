@@ -38,7 +38,8 @@ bits <- sample(0:1,Nbits, replace=TRUE)
 s <- fqpskmod(bits)
 }
 \seealso{
-Other rwireless: \code{\link{f8pskmod}}, \code{\link{fNo}},
+Other rwireless: \code{\link{f8pskdemod}},
+  \code{\link{f8pskmod}}, \code{\link{fNo}},
   \code{\link{fbpskdemod}}, \code{\link{fbpskmod}},
   \code{\link{fqpskdemod}}
 }

@@ -17,8 +17,9 @@ fNo(N, No, type = "real")
 Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
 }
 \seealso{
-Other rwireless: \code{\link{f8pskmod}},
-  \code{\link{fbpskdemod}}, \code{\link{fbpskmod}},
-  \code{\link{fqpskdemod}}, \code{\link{fqpskmod}}
+Other rwireless: \code{\link{f8pskdemod}},
+  \code{\link{f8pskmod}}, \code{\link{fbpskdemod}},
+  \code{\link{fbpskmod}}, \code{\link{fqpskdemod}},
+  \code{\link{fqpskmod}}
 }
 

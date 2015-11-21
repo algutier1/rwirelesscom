@@ -237,6 +237,63 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
     r=100}
   return(r)
 }
+#' 8-PSK Demodulator
+#'
+#' Receives a vector of complex values, r, corresponding to an
+#' 8-PSK modulated signal transmitted through a communications channel
+#' (e.g., signal plus noise). Three bits are output for each received symbol
+#' according to the following decision rules
+#' \tabular{cc}{
+#' input \tab output \cr
+#'  \eqn{ -\pi/8 \ge Arg(r) < \pi/8} \tab 000  \cr
+#'  \eqn{  \pi/8 \ge Arg(r) < 3 \pi/8} \tab 001 \cr
+#'  \eqn{ 3 \pi/8 \ge Arg(r) < 5 \pi/8} \tab 011 \cr
+#'  \eqn{ 5 \pi/8 \ge Arg(r) < 7 \pi/8} \tab 010 \cr
+#'  \eqn{ 7 \pi/8 \ge Arg(r) < 9 \pi/8} \tab 110 \cr
+#'  \eqn{ -7 \pi/8 \ge Arg(r) < -5 \pi/8} \tab 111 \cr
+#'  \eqn{ -5 \pi/8 \ge Arg(r) < -3 \pi/8} \tab 101 \cr
+#'  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  100
+#' }
+#' @param r - received signal
+#' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
+#' @examples
+#' M=8
+#' Es=1
+#' Eb = Es/log2(M)
+#' Nsymbols=10
+#' Nbits=log2(M)*Nsymbols
+#' bits <- sample(0:1,Nbits, replace=TRUE)
+#' s <- f8pskmod(bits)
+#' EbNodB=7
+#' No = Eb/(10^(EbNodB/10))
+#' n <- fNo(Nsymbols,No,type="complex")
+#' r <- s+n
+#' bitsr <- f8pskdemod(r)
+#' biterrs<-bits[bitsr!=bits]
+#' b<-factor(bits)
+#' Pberr=length(biterrs)/length(bits)
+#' @family rwireless
+#' @export
+#'
+f8pskdemod <- function(r) {
+  r2<-sapply(r,fr8pskbitmap)
+  bits2 <- as.vector(matrix(r2,1,length(r2)))
+  return(bits2)
+}
+
+fr8pskbitmap <- function(r) {
+  argr <- Arg(r)
+  if ( argr >= -pi/8 && argr < pi/8 ) symbolbits = c(0,0,0)
+  else if ( argr >= pi/8 && argr < 3*pi/8 ) symbolbits = c(0,0,1)
+  else if ( argr >= 3*pi/8 && argr < 5*pi/8) symbolbits = c(0,1,1)
+  else if ( argr >= 5*pi/8 && argr < 7*pi/8) symbolbits = c(0,1,0)
+  else if ( (argr >= 7*pi/8 && argr < 9*pi/8 ) || (argr > -9*pi/8 && argr < -7*pi/8 )) symbolbits = c(1,1,0)
+  else if ( argr >= -7*pi/8 && argr  < -5*pi/8) symbolbits = c(1,1,1)
+  else if ( argr >= -5*pi/8 && argr  < -3*pi/8) symbolbits = c(1,0,1)
+  else if ( argr >= -3*pi/8 && argr  < -pi/8) symbolbits = c(1,0,0)
+  else symbolbits=c(-1,-1,-1)
+  return(symbolbits)
+}
 
 #' 16-PSK Modulator
 #'
@@ -276,7 +333,7 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
 #' Nbits=log2(M)*Nsymbols
 #' bits <- sample(0:1,Nbits, replace=TRUE)
 #' s <- f16pskmod(bits)
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 f16pskmod <- function(bits,Ns=1,p=1) {
   # receive symbolbits matrix (Nsym rows x Log2(M) cols )
@@ -362,7 +419,7 @@ ft16pskbitmap <- function(x) {                                           #b3b2b1
 #' biterrs<-bits[bitsr!=bits]
 #' b<-factor(bits)
 #' Pberr=length(biterrs)/length(bits)
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 #'
 f16pskdemod <- function(r) {

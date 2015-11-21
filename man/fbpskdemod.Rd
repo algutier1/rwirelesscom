@@ -32,7 +32,8 @@ biterrs<-bits[bitsr!=bits]
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other rwireless: \code{\link{f8pskmod}}, \code{\link{fNo}},
+Other rwireless: \code{\link{f8pskdemod}},
+  \code{\link{f8pskmod}}, \code{\link{fNo}},
   \code{\link{fbpskmod}}, \code{\link{fqpskdemod}},
   \code{\link{fqpskmod}}
 }
