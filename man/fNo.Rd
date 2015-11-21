@@ -2,7 +2,7 @@
 % Please edit documentation in R/rwirelesscom.R
 \name{fNo}
 \alias{fNo}
-\title{fNo}
+\title{AWGN}
 \usage{
 fNo(N, No, type = "real")
 }
@@ -15,5 +15,10 @@ fNo(N, No, type = "real")
 }
 \description{
 Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
+}
+\seealso{
+Other rwireless: \code{\link{f8pskmod}},
+  \code{\link{fbpskdemod}}, \code{\link{fbpskmod}},
+  \code{\link{fqpskdemod}}, \code{\link{fqpskmod}}
 }
 

@@ -32,49 +32,10 @@ NULL
 #' AWGN
 #'
 #' Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
-#' @param N - number of noise samples
-#' @param No - noise spectral density
-#' @param type - "real" or "complex" defaults to real
-#' @family rwirelesscom functions
-#' @return returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
-#' @examples
-#' n <- fNo(N=10,No=10)
-#' bits <- sample(0:1,10, replace=TRUE)
-#' s=fbpskmod(bits)
-#' r=s+n
-#'
-#' n <- fNo(N=20,No=10,type="complex")
-#' bits <- sample(0:1,20, replace=TRUE)
-#' s=fqpskmod(bits)
-#' r=s+n
-
-#' R Wireless Com Package
-#'
-#' A basic wireless communications simulation package in R. The package includes
-#' modulation functions for BPSK, QPSK, 8-PSK, 16-QAM and 64-QAM, and a AWGN noise generation function. Additionally,
-#'  the package includes functions to plot an I (in phase) and Q (quadrature) scatter diagram, or density plot:
-#' \itemize{
-#' \item fNo(),
-#' \item fbpskmod(), fbpskdemod(),
-#' \item f8pskmod(), f8pskdemod(),
-#' \item f16qammod(), f16qamdemod(),
-#' \item f64qammod(), f64qamdemod,
-#' \item iqscatterplot(), iqdensityplot()
-#' }
-#' Together these functions
-#' enable the evaluation of respective bit error and symbol rates in an AWGN channel and for
-#' easily viewing the respective signals and noise in a scatter plot or density plot.
-#'
-#' @docType package
-#' @name rwirelesscom
-NULL
-
-#' fNo
-#'
-#' Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
 #' @param N: number of noise samples
 #' @param No: noise spectral density
 #' @param type: ="real" or "complex" defualts to real
+#' @family rwireless
 #' @export
 fNo <- function(N,No,type="real") {
   if (type=="real") n = sqrt(No/2)*rnorm(N, 0, 1)
@@ -87,15 +48,16 @@ fNo <- function(N,No,type="real") {
 #'
 #' Receives a vector of bits, each with value 0 or 1, and outputs a
 #' vector with values 1 and -1, respectively.
-#' @param bits - vector of bits (0's and 1's)
-#' @param Ns - N samples per symbol (default, Ns = 1)
-#' @param p - a vector defining the pulse shape of the transmitted waveform (default, p = 1)
+#' @param bits vector of bits (0's and 1's)
+#' @param Ns N samples per symbol (default, Ns = 1)
+#' @param p a vector defining the pulse shape of the transmitted waveform (default, p = 1)
 #' @family rwirelesscom functions
 #' @return Returns a BPSK modulated vector, each element taking on values of 1 or -1. If Ns > 1
 #' then the returned signal is shaped with pulse shape, p.
 #' @examples
 #' bits <- sample(0:1,10, replace=TRUE)
 #' fbpskmod(bits)
+#' @family rwireless
 #' @export
 fbpskmod <- function(bits,Ns=1,p=1) {
   s <- sapply(bits, function(x) if (x==0) s=-1 else s=x)
@@ -105,16 +67,6 @@ fbpskmod <- function(bits,Ns=1,p=1) {
     s= convolve(x,p,type="open")
   }
   return(s)
-
-#' fbpskmod
-#'
-#' BPSK modulator
-#' @param bits
-#' @export
-
-fbpskmod <- function(bits) {
-  r <- sapply(bits, function(x) if (x==0) r=-1 else r=x)
-  return(r)
 }
 
 #' BPSK Demodulator
@@ -123,7 +75,7 @@ fbpskmod <- function(bits) {
 #' BPSK modulated signal transmitted through a communications channel
 #' (e.g., signal plus noise). An input value < 1 is mapped to an
 #' output value of 0, otherwise to a value of 1.
-#' @param r - received signal vector
+#' @param r received signal vector
 #' @return returns a vector of 1's and 0's corresponding to BPSK demodulation of the input vector
 #' @examples
 #' Eb=1
@@ -137,7 +89,7 @@ fbpskmod <- function(bits) {
 #' bitsr <- fbpskdemod(r)
 #' biterrs<-bits[bitsr!=bits]
 #' Pberr=length(biterrs)/length(bits)
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 fbpskdemod <- function(r) {
   r <- sapply(r,function(x) if (x>=0) r=1 else r=0)
@@ -157,9 +109,9 @@ fbpskdemod <- function(r) {
 #' 10 \tab  (+1 - 1i) / sqrt(2) \cr
 #' 11 \tab  (+1 + 1i) / sqrt(2)
 #' }
-#' @param bits - received vector of bits (0's and 1's).
-#' @param Ns - N samples per symbol (default, Ns = 1)
-#' @param p - a vector defining the pulse shape of the transmitted waveform (default, p = 1)
+#' @param bits received vector of bits (0's and 1's).
+#' @param Ns N samples per symbol (default, Ns = 1)
+#' @param p a vector defining the pulse shape of the transmitted waveform (default, p = 1)
 #' @return Returns a complex vector of QPSK symbols. If Ns > 1
 #' then the returned signal is shaped with pulse shape, p.
 #' @examples
@@ -211,6 +163,7 @@ fqpskmod <- function(bits,Ns=1,p=1) {
 #' bitsr <- fqpskdemod(r)
 #' biterrs<-bits[bitsr!=bits]
 #' Pberr=length(biterrs)/length(bits)
+#' @family rwireless
 #' @export
 fqpskdemod <- function(r) {
   ri <- Re(r)
@@ -250,7 +203,7 @@ fqpskdemod <- function(r) {
 #' Nbits=log2(M)*Nsymbols
 #' bits <- sample(0:1,Nbits, replace=TRUE)
 #' s <- f8pskmod(bits)
-#' @family rwirelesscom functions
+#' @family rwireless
 #' @export
 f8pskmod <- function(bits,Ns=1,p=1) {
   # receive symbolbits matrix (Nsym rows x Log2(M) cols )
@@ -283,64 +236,6 @@ ft8pskbitmap <- function(x) {                                        #b2b1b0
   else {print(x)
     r=100}
   return(r)
-}
-
-#' 8-PSK Demodulator
-#'
-#' Receives a vector of complex values, r, corresponding to an
-#' 8-PSK modulated signal transmitted through a communications channel
-#' (e.g., signal plus noise). Three bits are output for each received symbol
-#' according to the following decision rules
-#' \tabular{cc}{
-#' input \tab output \cr
-#'  \eqn{ -\pi/8 \ge Arg(r) < \pi/8} \tab 000  \cr
-#'  \eqn{  \pi/8 \ge Arg(r) < 3 \pi/8} \tab 001 \cr
-#'  \eqn{ 3 \pi/8 \ge Arg(r) < 5 \pi/8} \tab 011 \cr
-#'  \eqn{ 5 \pi/8 \ge Arg(r) < 7 \pi/8} \tab 010 \cr
-#'  \eqn{ 7 \pi/8 \ge Arg(r) < 9 \pi/8} \tab 110 \cr
-#'  \eqn{ -7 \pi/8 \ge Arg(r) < -5 \pi/8} \tab 111 \cr
-#'  \eqn{ -5 \pi/8 \ge Arg(r) < -3 \pi/8} \tab 101 \cr
-#'  \eqn{ -3 \pi/8 \ge Arg(r) < - \pi/8}\tab  100
-#' }
-#' @param r - received signal
-#' @return returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
-#' @examples
-#' M=8
-#' Es=1
-#' Eb = Es/log2(M)
-#' Nsymbols=10
-#' Nbits=log2(M)*Nsymbols
-#' bits <- sample(0:1,Nbits, replace=TRUE)
-#' s <- f8pskmod(bits)
-#' EbNodB=7
-#' No = Eb/(10^(EbNodB/10))
-#' n <- fNo(Nsymbols,No,type="complex")
-#' r <- s+n
-#' bitsr <- f8pskdemod(r)
-#' biterrs<-bits[bitsr!=bits]
-#' b<-factor(bits)
-#' Pberr=length(biterrs)/length(bits)
-#' @family rwirelesscom functions
-#' @export
-#'
-f8pskdemod <- function(r) {
-  r2<-sapply(r,fr8pskbitmap)
-  bits2 <- as.vector(matrix(r2,1,length(r2)))
-  return(bits2)
-}
-
-fr8pskbitmap <- function(r) {
-  argr <- Arg(r)
-  if ( argr >= -pi/8 && argr < pi/8 ) symbolbits = c(0,0,0)
-  else if ( argr >= pi/8 && argr < 3*pi/8 ) symbolbits = c(0,0,1)
-  else if ( argr >= 3*pi/8 && argr < 5*pi/8) symbolbits = c(0,1,1)
-  else if ( argr >= 5*pi/8 && argr < 7*pi/8) symbolbits = c(0,1,0)
-  else if ( (argr >= 7*pi/8 && argr < 9*pi/8 ) || (argr > -9*pi/8 && argr < -7*pi/8 )) symbolbits = c(1,1,0)
-  else if ( argr >= -7*pi/8 && argr  < -5*pi/8) symbolbits = c(1,1,1)
-  else if ( argr >= -5*pi/8 && argr  < -3*pi/8) symbolbits = c(1,0,1)
-  else if ( argr >= -3*pi/8 && argr  < -pi/8) symbolbits = c(1,0,0)
-  else symbolbits=c(-1,-1,-1)
-  return(symbolbits)
 }
 
 #' 16-PSK Modulator
@@ -496,8 +391,8 @@ fr16pskbitmap <- function(r) {
   else if ( argr >= -5*pi/16 && argr  < -3*pi/16) symbolbits = c(1,0,0,1)
   else if ( argr >= -3*pi/16 && argr  < -pi/16) symbolbits = c(1,0,0,0)
   else  {
-       symbolbits=c(-1,-1,-1,-1)
-       print(r)
+    symbolbits=c(-1,-1,-1,-1)
+    print(r)
   }
   return(symbolbits)
 }
@@ -557,6 +452,7 @@ f16qammod <- function(bits,Ns=1,p=1) {
   }
   return(s)
 }
+
 ft16qambitmap <- function(x) {
   # b1b0  R := 00 -> -3, 01 -> -1, 11-> +1, 10 -> +3             Im   Re
   # b3b2  I := 00 -> -3, 01 -> -1, 11-> +1, 10 -> +3             b3b2 b1b0
@@ -714,7 +610,7 @@ f64qammod <- function(bits,Ns=1,p=1) {
 
 ft64qambitmap <- function(x) {
   #   imag      real
-                                                      # b5b6b4b3    b2b1b0
+  # b5b6b4b3    b2b1b0
   if (x == 0)      r = complex(real=-7, imaginary=-7)   #  000     000
   else if (x == 1) r = complex(real=-5, imaginary=-7)   #  000     001
   else if (x == 3) r = complex(real=-3, imaginary=-7)   #  000     011
@@ -791,7 +687,6 @@ ft64qambitmap <- function(x) {
     r=100}
   return(r)
 }
-
 #' 64-QAM Demodulator
 #'
 #' Receives a vector of complex values, r, corresponding to a
@@ -824,7 +719,6 @@ f64qamdemod <- function(r) {
   bitsr <- as.vector(matrix(r2,1,length(r2)))
   return(bitsr)
 }
-
 fr64qambitmap <- function(r) {
   if (Im(r) < -6 ) {
     if (Re(r) < -6) bits=c(0,0,0,0,0,0)
@@ -962,10 +856,10 @@ iqdensityplot <- function(r,iq="r") {
   ..density.. <- NULL
   if (iq=="r") { # Real Part
     ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, colour="black", fill=NA,position="identity",aes(y=..density..)) +
-        xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
+      xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
   } else {    #Imaginary Part
     ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, colour="black", fill=NA,position="identity",aes(y=..density..)) +
-       xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
+      xlab("") + theme_bw() + theme(axis.text = element_text( size=16), axis.title=element_text(size=16,face="bold"))
   }
 }
 
@@ -1007,14 +901,14 @@ stemplot <- function(x,y,pch=16,linecol=1,linew=1,...){
 #' the the number of symbol periods to plot along the horizontal access. The eyediagram
 #' is useful for evaluating inter-symbol interference associated with the in-phase or quadrature part
 #' of a modulated signal.
-#' @param x - vector of real or complex points
-#' @param Ns - number of samples per symbol period
-#' @param Np - number of symbol periods to plot along the horizontal axis
-#' @param No - offset (n points) alignment of the eyediagram along the horizontal asis
-#' @param iq - parameter indicates whether to plot the in-phase Re(x) (iq="r" default) or quadrature Im(x) (iq="q")
-#' @param pch - Graphical parameter pch (plotting character) set to 19 by default ("point")
-#' @param cex - Graphical parameter cex magnificaiton of plotting symbols relative to 1 default set to 0.1.
-#' @param ... - graphical environment parameters are input to eyediagram
+#' @param x  vector of real or complex points
+#' @param Ns  number of samples per symbol period
+#' @param Np  number of symbol periods to plot along the horizontal axis
+#' @param No  offset (n points) alignment of the eyediagram along the horizontal asis
+#' @param iq  parameter indicates whether to plot the in-phase Re(x) (iq="r" default) or quadrature Im(x) (iq="q")
+#' @param pch  Graphical parameter pch (plotting character) set to 19 by default ("point")
+#' @param cex  Graphical parameter cex magnificaiton of plotting symbols relative to 1 default set to 0.1.
+#' @param ...  graphical environment parameters are input to eyediagram
 #' @family rwirelesscom functions
 #' @examples
 #'
@@ -1047,15 +941,8 @@ stemplot <- function(x,y,pch=16,linecol=1,linew=1,...){
 eyediagram <- function(x,Ns=1,Np=3,No=1,iq="r",pch=19,cex=0.1,...) {
   if (iq=="r")  y=Re(x[No:length(x)])
   else if (iq=="q") y=Im(x[No:length(x)])
-
   xx=(seq(1:length(y)) %% (Ns*Np))/Ns
-
   plot(xx,y,pch=19,cex=0.1,...)
 }
 
-    if (iq!="i") { # Real Part
-      ggplot(data.frame(r), aes(x=Re(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
-    } else {    #Imaginary Part
-      ggplot(data.frame(r), aes(x=Im(r))) +  geom_histogram(binwidth=0.05, position="identity",aes(y=..density..))
-    }
- }
+

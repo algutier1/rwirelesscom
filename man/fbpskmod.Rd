@@ -7,118 +7,15 @@
 fbpskmod(bits, Ns = 1, p = 1)
 }
 \arguments{
-\item{bits}{- vector of bits (0's and 1's)}
+\item{bits}{vector of bits (0's and 1's)}
 
-\item{Ns}{- N samples per symbol (default, Ns = 1)}
+\item{Ns}{N samples per symbol (default, Ns = 1)}
 
-\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
-
-\item{r}{- received signal vector}
-
-\item{bits}{- received vector of bits (0's and 1's).}
-
-\item{Ns}{- N samples per symbol (default, Ns = 1)}
-
-\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
-
-\item{r}{- received signal plus noise.}
-
-\item{bits}{- vector of bits (0's and 1's).}
-
-\item{Ns}{- N samples per symbol (default, Ns = 1)}
-
-\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
-
-\item{r}{- received signal}
-
-\item{bits}{- vector of bits (0's and 1's).}
-
-\item{Ns}{- N samples per symbol (default, Ns = 1)}
-
-\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
-
-\item{r}{- received signal}
-
-\item{bits}{- received vector of bits (0's and 1's).}
-
-\item{Ns}{- N samples per symbol (default, Ns = 1)}
-
-\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
-
-\item{r}{- vector of complex vector}
-
-\item{bits}{- received vector of bits (0's and 1's).}
-
-\item{Ns}{- N samples per symbol (default, Ns = 1)}
-
-\item{p}{- a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
-
-\item{r}{- complex valued input vector}
-
-\item{r}{- complex or real valued vector}
-
-\item{r}{- complex or real valued vector}
-
-\item{iq}{- if iq = "r" (default) then plot density of Re(r) else if iq = "q" then plot density of Im(r)}
-
-\item{x}{- vector of x axis points}
-
-\item{y}{- vector of y axis points}
-
-\item{pch}{- plot character default = 19}
-
-\item{linecol}{- default line color = 1 (black)}
-
-\item{linew}{- default line width = 1}
-
-\item{...}{- graphical environment parameters are input to stemplot}
-
-\item{x}{- vector of real or complex points}
-
-\item{Ns}{- number of samples per symbol period}
-
-\item{Np}{- number of symbol periods to plot along the horizontal axis}
-
-\item{No}{- offset (n points) alignment of the eyediagram along the horizontal asis}
-
-\item{iq}{- parameter indicates whether to plot the in-phase Re(x) (iq="r" default) or quadrature Im(x) (iq="q")}
-
-\item{pch}{- Graphical parameter pch (plotting character) set to 19 by default ("point")}
-
-\item{cex}{- Graphical parameter cex magnificaiton of plotting symbols relative to 1 default set to 0.1.}
-
-\item{...}{- graphical environment parameters are input to eyediagram}
+\item{p}{a vector defining the pulse shape of the transmitted waveform (default, p = 1)}
 }
 \value{
 Returns a BPSK modulated vector, each element taking on values of 1 or -1. If Ns > 1
 then the returned signal is shaped with pulse shape, p.
-
-returns a vector of 1's and 0's corresponding to BPSK demodulation of the input vector
-
-Returns a complex vector of QPSK symbols. If Ns > 1
-then the returned signal is shaped with pulse shape, p.
-
-returns a vector of 1's and 0's, 2 bits per input element (i.e., QPSK symbol)
-
-Returns a complex vector of length = (length(bits) mod 3), 8-PSK symbols. If Ns > 1
-then the returned signal is shaped with pulse shape, p.
-
-returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
-
-Returns a complex vector of length of 8-PSK symbols. If Ns > 1
-then the returned signal is shaped with pulse shape, p.
-
-returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
-
-Returns a complex vector of 16-QAM symbols. If Ns > 1
-then the returned signal is shaped with pulse shape, p.
-
-a vector of 1's and 0's, 4 bits per input element (16-QAM symbol)
-
-Returns a complex vector of  64-QAM symbols. If Ns > 1
-then the returned signal is shaped with pulse shape, p.
-
-a vector of 1's and 0's, 6 bits per input element (64-QAM symbol)
 }
 \description{
 Receives a vector of bits, each with value 0 or 1, and outputs a
@@ -129,32 +26,15 @@ bits <- sample(0:1,10, replace=TRUE)
 fbpskmod(bits)
 }
 \seealso{
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
+Other rwireless: \code{\link{f8pskmod}}, \code{\link{fNo}},
+  \code{\link{fbpskdemod}}, \code{\link{fqpskdemod}},
+  \code{\link{fqpskmod}}
 
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
-
-Other rwirelesscom functions: \code{\link{rwirelesscom}}
+Other rwirelesscom functions: \code{\link{eyediagram}},
+  \code{\link{f16pskdemod}}, \code{\link{f16pskmod}},
+  \code{\link{f16qamdemod}}, \code{\link{f16qammod}},
+  \code{\link{f64qamdemod}}, \code{\link{f64qammod}},
+  \code{\link{fqpskdemod}}, \code{\link{iqscatterplot}},
+  \code{\link{stemplot}}
 }
 

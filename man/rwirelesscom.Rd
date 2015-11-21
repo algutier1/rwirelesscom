@@ -5,16 +5,6 @@
 \alias{rwirelesscom}
 \alias{rwirelesscom-package}
 \title{R Wireless Communications Package}
-\arguments{
-\item{N}{- number of noise samples}
-
-\item{No}{- noise spectral density}
-
-\item{type}{- "real" or "complex" defaults to real}
-}
-\value{
-returns a vector of distributed noise samples of length N, mean of zero and variance of No/2
-}
 \description{
 A communications simulation package supporting common modulations formats
 including BPSK, QPSK, 8-PSK, 16-PSK, 16-QAM and 64-QAM. The package includes
@@ -36,38 +26,5 @@ package includes the followng functions:
 Together these functions
 enable the evaluation of bit error and symbol error rates, evalutation of pulse shaping and inter-symbol
 interferance and support visualization of the respective signals and noise.
-
-Generates a vector of normally distributed noise samples with mean of zero and noise spectral density (No/2), a.k.a. AWGN.
-}
-\examples{
-n <- fNo(N=10,No=10)
-bits <- sample(0:1,10, replace=TRUE)
-s=fbpskmod(bits)
-r=s+n
-
-n <- fNo(N=20,No=10,type="complex")
-bits <- sample(0:1,20, replace=TRUE)
-s=fqpskmod(bits)
-r=s+n
-R Wireless Com Package
-
-A basic wireless communications simulation package in R. The package includes
-modulation functions for BPSK, QPSK, 8-PSK, 16-QAM and 64-QAM, and a AWGN noise generation function. Additionally,
- the package includes functions to plot an I (in phase) and Q (quadrature) scatter diagram, or density plot:
-\\itemize{
-\\item fNo(),
-\\item fbpskmod(), fbpskdemod(),
-\\item f8pskmod(), f8pskdemod(),
-\\item f16qammod(), f16qamdemod(),
-\\item f64qammod(), f64qamdemod,
-\\item iqscatterplot(), iqdensityplot()
-}
-Together these functions
-enable the evaluation of respective bit error and symbol rates in an AWGN channel and for
-easily viewing the respective signals and noise in a scatter plot or density plot.
-
-}
-\seealso{
-Other rwirelesscom functions: \code{\link{fbpskmod}}
 }
 
