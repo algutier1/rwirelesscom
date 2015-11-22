@@ -51,6 +51,7 @@ Other rwireless: \code{\link{eyediagram}},
   \code{\link{f8pskdemod}}, \code{\link{fNo}},
   \code{\link{fbpskdemod}}, \code{\link{fbpskmod}},
   \code{\link{fqpskdemod}}, \code{\link{fqpskmod}},
-  \code{\link{iqscatterplot}}, \code{\link{stemplot}}
+  \code{\link{iqdensityplot}}, \code{\link{iqscatterplot}},
+  \code{\link{stemplot}}
 }
 

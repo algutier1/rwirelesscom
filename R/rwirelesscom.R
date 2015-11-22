@@ -905,8 +905,8 @@ iqscatterplot <- function(r) {
 #' No = Eb/(10^(EbNodB/10))
 #' n <- fNo(Nsymbols,No,type="complex")
 #' r <- s+n
-#  iqdensityplot(r,iq="q")
-#'  @family rwireless
+#' iqdensityplot(r,iq="q")
+#' @family rwireless
 #' @export
 iqdensityplot <- function(r,iq="r") {
   ..density.. <- NULL
