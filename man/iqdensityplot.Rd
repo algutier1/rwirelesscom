@@ -7,9 +7,9 @@
 iqdensityplot(r, iq = "r")
 }
 \arguments{
-\item{r}{- complex or real valued vector}
+\item{r}{complex or real valued vector}
 
-\item{iq}{- if iq = "r" (default) then plot density of Re(r) else if iq = "q" then plot density of Im(r)}
+\item{iq}{if iq = "r" (default) then plot density of Re(r) else if iq = "q" then plot density of Im(r)}
 }
 \description{
 A convenience function to plot a density function of a vector containing the in-phase and
@@ -27,6 +27,6 @@ EbNodB=4
 No = Eb/(10^(EbNodB/10))
 n <- fNo(Nsymbols,No,type="complex")
 r <- s+n
- @family rwirelesscom functions
+ @family rwireless
 }
 

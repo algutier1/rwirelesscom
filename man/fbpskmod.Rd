@@ -26,16 +26,13 @@ bits <- sample(0:1,10, replace=TRUE)
 fbpskmod(bits)
 }
 \seealso{
-Other rwireless: \code{\link{f8pskdemod}},
-  \code{\link{f8pskmod}}, \code{\link{fNo}},
-  \code{\link{fbpskdemod}}, \code{\link{fqpskdemod}},
-  \code{\link{fqpskmod}}
-
-Other rwirelesscom functions: \code{\link{eyediagram}},
+Other rwireless: \code{\link{eyediagram}},
   \code{\link{f16pskdemod}}, \code{\link{f16pskmod}},
   \code{\link{f16qamdemod}}, \code{\link{f16qammod}},
   \code{\link{f64qamdemod}}, \code{\link{f64qammod}},
-  \code{\link{fqpskdemod}}, \code{\link{iqscatterplot}},
-  \code{\link{stemplot}}
+  \code{\link{f8pskdemod}}, \code{\link{f8pskmod}},
+  \code{\link{fNo}}, \code{\link{fbpskdemod}},
+  \code{\link{fqpskdemod}}, \code{\link{fqpskmod}},
+  \code{\link{iqscatterplot}}, \code{\link{stemplot}}
 }
 

@@ -7,7 +7,7 @@
 f16pskdemod(r)
 }
 \arguments{
-\item{r}{- received signal}
+\item{r}{received signal}
 }
 \value{
 returns a vector of 1's and 0's, 3 bits per input element (i.e., 8-PSK symbol)
@@ -55,11 +55,13 @@ b<-factor(bits)
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other rwirelesscom functions: \code{\link{eyediagram}},
+Other rwireless: \code{\link{eyediagram}},
   \code{\link{f16pskmod}}, \code{\link{f16qamdemod}},
   \code{\link{f16qammod}}, \code{\link{f64qamdemod}},
-  \code{\link{f64qammod}}, \code{\link{fbpskmod}},
-  \code{\link{fqpskdemod}}, \code{\link{iqscatterplot}},
-  \code{\link{stemplot}}
+  \code{\link{f64qammod}}, \code{\link{f8pskdemod}},
+  \code{\link{f8pskmod}}, \code{\link{fNo}},
+  \code{\link{fbpskdemod}}, \code{\link{fbpskmod}},
+  \code{\link{fqpskdemod}}, \code{\link{fqpskmod}},
+  \code{\link{iqscatterplot}}, \code{\link{stemplot}}
 }
 

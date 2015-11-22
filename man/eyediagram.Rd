@@ -60,11 +60,13 @@ eyediagram(s[1000:60000],Ns,Np,No,iq="r",xlab="Ts",ylab="I")
 eyediagram(s[1000:60000],Ns,Np,No,iq="q",xlab="Ts",ylab="Q")
 }
 \seealso{
-Other rwirelesscom functions: \code{\link{f16pskdemod}},
+Other rwireless: \code{\link{f16pskdemod}},
   \code{\link{f16pskmod}}, \code{\link{f16qamdemod}},
   \code{\link{f16qammod}}, \code{\link{f64qamdemod}},
-  \code{\link{f64qammod}}, \code{\link{fbpskmod}},
-  \code{\link{fqpskdemod}}, \code{\link{iqscatterplot}},
-  \code{\link{stemplot}}
+  \code{\link{f64qammod}}, \code{\link{f8pskdemod}},
+  \code{\link{f8pskmod}}, \code{\link{fNo}},
+  \code{\link{fbpskdemod}}, \code{\link{fbpskmod}},
+  \code{\link{fqpskdemod}}, \code{\link{fqpskmod}},
+  \code{\link{iqscatterplot}}, \code{\link{stemplot}}
 }
 

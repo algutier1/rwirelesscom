@@ -7,7 +7,7 @@
 f64qamdemod(r)
 }
 \arguments{
-\item{r}{- complex valued input vector}
+\item{r}{complex valued input vector}
 }
 \value{
 a vector of 1's and 0's, 6 bits per input element (64-QAM symbol)
@@ -37,11 +37,13 @@ biterrs<-bits[bitsr!=bits]
 Pberr=length(biterrs)/length(bits)
 }
 \seealso{
-Other rwirelesscom functions: \code{\link{eyediagram}},
+Other rwireless: \code{\link{eyediagram}},
   \code{\link{f16pskdemod}}, \code{\link{f16pskmod}},
   \code{\link{f16qamdemod}}, \code{\link{f16qammod}},
-  \code{\link{f64qammod}}, \code{\link{fbpskmod}},
-  \code{\link{fqpskdemod}}, \code{\link{iqscatterplot}},
-  \code{\link{stemplot}}
+  \code{\link{f64qammod}}, \code{\link{f8pskdemod}},
+  \code{\link{f8pskmod}}, \code{\link{fNo}},
+  \code{\link{fbpskdemod}}, \code{\link{fbpskmod}},
+  \code{\link{fqpskdemod}}, \code{\link{fqpskmod}},
+  \code{\link{iqscatterplot}}, \code{\link{stemplot}}
 }
 

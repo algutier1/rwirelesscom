@@ -7,17 +7,17 @@
 stemplot(x, y, pch = 16, linecol = 1, linew = 1, ...)
 }
 \arguments{
-\item{x}{- vector of x axis points}
+\item{x}{vector of x axis points}
 
-\item{y}{- vector of y axis points}
+\item{y}{vector of y axis points}
 
-\item{pch}{- plot character default = 19}
+\item{pch}{plot character default = 19}
 
-\item{linecol}{- default line color = 1 (black)}
+\item{linecol}{default line color = 1 (black)}
 
-\item{linew}{- default line width = 1}
+\item{linew}{default line width = 1}
 
-\item{...}{- graphical environment parameters are input to stemplot}
+\item{...}{graphical environment parameters are input to stemplot}
 }
 \description{
 Receives a vector of x and  y values and plots a stemplot (line and "points").
@@ -31,11 +31,13 @@ y <- sinc(x)
 stemplot(x/pi,y,ylim=c(-0.3,1.1), pch=19, cex=0.3, ylab="y", xlab="x/pi")
 }
 \seealso{
-Other rwirelesscom functions: \code{\link{eyediagram}},
+Other rwireless: \code{\link{eyediagram}},
   \code{\link{f16pskdemod}}, \code{\link{f16pskmod}},
   \code{\link{f16qamdemod}}, \code{\link{f16qammod}},
   \code{\link{f64qamdemod}}, \code{\link{f64qammod}},
+  \code{\link{f8pskdemod}}, \code{\link{f8pskmod}},
+  \code{\link{fNo}}, \code{\link{fbpskdemod}},
   \code{\link{fbpskmod}}, \code{\link{fqpskdemod}},
-  \code{\link{iqscatterplot}}
+  \code{\link{fqpskmod}}, \code{\link{iqscatterplot}}
 }
 
